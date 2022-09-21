@@ -1,6 +1,6 @@
-# Website for STA 210 at Duke University (Spring 2022)
+# Website for DSC 223 at Cornell College (Fall Block 2 2022)
 
-🔗 https://sta210-s22.github.io/website/
+🔗 https://dsc223-fb2-2022.github.io/website/
 
 ## Colors
 
