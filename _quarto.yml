@@ -3,22 +3,22 @@ project:
 
 website:
   page-navigation: true
-  title: "STA 210 - Spring 2022"
-  description: "Homepage for STA 210 - Regression Analysis at Duke University, Spring 2022."
-  site-url: "https://sta210-s22.github.io/website/"
+  title: "DSC 223 - Fall 2022 - Block 2"
+  description: "Homepage for DSC 223 - Introudction to Data Science at Cornell College, Fall 2022."
+  site-url: "https://dsc223-fb2-2022.github.io/website/"
 
-  repo-url: https://github.com/sta210-s22/website
+  repo-url: https://github.com/DSC223-FB2-2022/website
   repo-actions: [edit, issue]
 
   open-graph: true
 
   twitter-card:
-    creator: "@minebocek"
+    creator: "@stats_tgeorge"
     image: "images/twitter-card.png"
 
   page-footer:
-    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2022, Mine Çetinkaya-Rundel"
+    right: "This page is built with [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2022, Tyler George"
     background: "#D9E3E4"
 
   sidebar:
@@ -28,20 +28,20 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/sta210-s22
+        href: https://github.com/DSC223-FB2-2022/website
         text: "GitHub organization"
       - icon: code-square
-        href: https://cmgr.oit.duke.edu/containers
-        text: "RStudio Containers"
+        href: http://turing.cornellcollege.edu:8787/
+        text: "RStudio Server"
       - icon: person-fill
-        text: "Sakai"
+        text: "Moodle"
         menu:
-          - text: Discussion forum
-            url: https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/tool/13b6446a-a6c6-4222-8cfb-c36d1f70802b
-          - text: Gradescope
-            url: https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/page/aec742dc-2972-4f02-a35b-1dd3315af889
+          - text: Announcements
+            url: https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844
           - text: Gradebook
-            url: https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/tool/69078433-67a6-4054-a2e7-9e6c202ecdc3/
+            url: https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992
+          - text: Homepage
+            url: https://moodle.cornellcollege.edu/course/view.php?id=6992
 
     style: "docked"
     search: true
@@ -55,8 +55,8 @@ website:
             text: Syllabus
           - href: course-support.qmd
             text: Support
-          - href: course-team.qmd
-            text: Teaching team
+          - href: course-instructor.qmd
+            text: Instructor
           - href: index.qmd
             text: Schedule
           - href: course-links.qmd

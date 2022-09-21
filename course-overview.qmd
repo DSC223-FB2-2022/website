@@ -1,10 +1,5 @@
 ---
-title: "STA 210: Regression Analysis"
+title: "DSC 223: Introduction to Data Science"
 ---
 
-Learn approaches for analyzing multivariate data sets, emphasizing analysis of variance, linear regression, and logistic regression.
-Learn techniques for checking the appropriateness of proposed models, such as residual analyses and case influence diagnostics, and techniques for selecting models.
-Gain experience dealing with the challenges that arise in practice through assignments that utilize real-world data.
-This class emphasizes data analysis over mathematical theory.
-
-![](images/background-bikeshare.png){fig-alt="A series of six, generic data visualizations: a scatterplot, a density plot, a contour plot, a line plot, a box plot, and another scatterplot." width="700"}
+At the end of this course I would like you to be to use software's including RStudio and GitHub to respect, explore, understand, and utilize data in a way that is replicable. This course supports the Educational Priorities and Outcomes of Cornell College with emphasis on knowledge, inquiry, reasoning, and communication, ethical behavior, citizenship, and vocation. Your emphasis on knowledge is in the skills you will learn and apply in various interdisciplinary fields. You will inquire when investigating data -- seeing patters or trends and exploring them to. Your reasoning skills are built and tested when making decisions based on the data and your own programmed visualizations and numerical summaries. Your group work in class and group project presentations will help you practice your communication of statistical analysis. When you make decisions about what data to work with, how to treat the data, and how to talk about your results in an ethical way you practice good ethical behavior. Some of our analysis' will be with data from institutions such as governments or organizations that have an influence on the public -- these types of analysis' can inform public policies and are our way, as data scientists, to practice citizenship. Lastly, you will learn about the field of data science and the types of knowledge and training that would be required to support your vocation as a data scientist.
