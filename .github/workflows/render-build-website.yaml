@@ -26,7 +26,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev
-          sudo apt-get install libfontconfig1=2.12.6-0ubuntu2
+          sudo apt-get install -y libmagick--dev
+
+
+sudo apt-get install libfontconfig1=2.12.6-0ubuntu2
 
       - name: Put pandoc in PATH
         run: |
