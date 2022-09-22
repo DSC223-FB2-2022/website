@@ -43,6 +43,12 @@ jobs:
         with:
           cache-version: 2
 
+      - name: Install packages
+        run: |
+         install.packages(c("rmarkdown", "remotes"))
+         remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox"))
+        shell: Rscript {0}
+        
       - name: Build site 🔧
         run: |
           R -e 'quarto::quarto_render(".", as_job = FALSE)'
