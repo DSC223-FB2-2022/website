@@ -43,10 +43,14 @@ jobs:
         with:
           cache-version: 2
       
+      - uses: r-lib/actions/setup-r@v1
+    
+      - uses: r-lib/actions/setup-pandoc@v1
+
       - name: Install packages
         run: |
          #install.packages(c("rmarkdown", "tidyverse", "renv", "remotes"))
-         install.packages(c("rmarkdown", "remotes","skimr","ggimage"))
+         install.packages(c("rmarkdown", "remotes"))
          remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox", "hadley/emo", "yihui/xaringan"))
         shell: Rscript {0}
 
