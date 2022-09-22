@@ -1,0 +1,18 @@
+{
+  "hash": "78b13467c4fb40d687f3fc7b0115fcfc",
+  "result": {
+    "markdown": "\n\n\nlayout: true\n  \n<div class=\"my-footer\">\n<span>\n<a href=\"https://datasciencebox.org\" target=\"_blank\">datasciencebox.org</a>\n</span>\n</div> \n\n---\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../site_libs/font-awesome/css/all.css\" rel=\"stylesheet\" />\r\n<link href=\"../site_libs/font-awesome/css/v4-shims.css\" rel=\"stylesheet\" />\r\n<link href=\"../site_libs/panelset/panelset.css\" rel=\"stylesheet\" />\r\n<script src=\"../site_libs/panelset/panelset.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

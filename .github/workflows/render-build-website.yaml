@@ -80,7 +80,14 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 2
-          
+      
+      - name: Install packages
+        run: |
+         #install.packages(c("rmarkdown", "tidyverse", "renv", "remotes"))
+         install.packages(c("rmarkdown", "remotes"))
+         remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox", "hadley/emo", "yihui/xaringan"))
+        shell: Rscript {0}
+
       - name: Build site 🔧
         run: |
           R -e 'quarto::quarto_render(".", as_job = FALSE)'
