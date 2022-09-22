@@ -50,7 +50,7 @@ jobs:
       - name: Install packages
         run: |
          #install.packages(c("rmarkdown", "tidyverse", "renv", "remotes"))
-         install.packages(c("rmarkdown", "remotes","tidyverse"))
+         install.packages(c("rmarkdown", "remotes","skimr","ggimage"))
          remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox", "hadley/emo", "yihui/xaringan"))
         shell: Rscript {0}
 
