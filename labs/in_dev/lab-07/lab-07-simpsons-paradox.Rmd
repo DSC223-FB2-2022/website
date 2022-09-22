@@ -38,6 +38,7 @@ Make sure to commit with a meaningful commit message.
 Then, go to your repo on GitHub and confirm that your changes are visible in your Rmd **and** md files.
 If anything is missing, commit and push again.
 
+
 ## Packages
 
 We'll use the **tidyverse** package for much of the data wrangling and visualisation and the data lives in the **mosaicData** package.
