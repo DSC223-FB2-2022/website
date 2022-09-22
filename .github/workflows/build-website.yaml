@@ -45,7 +45,7 @@ jobs:
 
       - name: Install packages
         run: |
-         install.packages(c("rmarkdown", "remotes"))
+         install.packages(c("rmarkdown","tidyverse", "remotes"))
          remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox"))
         shell: Rscript {0}
         
