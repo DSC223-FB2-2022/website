@@ -6,6 +6,8 @@ output:
     tufte_variant: "envisioned"
     highlight: pygments
 link-citations: yes
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{marginfigure}
