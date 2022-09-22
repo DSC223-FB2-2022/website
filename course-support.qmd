@@ -57,26 +57,10 @@ The mission of Cornell College Student Health Services complements the mission o
 
 The Student Health Center is located in the Ebersole Building, directly south of the Thomas Commons. Appointments are preferred. You can schedule an appointment online or by phone at 319-895-4292. Walk-ins will be accommodated as time permits. Appointments with the nurse are free.
 
-Student mental health and wellness is of primary importance at Duke, and the university offers resources to support students in managing daily stress and self-care. Duke offers several resources for students to seek assistance on coursework and to nurture daily habits that support overall well-being, some of which are listed below:
+## Technology Support
 
--   **The Academic Resource Center**: (919) 684-5917, [theARC\@duke.edu](mailto:theARC@duke.edu), or [arc.duke.edu](https://arc.duke.edu/),
-
--   **DuWell**: (919) 681-8421, [duwell\@studentaffairs.duke.edu](mailto:duwell@studentaffairs.duke.edu), or [studentaffairs.duke.edu/duwell](https://studentaffairs.duke.edu/duwell)
-
-## **Technology accommodations**
-
-Students with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops. For technology assistance requests, please put a ticekt [here](https://keeplearning.duke.edu/technical-support/). Please note that supplies are limited.
-
-Note that we will be using Duke's computational resources in this course. These resources are freely available to you. As long as your computer can connect to the internet and open a browser window, you can perform the necessary computing for this course. All software we use is open-source and/or freely available.
+If you have issues with your computer during the block, IT may be able to help. [Please submit a ticket](https://www.cornellcollege.edu/information-technology/).
 
 ## **Course materials costs**
 
 There are no costs associated with this course. All readings will come from freely available, open resources (open-source textbooks, journal articles, etc.).
-
-## **Assistance with Zoom or Sakai**
-
-For technical help with Sakai or Zoom, contact the Duke OIT Service Desk at [oit.duke.edu/help](https://oit.duke.edu/help). You can also access the self-service help documentation for Zoom [here](https://oit.duke.edu/help/articles/kb0029318) and for Sakai [here](https://sakai-duke.screenstepslive.com/s/sakai_support).
-
-Note that we will be making minimal use of Sakai in this course (primarily for announcements and grade book). All assignment submission and discussion will take place on GitHub instead.
-
-Zoom will be used for online office hours as well as as a backup option should we need to hold the course online instead of in person.
