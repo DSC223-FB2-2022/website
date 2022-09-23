@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - The language of models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - The language of models">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - The language of models">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">The language of models</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-model" id="toc-what-is-a-model" class="nav-link active" data-scroll-target="#what-is-a-model">What is a model?</a>
+  <ul class="collapse">
+  <li><a href="#modelling" id="toc-modelling" class="nav-link" data-scroll-target="#modelling">Modelling</a></li>
+  <li><a href="#paris-paintings" id="toc-paris-paintings" class="nav-link" data-scroll-target="#paris-paintings">Paris Paintings</a></li>
+  <li><a href="#auctions-today" id="toc-auctions-today" class="nav-link" data-scroll-target="#auctions-today">Auctions today</a></li>
+  <li><a href="#auctions-back-in-the-day" id="toc-auctions-back-in-the-day" class="nav-link" data-scroll-target="#auctions-back-in-the-day">Auctions back in the day</a></li>
+  <li><a href="#paris-auction-market" id="toc-paris-auction-market" class="nav-link" data-scroll-target="#paris-auction-market">Paris auction market</a></li>
+  <li><a href="#départ-pour-la-chasse" id="toc-départ-pour-la-chasse" class="nav-link" data-scroll-target="#départ-pour-la-chasse">Départ pour la chasse</a></li>
+  <li><a href="#auction-catalog-text" id="toc-auction-catalog-text" class="nav-link" data-scroll-target="#auction-catalog-text">Auction catalog text</a></li>
+  </ul></li>
+  <li><a href="#modeling-the-relationship-between-variables" id="toc-modeling-the-relationship-between-variables" class="nav-link" data-scroll-target="#modeling-the-relationship-between-variables">Modeling the relationship between variables</a>
+  <ul class="collapse">
+  <li><a href="#heights" id="toc-heights" class="nav-link" data-scroll-target="#heights">Heights</a></li>
+  <li><a href="#widths" id="toc-widths" class="nav-link" data-scroll-target="#widths">Widths</a></li>
+  <li><a href="#models-as-functions" id="toc-models-as-functions" class="nav-link" data-scroll-target="#models-as-functions">Models as functions</a></li>
+  <li><a href="#height-as-a-function-of-width" id="toc-height-as-a-function-of-width" class="nav-link" data-scroll-target="#height-as-a-function-of-width">Height as a function of width</a></li>
+  <li><a href="#without-the-measure-of-uncertainty" id="toc-without-the-measure-of-uncertainty" class="nav-link" data-scroll-target="#without-the-measure-of-uncertainty">… without the measure of uncertainty</a></li>
+  <li><a href="#with-different-cosmetic-choices" id="toc-with-different-cosmetic-choices" class="nav-link" data-scroll-target="#with-different-cosmetic-choices">… with different cosmetic choices</a></li>
+  <li><a href="#other-smoothing-methods-gam" id="toc-other-smoothing-methods-gam" class="nav-link" data-scroll-target="#other-smoothing-methods-gam">Other smoothing methods: gam</a></li>
+  <li><a href="#other-smoothing-methods-loess" id="toc-other-smoothing-methods-loess" class="nav-link" data-scroll-target="#other-smoothing-methods-loess">Other smoothing methods: loess</a></li>
+  <li><a href="#vocabulary" id="toc-vocabulary" class="nav-link" data-scroll-target="#vocabulary">Vocabulary</a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
+  <li><a href="#landscape-paintings" id="toc-landscape-paintings" class="nav-link" data-scroll-target="#landscape-paintings">Landscape paintings</a></li>
+  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables">Multiple explanatory variables</a></li>
+  <li><a href="#extending-regression-lines" id="toc-extending-regression-lines" class="nav-link" data-scroll-target="#extending-regression-lines">Extending regression lines</a></li>
+  <li><a href="#models---upsides-and-downsides" id="toc-models---upsides-and-downsides" class="nav-link" data-scroll-target="#models---upsides-and-downsides">Models - upsides and downsides</a></li>
+  <li><a href="#variation-around-the-model" id="toc-variation-around-the-model" class="nav-link" data-scroll-target="#variation-around-the-model">Variation around the model…</a></li>
+  <li><a href="#how-do-we-use-models" id="toc-how-do-we-use-models" class="nav-link" data-scroll-target="#how-do-we-use-models">How do we use models?</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u4-d01-language-of-models/u4-d01-language-of-models.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">The language of models</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="what-is-a-model" class="level1">
+<h1>What is a model?</h1>
+<hr>
+<section id="modelling" class="level2">
+<h2 class="anchored" data-anchor-id="modelling">Modelling</h2>
+<ul>
+<li>Use models to explain the relationship between variables and to make predictions</li>
+<li>For now we will focus on <strong>linear</strong> models (but remember there are <em>many</em> <em>many</em> other types of models too!)</li>
+</ul>
+<p>.pull-left[] .pull-right[]</p>
+</section>
+<section id="paris-paintings" class="level2">
+<h2 class="anchored" data-anchor-id="paris-paintings">Paris Paintings</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/paris-paintings.csv"</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"n/a"</span>, <span class="st">""</span>, <span class="st">"NA"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Source: Printed catalogues of 28 auction sales in Paris, 1764 - 1780</li>
+<li>Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues</li>
+<li>3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables</li>
+</ul>
+<hr>
+</section>
+<section id="auctions-today" class="level2">
+<h2 class="anchored" data-anchor-id="auctions-today">Auctions today</h2>
+<p>.center[ <iframe width="840" height="473" src="https://www.youtube.com/embed/apaE1Q7r4so" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]</p>
+<hr>
+</section>
+<section id="auctions-back-in-the-day" class="level2">
+<h2 class="anchored" data-anchor-id="auctions-back-in-the-day">Auctions back in the day</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/old-auction.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>.footnote[ .small[ Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)]]</p>
+<hr>
+</section>
+<section id="paris-auction-market" class="level2">
+<h2 class="anchored" data-anchor-id="paris-auction-market">Paris auction market</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/auction-trend-paris.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>.footnote[ .small[ Plot credit: Sandra van Ginhoven]]</p>
+<hr>
+</section>
+<section id="départ-pour-la-chasse" class="level2">
+<h2 class="anchored" data-anchor-id="départ-pour-la-chasse">Départ pour la chasse</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/depart-pour-la-chasse.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="auction-catalog-text" class="level2">
+<h2 class="anchored" data-anchor-id="auction-catalog-text">Auction catalog text</h2>
+<p>.pull-left[] .pull-right[ .small[ Two paintings very rich in composition, of a beautiful execution, and whose merit is very remarkable, each 17 inches 3 lines high, 23 inches wide; the first, painted on wood, comes from the Cabinet of Madame la Comtesse de Verrue; it represents a departure for the hunt: it shows in the front a child on a white horse, a man who gives the horn to gather the dogs, a falconer and other figures nicely distributed across the width of the painting; two horses drinking from a fountain; on the right in the corner a lovely country house topped by a terrace, on which people are at the table, others who play instruments; trees and fabriques pleasantly enrich the background.]]</p>
+<hr>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/painting1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/painting2.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/painting3.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>.small[ .pull-left[] .pull-right[]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="modeling-the-relationship-between-variables" class="level1">
+<h1>Modeling the relationship between variables</h1>
+<hr>
+<section id="heights" class="level2">
+<h2 class="anchored" data-anchor-id="heights">Heights</h2>
+<p>.small[]</p>
+<hr>
+</section>
+<section id="widths" class="level2">
+<h2 class="anchored" data-anchor-id="widths">Widths</h2>
+<p>.small[]</p>
+<hr>
+</section>
+<section id="models-as-functions" class="level2">
+<h2 class="anchored" data-anchor-id="models-as-functions">Models as functions</h2>
+<ul>
+<li>We can represent relationships between variables using <strong>functions</strong></li>
+<li>A function is a mathematical concept: the relationship between an output and one or more inputs
+<ul>
+<li>Plug in the inputs and receive back the output</li>
+<li>Example: The formula <span class="math inline">\(y = 3x + 7\)</span> is a function with input <span class="math inline">\(x\)</span> and output <span class="math inline">\(y\)</span>. If <span class="math inline">\(x\)</span> is <span class="math inline">\(5\)</span>, <span class="math inline">\(y\)</span> is <span class="math inline">\(22\)</span>, <span class="math inline">\(y = 3 \times 5 + 7 = 22\)</span></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="height-as-a-function-of-width" class="level2">
+<h2 class="anchored" data-anchor-id="height-as-a-function-of-width">Height as a function of width</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="without-the-measure-of-uncertainty" class="level2">
+<h2 class="anchored" data-anchor-id="without-the-measure-of-uncertainty">… without the measure of uncertainty</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="with-different-cosmetic-choices" class="level2">
+<h2 class="anchored" data-anchor-id="with-different-cosmetic-choices">… with different cosmetic choices</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="other-smoothing-methods-gam" class="level2">
+<h2 class="anchored" data-anchor-id="other-smoothing-methods-gam">Other smoothing methods: gam</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="other-smoothing-methods-loess" class="level2">
+<h2 class="anchored" data-anchor-id="other-smoothing-methods-loess">Other smoothing methods: loess</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="vocabulary" class="level2">
+<h2 class="anchored" data-anchor-id="vocabulary">Vocabulary</h2>
+<ul>
+<li><strong>Response variable:</strong> Variable whose behavior or variation you are trying to understand, on the y-axis</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>- <strong>Explanatory variables:</strong> Other variables that you want to use to explain the variation in the response, on the x-axis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- <strong>Predicted value:</strong> Output of the <strong>model function</strong> - The model function gives the typical (expected) value of the response variable <em>conditioning</em> on the explanatory variables</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Residuals:</strong> A measure of how far each case is from its predicted value (based on a particular model)
+<ul>
+<li>Residual = Observed value - Predicted value</li>
+<li>Tells how far above/below the expected value each case is</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="residuals" class="level2">
+<h2 class="anchored" data-anchor-id="residuals">Residuals</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code] .small[]]]</p>
+<hr>
+<p>.question[ The plot below displays the relationship between height and width of paintings. The only difference from the previous plots is that it uses a smaller alpha value, making the points somewhat transparent. What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d01-language-of-models_files/figure-html/height-width-plot-alpha-1.png" class="img-fluid figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="landscape-paintings" class="level2">
+<h2 class="anchored" data-anchor-id="landscape-paintings">Landscape paintings</h2>
+<ul>
+<li>Landscape painting is the depiction in art of landscapes – natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view – with its elements arranged into a coherent composition.<sup>1</sup>
+<ul>
+<li>Landscape paintings tend to be wider than they are long.</li>
+</ul></li>
+<li>Portrait painting is a genre in painting, where the intent is to depict a human subject.<sup>2</sup>
+<ul>
+<li>Portrait paintings tend to be longer than they are wide.</li>
+</ul></li>
+</ul>
+<p>.footnote[ [1] Source: Wikipedia, <a href="https://en.wikipedia.org/wiki/Landscape_painting">Landscape painting</a>]</p>
+<hr>
+</section>
+<section id="multiple-explanatory-variables" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-explanatory-variables">Multiple explanatory variables</h2>
+<p>.panelset[ .panel[.panel-name[Plot] .pull-left-narrow[ .question[ How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?]] .pull-right-wide[]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="extending-regression-lines" class="level2">
+<h2 class="anchored" data-anchor-id="extending-regression-lines">Extending regression lines</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="models---upsides-and-downsides" class="level2">
+<h2 class="anchored" data-anchor-id="models---upsides-and-downsides">Models - upsides and downsides</h2>
+<ul>
+<li>Models can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modeling over simple visual inspection of data.</li>
+<li>There is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted.</li>
+</ul>
+<hr>
+</section>
+<section id="variation-around-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="variation-around-the-model">Variation around the model…</h2>
+<p>is just as important as the model, if not more!</p>
+<p><em>Statistics is the explanation of variation in the context of what remains unexplained.</em></p>
+<ul>
+<li>The scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.</li>
+<li>Adding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We’ll talk more about this later.)</li>
+</ul>
+<hr>
+</section>
+<section id="how-do-we-use-models" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-use-models">How do we use models?</h2>
+<ul>
+<li>Explanation: Characterize the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> via <em>slopes</em> for numerical explanatory variables or <em>differences</em> for categorical explanatory variables</li>
+<li>Prediction: Plug in <span class="math inline">\(x\)</span>, get the predicted <span class="math inline">\(y\)</span></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

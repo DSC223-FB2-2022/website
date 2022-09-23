@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Visualising numerical data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Visualising numerical data">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Visualising numerical data">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Visualising numerical data</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link active" data-scroll-target="#terminology">Terminology</a>
+  <ul class="collapse">
+  <li><a href="#number-of-variables-involved" id="toc-number-of-variables-involved" class="nav-link" data-scroll-target="#number-of-variables-involved">Number of variables involved</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables">Types of variables</a></li>
+  </ul></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
+  <ul class="collapse">
+  <li><a href="#data-lending-club" id="toc-data-lending-club" class="nav-link" data-scroll-target="#data-lending-club">Data: Lending Club</a></li>
+  <li><a href="#take-a-peek-at-data" id="toc-take-a-peek-at-data" class="nav-link" data-scroll-target="#take-a-peek-at-data">Take a peek at data</a></li>
+  <li><a href="#selected-variables" id="toc-selected-variables" class="nav-link" data-scroll-target="#selected-variables">Selected variables</a></li>
+  <li><a href="#selected-variables-1" id="toc-selected-variables-1" class="nav-link" data-scroll-target="#selected-variables-1">Selected variables</a></li>
+  <li><a href="#variable-types" id="toc-variable-types" class="nav-link" data-scroll-target="#variable-types">Variable types</a></li>
+  </ul></li>
+  <li><a href="#visualizing-numerical-data" id="toc-visualizing-numerical-data" class="nav-link" data-scroll-target="#visualizing-numerical-data">Visualizing numerical data</a>
+  <ul class="collapse">
+  <li><a href="#describing-shapes-of-numerical-distributions" id="toc-describing-shapes-of-numerical-distributions" class="nav-link" data-scroll-target="#describing-shapes-of-numerical-distributions">Describing shapes of numerical distributions</a></li>
+  </ul></li>
+  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram">Histogram</a>
+  <ul class="collapse">
+  <li><a href="#histogram-1" id="toc-histogram-1" class="nav-link" data-scroll-target="#histogram-1">Histogram</a></li>
+  <li><a href="#histograms-and-binwidth" id="toc-histograms-and-binwidth" class="nav-link" data-scroll-target="#histograms-and-binwidth">Histograms and binwidth</a></li>
+  <li><a href="#customizing-histograms" id="toc-customizing-histograms" class="nav-link" data-scroll-target="#customizing-histograms">Customizing histograms</a></li>
+  <li><a href="#fill-with-a-categorical-variable" id="toc-fill-with-a-categorical-variable" class="nav-link" data-scroll-target="#fill-with-a-categorical-variable">Fill with a categorical variable</a></li>
+  <li><a href="#facet-with-a-categorical-variable" id="toc-facet-with-a-categorical-variable" class="nav-link" data-scroll-target="#facet-with-a-categorical-variable">Facet with a categorical variable</a></li>
+  </ul></li>
+  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot">Density plot</a>
+  <ul class="collapse">
+  <li><a href="#density-plot-1" id="toc-density-plot-1" class="nav-link" data-scroll-target="#density-plot-1">Density plot</a></li>
+  <li><a href="#density-plots-and-adjusting-bandwidth" id="toc-density-plots-and-adjusting-bandwidth" class="nav-link" data-scroll-target="#density-plots-and-adjusting-bandwidth">Density plots and adjusting bandwidth</a></li>
+  <li><a href="#customizing-density-plots" id="toc-customizing-density-plots" class="nav-link" data-scroll-target="#customizing-density-plots">Customizing density plots</a></li>
+  <li><a href="#adding-a-categorical-variable" id="toc-adding-a-categorical-variable" class="nav-link" data-scroll-target="#adding-a-categorical-variable">Adding a categorical variable</a></li>
+  </ul></li>
+  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot">Box plot</a>
+  <ul class="collapse">
+  <li><a href="#box-plot-1" id="toc-box-plot-1" class="nav-link" data-scroll-target="#box-plot-1">Box plot</a></li>
+  <li><a href="#box-plot-and-outliers" id="toc-box-plot-and-outliers" class="nav-link" data-scroll-target="#box-plot-and-outliers">Box plot and outliers</a></li>
+  <li><a href="#customizing-box-plots" id="toc-customizing-box-plots" class="nav-link" data-scroll-target="#customizing-box-plots">Customizing box plots</a></li>
+  <li><a href="#adding-a-categorical-variable-1" id="toc-adding-a-categorical-variable-1" class="nav-link" data-scroll-target="#adding-a-categorical-variable-1">Adding a categorical variable</a></li>
+  </ul></li>
+  <li><a href="#relationships-numerical-variables" id="toc-relationships-numerical-variables" class="nav-link" data-scroll-target="#relationships-numerical-variables">Relationships numerical variables</a>
+  <ul class="collapse">
+  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot">Scatterplot</a></li>
+  <li><a href="#hex-plot" id="toc-hex-plot" class="nav-link" data-scroll-target="#hex-plot">Hex plot</a></li>
+  <li><a href="#hex-plot-1" id="toc-hex-plot-1" class="nav-link" data-scroll-target="#hex-plot-1">Hex plot</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u2-d03-viz-num/u2-d03-viz-num.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Visualising numerical data</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="terminology" class="level1">
+<h1>Terminology</h1>
+<hr>
+<section id="number-of-variables-involved" class="level2">
+<h2 class="anchored" data-anchor-id="number-of-variables-involved">Number of variables involved</h2>
+<ul>
+<li>Univariate data analysis - distribution of single variable</li>
+<li>Bivariate data analysis - relationship between two variables</li>
+<li>Multivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others</li>
+</ul>
+<hr>
+</section>
+<section id="types-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-variables">Types of variables</h2>
+<ul>
+<li><strong>Numerical variables</strong> can be classified as <strong>continuous</strong> or <strong>discrete</strong> based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.</li>
+<li>If the variable is <strong>categorical</strong>, we can determine if it is <strong>ordinal</strong> based on whether or not the levels have a natural ordering.</li>
+</ul>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="data" class="level1">
+<h1>Data</h1>
+<hr>
+<section id="data-lending-club" class="level2">
+<h2 class="anchored" data-anchor-id="data-lending-club">Data: Lending Club</h2>
+<p>.pull-left-wide[] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="take-a-peek-at-data" class="level2">
+<h2 class="anchored" data-anchor-id="take-a-peek-at-data">Take a peek at data</h2>
+<div class="cell" data-layout-align="center" data-output.lines="18">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(loans_full_schema)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 55
+$ emp_title                        &lt;chr&gt; "global config enginee~
+$ emp_length                       &lt;dbl&gt; 3, 10, 3, 1, 10, NA, 1~
+$ state                            &lt;fct&gt; NJ, HI, WI, PA, CA, KY~
+$ homeownership                    &lt;fct&gt; MORTGAGE, RENT, RENT, ~
+$ annual_income                    &lt;dbl&gt; 90000, 40000, 40000, 3~
+$ verified_income                  &lt;fct&gt; Verified, Not Verified~
+$ debt_to_income                   &lt;dbl&gt; 18.01, 5.04, 21.15, 10~
+$ annual_income_joint              &lt;dbl&gt; NA, NA, NA, NA, 57000,~
+$ verification_income_joint        &lt;fct&gt; , , , , Verified, , No~
+$ debt_to_income_joint             &lt;dbl&gt; NA, NA, NA, NA, 37.66,~
+$ delinq_2y                        &lt;int&gt; 0, 0, 0, 0, 0, 1, 0, 1~
+$ months_since_last_delinq         &lt;int&gt; 38, NA, 28, NA, NA, 3,~
+$ earliest_credit_line             &lt;dbl&gt; 2001, 1996, 2006, 2007~
+$ inquiries_last_12m               &lt;int&gt; 6, 1, 4, 0, 7, 6, 1, 1~
+$ total_credit_lines               &lt;int&gt; 28, 30, 31, 4, 22, 32,~
+$ open_credit_lines                &lt;int&gt; 10, 14, 10, 4, 16, 12,~
+...</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="selected-variables" class="level2">
+<h2 class="anchored" data-anchor-id="selected-variables">Selected variables</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>loans <span class="ot">&lt;-</span> loans_full_schema <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(loan_amount, interest_rate, term, grade, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         state, annual_income, homeownership, debt_to_income)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(loans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 8
+$ loan_amount    &lt;int&gt; 28000, 5000, 2000, 21600, 23000, 5000, 2~
+$ interest_rate  &lt;dbl&gt; 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, ~
+$ term           &lt;dbl&gt; 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, ~
+$ grade          &lt;ord&gt; C, C, D, A, C, A, C, B, C, A, C, B, C, B~
+$ state          &lt;fct&gt; NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, ~
+$ annual_income  &lt;dbl&gt; 90000, 40000, 40000, 30000, 35000, 34000~
+$ homeownership  &lt;fct&gt; MORTGAGE, RENT, RENT, RENT, RENT, OWN, M~
+$ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, ~</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="selected-variables-1" class="level2">
+<h2 class="anchored" data-anchor-id="selected-variables-1">Selected variables</h2>
+<p><br></p>
+<p>.midi[ variable | description —————-|————- <code>loan_amount</code> | Amount of the loan received, in US dollars <code>interest_rate</code> | Interest rate on the loan, in an annual percentage <code>term</code> | The length of the loan, which is always set as a whole number of months <code>grade</code> | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid <code>state</code> | US state where the borrower resides <code>annual_income</code> | Borrower’s annual income, including any second income, in US dollars <code>homeownership</code> | Indicates whether the person owns, owns but has a mortgage, or rents <code>debt_to_income</code> | Debt-to-income ratio]</p>
+<hr>
+</section>
+<section id="variable-types" class="level2">
+<h2 class="anchored" data-anchor-id="variable-types">Variable types</h2>
+<p><br></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>loan_amount</code></td>
+<td>numerical, continuous</td>
+</tr>
+<tr class="even">
+<td><code>interest_rate</code></td>
+<td>numerical, continuous</td>
+</tr>
+<tr class="odd">
+<td><code>term</code></td>
+<td>numerical, discrete</td>
+</tr>
+<tr class="even">
+<td><code>grade</code></td>
+<td>categorical, ordinal</td>
+</tr>
+<tr class="odd">
+<td><code>state</code></td>
+<td>categorical, not ordinal</td>
+</tr>
+<tr class="even">
+<td><code>annual_income</code></td>
+<td>numerical, continuous</td>
+</tr>
+<tr class="odd">
+<td><code>homeownership</code></td>
+<td>categorical, not ordinal</td>
+</tr>
+<tr class="even">
+<td><code>debt_to_income</code></td>
+<td>numerical, continuous</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="visualizing-numerical-data" class="level1">
+<h1>Visualizing numerical data</h1>
+<hr>
+<section id="describing-shapes-of-numerical-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="describing-shapes-of-numerical-distributions">Describing shapes of numerical distributions</h2>
+<ul>
+<li>shape:
+<ul>
+<li>skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)</li>
+<li>modality: unimodal, bimodal, multimodal, uniform</li>
+</ul></li>
+<li>center: mean (<code>mean</code>), median (<code>median</code>), mode (not always useful)</li>
+<li>spread: range (<code>range</code>), standard deviation (<code>sd</code>), inter-quartile range (<code>IQR</code>)</li>
+<li>unusual observations</li>
+</ul>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="histogram" class="level1">
+<h1>Histogram</h1>
+<hr>
+<section id="histogram-1" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-1">Histogram</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> loan_amount)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with
+`binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="histograms-and-binwidth" class="level2">
+<h2 class="anchored" data-anchor-id="histograms-and-binwidth">Histograms and binwidth</h2>
+<p>.panelset[ .panel[.panel-name[binwidth = 1000]] .panel[.panel-name[binwidth = 5000]] .panel[.panel-name[binwidth = 20000]]]</p>
+<hr>
+</section>
+<section id="customizing-histograms" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-histograms">Customizing histograms</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="fill-with-a-categorical-variable" class="level2">
+<h2 class="anchored" data-anchor-id="fill-with-a-categorical-variable">Fill with a categorical variable</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="facet-with-a-categorical-variable" class="level2">
+<h2 class="anchored" data-anchor-id="facet-with-a-categorical-variable">Facet with a categorical variable</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="density-plot" class="level1">
+<h1>Density plot</h1>
+<hr>
+<section id="density-plot-1" class="level2">
+<h2 class="anchored" data-anchor-id="density-plot-1">Density plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> loan_amount)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="density-plots-and-adjusting-bandwidth" class="level2">
+<h2 class="anchored" data-anchor-id="density-plots-and-adjusting-bandwidth">Density plots and adjusting bandwidth</h2>
+<p>.panelset[ .panel[.panel-name[adjust = 0.5]] .panel[.panel-name[adjust = 1]] .panel[.panel-name[adjust = 2]]]</p>
+<hr>
+</section>
+<section id="customizing-density-plots" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-density-plots">Customizing density plots</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="adding-a-categorical-variable" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-categorical-variable">Adding a categorical variable</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="box-plot" class="level1">
+<h1>Box plot</h1>
+<hr>
+<section id="box-plot-1" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-1">Box plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> interest_rate)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="box-plot-and-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-and-outliers">Box plot and outliers</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> annual_income)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="customizing-box-plots" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-box-plots">Customizing box plots</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+</section>
+<section id="adding-a-categorical-variable-1" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-categorical-variable-1">Adding a categorical variable</h2>
+<p>.panelset[ .panel[.panel-name[Plot]] .panel[.panel-name[Code]]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="relationships-numerical-variables" class="level1">
+<h1>Relationships numerical variables</h1>
+<hr>
+<section id="scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="scatterplot">Scatterplot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> debt_to_income, <span class="at">y =</span> interest_rate)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="hex-plot" class="level2">
+<h2 class="anchored" data-anchor-id="hex-plot">Hex plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> debt_to_income, <span class="at">y =</span> interest_rate)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="hex-plot-1" class="level2">
+<h2 class="anchored" data-anchor-id="hex-plot-1">Hex plot</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(loans <span class="sc">%&gt;%</span> <span class="fu">filter</span>(debt_to_income <span class="sc">&lt;</span> <span class="dv">100</span>), </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> debt_to_income, <span class="at">y =</span> interest_rate)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d03-viz-num_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

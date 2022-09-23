@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Data classes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Data classes">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Data classes">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Data classes</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-classes" id="toc-data-classes" class="nav-link active" data-scroll-target="#data-classes">Data classes</a>
+  <ul class="collapse">
+  <li><a href="#data-classes-1" id="toc-data-classes-1" class="nav-link" data-scroll-target="#data-classes-1">Data classes</a></li>
+  <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors">Factors</a></li>
+  <li><a href="#more-on-factors" id="toc-more-on-factors" class="nav-link" data-scroll-target="#more-on-factors">More on factors</a></li>
+  <li><a href="#dates" id="toc-dates" class="nav-link" data-scroll-target="#dates">Dates</a></li>
+  <li><a href="#more-on-dates" id="toc-more-on-dates" class="nav-link" data-scroll-target="#more-on-dates">More on dates</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">Data frames</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#lists-and-data-frames" id="toc-lists-and-data-frames" class="nav-link" data-scroll-target="#lists-and-data-frames">Lists and data frames</a></li>
+  </ul></li>
+  <li><a href="#working-with-factors" id="toc-working-with-factors" class="nav-link" data-scroll-target="#working-with-factors">Working with factors</a>
+  <ul class="collapse">
+  <li><a href="#read-data-in-as-character-strings" id="toc-read-data-in-as-character-strings" class="nav-link" data-scroll-target="#read-data-in-as-character-strings">Read data in as character strings</a></li>
+  <li><a href="#but-coerce-when-plotting" id="toc-but-coerce-when-plotting" class="nav-link" data-scroll-target="#but-coerce-when-plotting">But coerce when plotting</a></li>
+  <li><a href="#use-forcats-to-manipulate-factors" id="toc-use-forcats-to-manipulate-factors" class="nav-link" data-scroll-target="#use-forcats-to-manipulate-factors">Use forcats to manipulate factors</a></li>
+  <li><a href="#come-for-the-functionality" id="toc-come-for-the-functionality" class="nav-link" data-scroll-target="#come-for-the-functionality">Come for the functionality</a></li>
+  </ul></li>
+  <li><a href="#working-with-dates" id="toc-working-with-dates" class="nav-link" data-scroll-target="#working-with-dates">Working with dates</a>
+  <ul class="collapse">
+  <li><a href="#make-a-date" id="toc-make-a-date" class="nav-link" data-scroll-target="#make-a-date">Make a date</a></li>
+  <li><a href="#step-1.-construct-dates" id="toc-step-1.-construct-dates" class="nav-link" data-scroll-target="#step-1.-construct-dates">Step 1. Construct dates</a></li>
+  <li><a href="#step-2.-count-bookings-per-date" id="toc-step-2.-count-bookings-per-date" class="nav-link" data-scroll-target="#step-2.-count-bookings-per-date">Step 2. Count bookings per date</a></li>
+  <li><a href="#step-3.-visualise-bookings-per-date" id="toc-step-3.-visualise-bookings-per-date" class="nav-link" data-scroll-target="#step-3.-visualise-bookings-per-date">Step 3. Visualise bookings per date</a></li>
+  <li><a href="#step-1.-revised-construct-dates-as-dates" id="toc-step-1.-revised-construct-dates-as-dates" class="nav-link" data-scroll-target="#step-1.-revised-construct-dates-as-dates">Step 1. <em>REVISED</em> Construct dates “as dates”</a></li>
+  <li><a href="#step-2.-count-bookings-per-date-1" id="toc-step-2.-count-bookings-per-date-1" class="nav-link" data-scroll-target="#step-2.-count-bookings-per-date-1">Step 2. Count bookings per date</a></li>
+  <li><a href="#step-3a.-visualise-bookings-per-date" id="toc-step-3a.-visualise-bookings-per-date" class="nav-link" data-scroll-target="#step-3a.-visualise-bookings-per-date">Step 3a. Visualise bookings per date</a></li>
+  <li><a href="#step-3b.-visualise-using-a-smooth-curve" id="toc-step-3b.-visualise-using-a-smooth-curve" class="nav-link" data-scroll-target="#step-3b.-visualise-using-a-smooth-curve">Step 3b. Visualise using a smooth curve</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u2-d11-data-classes/u2-d11-data-classes.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Data classes</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="data-classes" class="level1">
+<h1>Data classes</h1>
+<hr>
+<section id="data-classes-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-classes-1">Data classes</h2>
+<p>We talked about <em>types</em> so far, next we’ll introduce the concept of <em>classes</em></p>
+<ul>
+<li>Vectors are like Lego building blocks</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>- We stick them together to build more complicated constructs, e.g.&nbsp;<em>representations of data</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- The <strong>class</strong> attribute relates to the S3 class of an object which determines its behaviour - You don’t need to worry about what S3 classes really mean, but you can read more about it <a href="https://adv-r.hadley.nz/s3.html#s3-classes">here</a> if you’re curious</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Examples: factors, dates, and data frames</li>
+</ul>
+<hr>
+</section>
+<section id="factors" class="level2">
+<h2 class="anchored" data-anchor-id="factors">Factors</h2>
+<p>R uses factors to handle categorical variables, variables that have a fixed and known set of possible values</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"BS"</span>, <span class="st">"MS"</span>, <span class="st">"PhD"</span>, <span class="st">"MS"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] BS  MS  PhD MS 
+Levels: BS MS PhD</code></pre>
+</div>
+</div>
+<p>–</p>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="more-on-factors" class="level2">
+<h2 class="anchored" data-anchor-id="more-on-factors">More on factors</h2>
+<p>We can think of factors like character (level labels) and an integer (level numbers) glued together</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 3 levels "BS","MS","PhD": 1 2 3 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 2</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="dates" class="level2">
+<h2 class="anchored" data-anchor-id="dates">Dates</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2020-01-01"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2020-01-01"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="more-on-dates" class="level2">
+<h2 class="anchored" data-anchor-id="more-on-dates">More on dates</h2>
+<p>We can think of dates like an integer (the number of days since the origin, 1 Jan 1970) and an integer (the origin) glued together</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18262</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(y) <span class="sc">/</span> <span class="dv">365</span> <span class="co"># roughly 50 yrs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.03288</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="data-frames">Data frames</h2>
+<p>We can think of data frames like like vectors of equal length glued together</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">y =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y
+1 1 3
+2 2 4</code></pre>
+</div>
+</div>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<p>Lists are a generic vector container vectors of any type can go in them</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"hi"</span>, <span class="st">"hello"</span>, <span class="st">"jello"</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] 1 2 3 4
+
+$y
+[1] "hi"    "hello" "jello"
+
+$z
+[1]  TRUE FALSE</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="lists-and-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="lists-and-data-frames">Lists and data frames</h2>
+<ul>
+<li>A data frame is a special list containing vectors of equal length</li>
+<li>When we use the <code>pull()</code> function, we extract a vector from the data frame</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y
+1 1 3
+2 2 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4</code></pre>
+</div>
+</div>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="working-with-factors" class="level1">
+<h1>Working with factors</h1>
+<hr>
+<section id="read-data-in-as-character-strings" class="level2">
+<h2 class="anchored" data-anchor-id="read-data-in-as-character-strings">Read data in as character strings</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cat_lovers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 60
+Columns: 3
+$ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Will~
+$ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", ~
+$ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", ~</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="but-coerce-when-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="but-coerce-when-plotting">But coerce when plotting</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cat_lovers, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> handedness)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="use-forcats-to-manipulate-factors" class="level2">
+<h2 class="anchored" data-anchor-id="use-forcats-to-manipulate-factors">Use forcats to manipulate factors</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cat_lovers <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">handedness =</span> <span class="fu">fct_infreq</span>(handedness)) <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> handedness)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="come-for-the-functionality" class="level2">
+<h2 class="anchored" data-anchor-id="come-for-the-functionality">Come for the functionality</h2>
+<p>.pull-left[ … stay for the logo] .pull-right[]</p>
+<p>.pull-left-wide[ - Factors are useful when you have true categorical data and you want to override the ordering of character vectors to improve display - They are also useful in modeling scenarios - The <strong>forcats</strong> package provides a suite of useful tools that solve common problems with factors]</p>
+<hr>
+<p>.small[ .your-turn[ ### .hand[Your turn!] ]]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u2-d11-data-classes_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="working-with-dates" class="level1">
+<h1>Working with dates</h1>
+<hr>
+<section id="make-a-date" class="level2">
+<h2 class="anchored" data-anchor-id="make-a-date">Make a date</h2>
+<p>.pull-left[] .pull-right[ - <strong>lubridate</strong> is the tidyverse-friendly package that makes dealing with dates a little easier - It’s not one of the <em>core</em> tidyverse packages, hence it’s installed with <code>install.packages("tidyverse)</code> but it’s not loaded with it, and needs to be explicitly loaded with <code>library(lubridate)</code>]</p>
+<hr>
+<p>class: middle</p>
+<p>.hand[.light-blue[ we’re just going to scratch the surface of working with dates in R here…]]</p>
+<hr>
+<p>.question[ Calculate and visualise the number of bookings on any given arrival date.]</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"arrival_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 4
+  arrival_date_year arrival_date_month arrival_date_wee~1 arriv~2
+              &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;
+1              2015 July                               27       1
+2              2015 July                               27       1
+3              2015 July                               27       1
+4              2015 July                               27       1
+5              2015 July                               27       1
+6              2015 July                               27       1
+# ... with 119,384 more rows, and abbreviated variable names
+#   1: arrival_date_week_number, 2: arrival_date_day_of_month</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="step-1.-construct-dates" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.-construct-dates">Step 1. Construct dates</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-2.-count-bookings-per-date" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.-count-bookings-per-date">Step 2. Count bookings per date</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-3.-visualise-bookings-per-date" class="level2">
+<h2 class="anchored" data-anchor-id="step-3.-visualise-bookings-per-date">Step 3. Visualise bookings per date</h2>
+<p>.midi[]</p>
+<hr>
+<p>.hand[zooming in a bit…]</p>
+<p>.question[ Why does the plot start with August when we know our data start in July? And why does 10 August come after 1 August?]</p>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-1.-revised-construct-dates-as-dates" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.-revised-construct-dates-as-dates">Step 1. <em>REVISED</em> Construct dates “as dates”</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-2.-count-bookings-per-date-1" class="level2">
+<h2 class="anchored" data-anchor-id="step-2.-count-bookings-per-date-1">Step 2. Count bookings per date</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-3a.-visualise-bookings-per-date" class="level2">
+<h2 class="anchored" data-anchor-id="step-3a.-visualise-bookings-per-date">Step 3a. Visualise bookings per date</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="step-3b.-visualise-using-a-smooth-curve" class="level2">
+<h2 class="anchored" data-anchor-id="step-3b.-visualise-using-a-smooth-curve">Step 3b. Visualise using a smooth curve</h2>
+<p>.midi[]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

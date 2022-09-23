@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Cross validation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Cross validation">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Cross validation">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Cross validation</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-and-exploration" id="toc-data-and-exploration" class="nav-link active" data-scroll-target="#data-and-exploration">Data and exploration</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#imdb-ratings" id="toc-imdb-ratings" class="nav-link" data-scroll-target="#imdb-ratings">IMDB ratings</a></li>
+  <li><a href="#imdb-ratings-vs.-number-of-votes" id="toc-imdb-ratings-vs.-number-of-votes" class="nav-link" data-scroll-target="#imdb-ratings-vs.-number-of-votes">IMDB ratings vs.&nbsp;number of votes</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  <li><a href="#imdb-ratings-vs.-seasons" id="toc-imdb-ratings-vs.-seasons" class="nav-link" data-scroll-target="#imdb-ratings-vs.-seasons">IMDB ratings vs.&nbsp;seasons</a></li>
+  </ul></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a>
+  <ul class="collapse">
+  <li><a href="#train-test" id="toc-train-test" class="nav-link" data-scroll-target="#train-test">Train / test</a></li>
+  <li><a href="#specify-model" id="toc-specify-model" class="nav-link" data-scroll-target="#specify-model">Specify model</a></li>
+  <li><a href="#build-recipe" id="toc-build-recipe" class="nav-link" data-scroll-target="#build-recipe">Build recipe</a></li>
+  <li><a href="#build-workflow" id="toc-build-workflow" class="nav-link" data-scroll-target="#build-workflow">Build workflow</a></li>
+  <li><a href="#fit-model" id="toc-fit-model" class="nav-link" data-scroll-target="#fit-model">Fit model</a></li>
+  </ul></li>
+  <li><a href="#evaluate-model" id="toc-evaluate-model" class="nav-link" data-scroll-target="#evaluate-model">Evaluate model</a>
+  <ul class="collapse">
+  <li><a href="#make-predictions-for-training-data" id="toc-make-predictions-for-training-data" class="nav-link" data-scroll-target="#make-predictions-for-training-data">Make predictions for training data</a></li>
+  <li><a href="#r-squared" id="toc-r-squared" class="nav-link" data-scroll-target="#r-squared">R-squared</a></li>
+  <li><a href="#rmse" id="toc-rmse" class="nav-link" data-scroll-target="#rmse">RMSE</a></li>
+  <li><a href="#interpreting-rmse" id="toc-interpreting-rmse" class="nav-link" data-scroll-target="#interpreting-rmse">Interpreting RMSE</a></li>
+  <li><a href="#make-predictions-for-testing-data" id="toc-make-predictions-for-testing-data" class="nav-link" data-scroll-target="#make-predictions-for-testing-data">Make predictions for testing data</a></li>
+  <li><a href="#evaluate-performance-on-testing-data" id="toc-evaluate-performance-on-testing-data" class="nav-link" data-scroll-target="#evaluate-performance-on-testing-data">Evaluate performance on testing data</a></li>
+  <li><a href="#training-vs.-testing" id="toc-training-vs.-testing" class="nav-link" data-scroll-target="#training-vs.-testing">Training vs.&nbsp;testing</a></li>
+  <li><a href="#evaluating-performance-on-training-data" id="toc-evaluating-performance-on-training-data" class="nav-link" data-scroll-target="#evaluating-performance-on-training-data">Evaluating performance on training data</a></li>
+  </ul></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross validation</a>
+  <ul class="collapse">
+  <li><a href="#cross-validation-1" id="toc-cross-validation-1" class="nav-link" data-scroll-target="#cross-validation-1">Cross validation</a></li>
+  <li><a href="#cross-validation-2" id="toc-cross-validation-2" class="nav-link" data-scroll-target="#cross-validation-2">Cross validation</a></li>
+  <li><a href="#split-data-into-folds" id="toc-split-data-into-folds" class="nav-link" data-scroll-target="#split-data-into-folds">Split data into folds</a></li>
+  <li><a href="#fit-resamples" id="toc-fit-resamples" class="nav-link" data-scroll-target="#fit-resamples">Fit resamples</a></li>
+  <li><a href="#collect-cv-metrics" id="toc-collect-cv-metrics" class="nav-link" data-scroll-target="#collect-cv-metrics">Collect CV metrics</a></li>
+  <li><a href="#deeper-look-into-cv-metrics" id="toc-deeper-look-into-cv-metrics" class="nav-link" data-scroll-target="#deeper-look-into-cv-metrics">Deeper look into CV metrics</a></li>
+  <li><a href="#how-does-rmse-compare-to-y" id="toc-how-does-rmse-compare-to-y" class="nav-link" data-scroll-target="#how-does-rmse-compare-to-y">How does RMSE compare to y?</a></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next">What’s next?</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u4-d09-cross-validation/u4-d09-cross-validation.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Cross validation</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="data-and-exploration" class="level1">
+<h1>Data and exploration</h1>
+<hr>
+<p>background-image: url(“img/the-office.jpeg”) class: middle</p>
+<hr>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>office_ratings <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/office_ratings.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>office_ratings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 188 x 6
+  season episode title         imdb_rating total_votes air_date  
+   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    
+1      1       1 Pilot                 7.6        3706 2005-03-24
+2      1       2 Diversity Day         8.3        3566 2005-03-29
+3      1       3 Health Care           7.9        2983 2005-04-05
+4      1       4 The Alliance          8.1        2886 2005-04-12
+5      1       5 Basketball            8.4        3179 2005-04-19
+6      1       6 Hot Girl              7.8        2852 2005-04-26
+# ... with 182 more rows</code></pre>
+</div>
+</div>
+<p>.footnote[ .small[ Source: The data come from <a href="https://data.world/anujjain7/the-office-imdb-ratings-dataset">data.world</a>, by way of <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-03-17/readme.md">TidyTuesday</a>. ]]</p>
+<hr>
+</section>
+<section id="imdb-ratings" class="level2">
+<h2 class="anchored" data-anchor-id="imdb-ratings">IMDB ratings</h2>
+<p>.panelset[]</p>
+<hr>
+</section>
+<section id="imdb-ratings-vs.-number-of-votes" class="level2">
+<h2 class="anchored" data-anchor-id="imdb-ratings-vs.-number-of-votes">IMDB ratings vs.&nbsp;number of votes</h2>
+<p>.panelset[]</p>
+<hr>
+</section>
+<section id="outliers" class="level2">
+<h2 class="anchored" data-anchor-id="outliers">Outliers</h2>
+<p>.panelset[]</p>
+<p>.footnote[ .small[ If you like the <a href="https://www.imdb.com/title/tt1031477/">Dinner Party</a> episode, I highly recommend this <a href="https://www.rollingstone.com/tv/tv-features/that-one-night-the-oral-history-of-the-greatest-office-episode-ever-629472/">“oral history”</a> of the episode published on Rolling Stone magazine.]]</p>
+<hr>
+</section>
+<section id="imdb-ratings-vs.-seasons" class="level2">
+<h2 class="anchored" data-anchor-id="imdb-ratings-vs.-seasons">IMDB ratings vs.&nbsp;seasons</h2>
+<p>.panelset[]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="modeling" class="level1">
+<h1>Modeling</h1>
+<hr>
+<section id="train-test" class="level2">
+<h2 class="anchored" data-anchor-id="train-test">Train / test</h2>
+<ul>
+<li>Create an initial split</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1122</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>office_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(office_ratings) <span class="co"># prop = 3/4 by default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">.pull-left[ - Save training data]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">.pull-right[ - Save testing data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">::: {.cell layout-align=“center”}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>{.r .cell-code} office_test  &lt;- testing(office_split) dim(office_test)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">::: {.cell-output .cell-output-stdout}</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">]</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="specify-model" class="level2">
+<h2 class="anchored" data-anchor-id="specify-model">Specify model</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>office_mod <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>office_mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear Regression Model Specification (regression)
+
+Computational engine: lm </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="build-recipe" class="level2">
+<h2 class="anchored" data-anchor-id="build-recipe">Build recipe</h2>
+<p>.panelset[ .panel[.panel-name[Code]] .panel[.panel-name[Output] .small[]]]</p>
+<hr>
+</section>
+<section id="build-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="build-workflow">Build workflow</h2>
+<p>.panelset[ .panel[.panel-name[Code]] .panel[.panel-name[Output] .small[]]]</p>
+<hr>
+</section>
+<section id="fit-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-model">Fit model</h2>
+<p>.panelset[ .panel[.panel-name[Code]] .panel[.panel-name[Output] .small[]]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="evaluate-model" class="level1">
+<h1>Evaluate model</h1>
+<hr>
+<section id="make-predictions-for-training-data" class="level2">
+<h2 class="anchored" data-anchor-id="make-predictions-for-training-data">Make predictions for training data</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>office_train_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(office_fit, office_train) <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(office_train <span class="sc">%&gt;%</span> <span class="fu">select</span>(imdb_rating, title))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>office_train_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 141 x 3
+  .pred imdb_rating title            
+  &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;            
+1  7.90         8.1 Garden Party     
+2  8.43         7.9 The Chump        
+3  7.81         7.1 Here Comes Treble
+4  7.94         6.7 Get the Girl     
+5  7.92         7.9 Tallahassee      
+6  8.29         7.7 The Inner Circle 
+# ... with 135 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="r-squared" class="level2">
+<h2 class="anchored" data-anchor-id="r-squared">R-squared</h2>
+<p>Percentage of variability in the IMDB ratings explained by the model</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsq</span>(office_train_pred, <span class="at">truth =</span> imdb_rating, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rsq     standard       0.500</code></pre>
+</div>
+</div>
+<p>–</p>
+<p>.question[ Are models with high or low <span class="math inline">\(R^2\)</span> more preferable?]</p>
+<hr>
+</section>
+<section id="rmse" class="level2">
+<h2 class="anchored" data-anchor-id="rmse">RMSE</h2>
+<p>An alternative model performance statistic: <strong>root mean square error</strong></p>
+<p><span class="math display">\[ RMSE = \sqrt{\frac{\sum_{i = 1}^n (y_i - \hat{y}_i)^2}{n}} \]</span></p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(office_train_pred, <span class="at">truth =</span> imdb_rating, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       0.373</code></pre>
+</div>
+</div>
+<p>–</p>
+<p>.question[ Are models with high or low RMSE are more preferable?]</p>
+<hr>
+</section>
+<section id="interpreting-rmse" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-rmse">Interpreting RMSE</h2>
+<p>.question[ Is this RMSE considered low or high?]</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(office_train_pred, <span class="at">truth =</span> imdb_rating, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       0.373</code></pre>
+</div>
+</div>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>office_train <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(imdb_rating), <span class="at">max =</span> <span class="fu">max</span>(imdb_rating))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 2
+    min   max
+  &lt;dbl&gt; &lt;dbl&gt;
+1   6.7   9.7</code></pre>
+</div>
+</div>
+<hr>
+<p>class: middle</p>
+<p>.hand[ .light-blue[ but, really, who cares about predictions on .pink[training] data?]]</p>
+<hr>
+</section>
+<section id="make-predictions-for-testing-data" class="level2">
+<h2 class="anchored" data-anchor-id="make-predictions-for-testing-data">Make predictions for testing data</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>office_test_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(office_fit, office_test) <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(office_test <span class="sc">%&gt;%</span> <span class="fu">select</span>(imdb_rating, title))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>office_test_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 47 x 3
+  .pred imdb_rating title          
+  &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;          
+1  8.52         8.4 Office Olympics
+2  8.54         8.6 The Client     
+3  8.90         8.8 Christmas Party
+4  8.71         9   The Injury     
+5  8.50         8.2 Boys and Girls 
+6  8.46         8.4 Dwight's Speech
+# ... with 41 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="evaluate-performance-on-testing-data" class="level2">
+<h2 class="anchored" data-anchor-id="evaluate-performance-on-testing-data">Evaluate performance on testing data</h2>
+<ul>
+<li>RMSE of model fit to testing data</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse</span>(office_test_pred, <span class="at">truth =</span> imdb_rating, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rmse    standard       0.386</code></pre>
+</div>
+</div>
+<ul>
+<li><span class="math inline">\(R^2\)</span> of model fit to testing data</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsq</span>(office_test_pred, <span class="at">truth =</span> imdb_rating, <span class="at">estimate =</span> .pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  .metric .estimator .estimate
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+1 rsq     standard       0.556</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="training-vs.-testing" class="level2">
+<h2 class="anchored" data-anchor-id="training-vs.-testing">Training vs.&nbsp;testing</h2>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead>
+<tr class="header">
+<th style="text-align: left;">metric</th>
+<th style="text-align: right;">train</th>
+<th style="text-align: right;">test</th>
+<th style="text-align: left;">comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RMSE</td>
+<td style="text-align: right;">0.373</td>
+<td style="text-align: right;">0.386</td>
+<td style="text-align: left;">RMSE lower for training</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R-squared</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.556</td>
+<td style="text-align: left;">R-squared higher for training</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+</section>
+<section id="evaluating-performance-on-training-data" class="level2">
+<h2 class="anchored" data-anchor-id="evaluating-performance-on-training-data">Evaluating performance on training data</h2>
+<ul>
+<li>The training set does not have the capacity to be a good arbiter of performance.</li>
+</ul>
+<table class="table">
+<thead>
+<tr class="header">
+<th>- It is not an independent piece of information; predicting the training set can only reflect what the model already knows.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- Suppose you give a class a test, then give them the answers, then provide the same test. The student scores on the second test do not accurately reflect what they know about the subject; these scores would probably be higher than their results on the first test.</td>
+</tr>
+<tr class="even">
+<td>.footnote[ .small[ Source: <a href="https://www.tidymodels.org/start/resampling/">tidymodels.org</a>]]</td>
+</tr>
+</tbody>
+</table>
+<p>class: middle</p>
+</section>
+</section>
+<section id="cross-validation" class="level1">
+<h1>Cross validation</h1>
+<hr>
+<section id="cross-validation-1" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-1">Cross validation</h2>
+<p>More specifically, <strong>v-fold cross validation</strong>:</p>
+<ul>
+<li>Shuffle your data v partitions</li>
+<li>Use 1 partition for validation, and the remaining v-1 partitions for training</li>
+<li>Repeat v times</li>
+</ul>
+<p>.footnote[ .small[ You might also heard of this referred to as k-fold cross validation.]]</p>
+<hr>
+</section>
+<section id="cross-validation-2" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation-2">Cross validation</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/cross-validation.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="split-data-into-folds" class="level2">
+<h2 class="anchored" data-anchor-id="split-data-into-folds">Split data into folds</h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="fit-resamples" class="level2">
+<h2 class="anchored" data-anchor-id="fit-resamples">Fit resamples</h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="collect-cv-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="collect-cv-metrics">Collect CV metrics</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(office_fit_rs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 6
+  .metric .estimator  mean     n std_err .config             
+  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+1 rmse    standard   0.403     5  0.0336 Preprocessor1_Model1
+2 rsq     standard   0.413     5  0.0727 Preprocessor1_Model1</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="deeper-look-into-cv-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="deeper-look-into-cv-metrics">Deeper look into CV metrics</h2>
+<p>.panelset[ .panel[.panel-name[Raw]] .panel[.panel-name[Tidy]]]</p>
+<hr>
+</section>
+<section id="how-does-rmse-compare-to-y" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-rmse-compare-to-y">How does RMSE compare to y?</h2>
+<ul>
+<li>Cross validation RMSE stats</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 6
+    min   max  mean   med     sd    IQR
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 0.289 0.475 0.403 0.430 0.0751 0.0841</code></pre>
+</div>
+</div>
+<ul>
+<li>Training data IMDB score stats</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 6
+    min   max  mean   med    sd   IQR
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1   6.7   9.7  8.24   8.2 0.530 0.600</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next">What’s next?</h2>
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure class="figure">
+<p><img src="img/post-cv-testing.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

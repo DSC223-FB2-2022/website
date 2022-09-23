@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Hypothesis testing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Hypothesis testing">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Hypothesis testing">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Hypothesis testing</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hypothesis-testing-for-a-single-proportion" id="toc-hypothesis-testing-for-a-single-proportion" class="nav-link active" data-scroll-target="#hypothesis-testing-for-a-single-proportion">Hypothesis testing for a single proportion</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#organ-donors" id="toc-organ-donors" class="nav-link" data-scroll-target="#organ-donors">Organ donors</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#parameter-vs.-statistic" id="toc-parameter-vs.-statistic" class="nav-link" data-scroll-target="#parameter-vs.-statistic">Parameter vs.&nbsp;statistic</a></li>
+  <li><a href="#correlation-vs.-causation" id="toc-correlation-vs.-causation" class="nav-link" data-scroll-target="#correlation-vs.-causation">Correlation vs.&nbsp;causation</a></li>
+  <li><a href="#two-claims" id="toc-two-claims" class="nav-link" data-scroll-target="#two-claims">Two claims</a></li>
+  <li><a href="#hypothesis-testing-as-a-court-trial" id="toc-hypothesis-testing-as-a-court-trial" class="nav-link" data-scroll-target="#hypothesis-testing-as-a-court-trial">Hypothesis testing as a court trial</a></li>
+  <li><a href="#hypothesis-testing-framework" id="toc-hypothesis-testing-framework" class="nav-link" data-scroll-target="#hypothesis-testing-framework">Hypothesis testing framework</a></li>
+  <li><a href="#setting-the-hypotheses" id="toc-setting-the-hypotheses" class="nav-link" data-scroll-target="#setting-the-hypotheses">Setting the hypotheses</a></li>
+  <li><a href="#simulating-the-null-distribution" id="toc-simulating-the-null-distribution" class="nav-link" data-scroll-target="#simulating-the-null-distribution">Simulating the null distribution</a></li>
+  <li><a href="#what-do-we-expect" id="toc-what-do-we-expect" class="nav-link" data-scroll-target="#what-do-we-expect">What do we expect?</a></li>
+  <li><a href="#simulation-1" id="toc-simulation-1" class="nav-link" data-scroll-target="#simulation-1">Simulation #1</a></li>
+  <li><a href="#simulation-2" id="toc-simulation-2" class="nav-link" data-scroll-target="#simulation-2">Simulation #2</a></li>
+  <li><a href="#simulation-3" id="toc-simulation-3" class="nav-link" data-scroll-target="#simulation-3">Simulation #3</a></li>
+  <li><a href="#this-is-getting-boring" id="toc-this-is-getting-boring" class="nav-link" data-scroll-target="#this-is-getting-boring">This is getting boring…</a></li>
+  <li><a href="#using-tidymodels-to-generate-the-null-distribution" id="toc-using-tidymodels-to-generate-the-null-distribution" class="nav-link" data-scroll-target="#using-tidymodels-to-generate-the-null-distribution">Using tidymodels to generate the null distribution</a></li>
+  <li><a href="#visualizing-the-null-distribution" id="toc-visualizing-the-null-distribution" class="nav-link" data-scroll-target="#visualizing-the-null-distribution">Visualizing the null distribution</a></li>
+  <li><a href="#calculating-the-p-value-visually" id="toc-calculating-the-p-value-visually" class="nav-link" data-scroll-target="#calculating-the-p-value-visually">Calculating the p-value, visually</a></li>
+  <li><a href="#calculating-the-p-value-directly" id="toc-calculating-the-p-value-directly" class="nav-link" data-scroll-target="#calculating-the-p-value-directly">Calculating the p-value, directly</a></li>
+  <li><a href="#significance-level" id="toc-significance-level" class="nav-link" data-scroll-target="#significance-level">Significance level</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#lets-get-real" id="toc-lets-get-real" class="nav-link" data-scroll-target="#lets-get-real">Let’s get real</a></li>
+  <li><a href="#run-the-test" id="toc-run-the-test" class="nav-link" data-scroll-target="#run-the-test">Run the test</a></li>
+  <li><a href="#visualize-and-calculate" id="toc-visualize-and-calculate" class="nav-link" data-scroll-target="#visualize-and-calculate">Visualize and calculate</a></li>
+  </ul></li>
+  <li><a href="#one-vs.-two-sided-hypothesis-tests" id="toc-one-vs.-two-sided-hypothesis-tests" class="nav-link" data-scroll-target="#one-vs.-two-sided-hypothesis-tests">One vs.&nbsp;two sided hypothesis tests</a>
+  <ul class="collapse">
+  <li><a href="#types-of-alternative-hypotheses" id="toc-types-of-alternative-hypotheses" class="nav-link" data-scroll-target="#types-of-alternative-hypotheses">Types of alternative hypotheses</a></li>
+  </ul></li>
+  <li><a href="#testing-for-independence" id="toc-testing-for-independence" class="nav-link" data-scroll-target="#testing-for-independence">Testing for independence</a>
+  <ul class="collapse">
+  <li><a href="#is-yawning-contagious" id="toc-is-yawning-contagious" class="nav-link" data-scroll-target="#is-yawning-contagious">Is yawning contagious?</a></li>
+  <li><a href="#is-yawning-contagious-1" id="toc-is-yawning-contagious-1" class="nav-link" data-scroll-target="#is-yawning-contagious-1">Is yawning contagious?</a></li>
+  <li><a href="#study-description" id="toc-study-description" class="nav-link" data-scroll-target="#study-description">Study description</a></li>
+  <li><a href="#proportion-of-yawners" id="toc-proportion-of-yawners" class="nav-link" data-scroll-target="#proportion-of-yawners">Proportion of yawners</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence?</a></li>
+  <li><a href="#dependence-or-another-possible-explanation" id="toc-dependence-or-another-possible-explanation" class="nav-link" data-scroll-target="#dependence-or-another-possible-explanation">Dependence, or another possible explanation?</a></li>
+  <li><a href="#two-competing-claims" id="toc-two-competing-claims" class="nav-link" data-scroll-target="#two-competing-claims">Two competing claims</a></li>
+  <li><a href="#simulation-setup" id="toc-simulation-setup" class="nav-link" data-scroll-target="#simulation-setup">Simulation setup</a></li>
+  <li><a href="#running-the-simulation" id="toc-running-the-simulation" class="nav-link" data-scroll-target="#running-the-simulation">Running the simulation</a></li>
+  <li><a href="#simulation-by-hand" id="toc-simulation-by-hand" class="nav-link" data-scroll-target="#simulation-by-hand">Simulation by hand</a></li>
+  <li><a href="#simulation-by-computation" id="toc-simulation-by-computation" class="nav-link" data-scroll-target="#simulation-by-computation">Simulation by computation</a></li>
+  <li><a href="#simulation-by-computation---1" id="toc-simulation-by-computation---1" class="nav-link" data-scroll-target="#simulation-by-computation---1">Simulation by computation - 1</a></li>
+  <li><a href="#simulation-by-computation---2" id="toc-simulation-by-computation---2" class="nav-link" data-scroll-target="#simulation-by-computation---2">Simulation by computation - 2</a></li>
+  <li><a href="#simulation-by-computation---3" id="toc-simulation-by-computation---3" class="nav-link" data-scroll-target="#simulation-by-computation---3">Simulation by computation - 3</a></li>
+  <li><a href="#simulation-by-computation---4" id="toc-simulation-by-computation---4" class="nav-link" data-scroll-target="#simulation-by-computation---4">Simulation by computation - 4</a></li>
+  <li><a href="#simulation-by-computation---0" id="toc-simulation-by-computation---0" class="nav-link" data-scroll-target="#simulation-by-computation---0">Simulation by computation - 0</a></li>
+  <li><a href="#visualizing-the-null-distribution-1" id="toc-visualizing-the-null-distribution-1" class="nav-link" data-scroll-target="#visualizing-the-null-distribution-1">Visualizing the null distribution</a></li>
+  <li><a href="#calculating-the-p-value-visually-1" id="toc-calculating-the-p-value-visually-1" class="nav-link" data-scroll-target="#calculating-the-p-value-visually-1">Calculating the p-value, visually</a></li>
+  <li><a href="#calculating-the-p-value-directly-1" id="toc-calculating-the-p-value-directly-1" class="nav-link" data-scroll-target="#calculating-the-p-value-directly-1">Calculating the p-value, directly</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u4-d12-hypothesis-testing/u4-d12-hypothesis-testing.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Hypothesis testing</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="hypothesis-testing-for-a-single-proportion" class="level1">
+<h1>Hypothesis testing for a single proportion</h1>
+<hr>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="organ-donors" class="level2">
+<h2 class="anchored" data-anchor-id="organ-donors">Organ donors</h2>
+<p>People providing an organ for donation sometimes seek the help of a special “medical consultant”. These consultants assist the patient in all aspects of the surgery, with the goal of reducing the possibility of complications during the medical procedure and recovery. Patients might choose a consultant based in part on the historical complication rate of the consultant’s clients.</p>
+<p>One consultant tried to attract patients by noting that the average complication rate for liver donor surgeries in the US is about 10%, but her clients have only had 3 complications in the 62 liver donor surgeries she has facilitated. She claims this is strong evidence that her work meaningfully contributes to reducing complications (and therefore she should be hired!).</p>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>organ_donor <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 2
+  outcome             n
+  &lt;chr&gt;           &lt;int&gt;
+1 complication        3
+2 no complication    59</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="parameter-vs.-statistic" class="level2">
+<h2 class="anchored" data-anchor-id="parameter-vs.-statistic">Parameter vs.&nbsp;statistic</h2>
+<p>A <strong>parameter</strong> for a hypothesis test is the “true” value of interest. We typically estimate the parameter using a <strong>sample statistic</strong> as a <strong>point estimate</strong>.</p>
+<p><span class="math inline">\(p~\)</span>: true rate of complication</p>
+<p><span class="math inline">\(\hat{p}~\)</span>: rate of complication in the sample = <span class="math inline">\(\frac{3}{62}\)</span> = 0.048</p>
+<hr>
+</section>
+<section id="correlation-vs.-causation" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-vs.-causation">Correlation vs.&nbsp;causation</h2>
+<p>.question[ Is it possible to assess the consultant’s claim using the data?]</p>
+<p>–</p>
+<p>No.&nbsp;The claim is that there is a causal connection, but the data are observational. For example, maybe patients who can afford a medical consultant can afford better medical care, which can also lead to a lower complication rate.</p>
+<p>While it is not possible to assess the causal claim, it is still possible to test for an association using these data. For this question we ask, could the low complication rate of <span class="math inline">\(\hat{p}\)</span> = 0.048 be due to chance?</p>
+<hr>
+</section>
+<section id="two-claims" class="level2">
+<h2 class="anchored" data-anchor-id="two-claims">Two claims</h2>
+<ul>
+<li><strong>Null hypothesis:</strong> “There is nothing going on”</li>
+</ul>
+<p>Complication rate for this consultant is no different than the US average of 10%</p>
+<p>–</p>
+<ul>
+<li><strong>Alternative hypothesis:</strong> “There is something going on”</li>
+</ul>
+<p>Complication rate for this consultant is <strong>lower</strong> than the US average of 10%</p>
+<hr>
+</section>
+<section id="hypothesis-testing-as-a-court-trial" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-as-a-court-trial">Hypothesis testing as a court trial</h2>
+<ul>
+<li><p><strong>Null hypothesis</strong>, <span class="math inline">\(H_0\)</span>: Defendant is innocent</p></li>
+<li><p><strong>Alternative hypothesis</strong>, <span class="math inline">\(H_A\)</span>: Defendant is guilty</p></li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Present the evidence:</strong> Collect data</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Judge the evidence:</strong> “Could these data plausibly have happened by chance if the null hypothesis were true?”
+<ul>
+<li>Yes: Fail to reject <span class="math inline">\(H_0\)</span></li>
+<li>No: Reject <span class="math inline">\(H_0\)</span></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="hypothesis-testing-framework" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing-framework">Hypothesis testing framework</h2>
+<ul>
+<li><p>Start with a null hypothesis, <span class="math inline">\(H_0\)</span>, that represents the status quo</p></li>
+<li><p>Set an alternative hypothesis, <span class="math inline">\(H_A\)</span>, that represents the research question, i.e.&nbsp;what we’re testing for</p></li>
+<li><p>Conduct a hypothesis test under the assumption that the null hypothesis is true and calculate a <strong>p-value</strong> (probability of observed or more extreme outcome given that the null hypothesis is true)</p>
+<ul>
+<li>if the test results suggest that the data do not provide convincing evidence for the alternative hypothesis, stick with the null hypothesis</li>
+<li>if they do, then reject the null hypothesis in favor of the alternative</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="setting-the-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="setting-the-hypotheses">Setting the hypotheses</h2>
+<p>.question[ Which of the following is the correct set of hypotheses?]</p>
+<ol type="a">
+<li><p><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p \ne 0.10\)</span> <br></p></li>
+<li><p><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &gt; 0.10\)</span> <br></p></li>
+<li><p><span class="math inline">\(H_0: p = 0.10\)</span>; <span class="math inline">\(H_A: p &lt; 0.10\)</span> <br></p></li>
+<li><p><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} \ne 0.10\)</span> <br></p></li>
+<li><p><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &gt; 0.10\)</span> <br></p></li>
+<li><p><span class="math inline">\(H_0: \hat{p} = 0.10\)</span>; <span class="math inline">\(H_A: \hat{p} &lt; 0.10\)</span> <br></p></li>
+</ol>
+<hr>
+</section>
+<section id="simulating-the-null-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-the-null-distribution">Simulating the null distribution</h2>
+<p>Since <span class="math inline">\(H_0: p = 0.10\)</span>, we need to simulate a null distribution where the probability of success (complication) for each trial (patient) is 0.10.</p>
+<p>.question[ Describe how you would simulate the null distribution for this study using a bag of chips. How many chips? What colors? What do the colors indicate? How many draws? <b>With replacement</b> or <b>without replacement</b>?]</p>
+<hr>
+</section>
+<section id="what-do-we-expect" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-we-expect">What do we expect?</h2>
+<p>.question[ When sampling from the null distribution, what is the expected proportion of success (complications)?]</p>
+<hr>
+</section>
+<section id="simulation-1" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-1">Simulation #1</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>sim1
+   complication no complication 
+              3              59 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0483871</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="simulation-2" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-2">Simulation #2</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>sim2
+   complication no complication 
+              9              53 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1451613</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="simulation-3" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-3">Simulation #3</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>sim3
+   complication no complication 
+              8              54 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1290323</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="this-is-getting-boring" class="level2">
+<h2 class="anchored" data-anchor-id="this-is-getting-boring">This is getting boring…</h2>
+<p>We need a way to automate this process!</p>
+<hr>
+</section>
+<section id="using-tidymodels-to-generate-the-null-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="using-tidymodels-to-generate-the-null-distribution">Using tidymodels to generate the null distribution</h2>
+<p>.small[]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code>Response: outcome (factor)
+Null Hypothesis: point
+# A tibble: 100 x 2
+  replicate  stat
+      &lt;dbl&gt; &lt;dbl&gt;
+1         1 0.161
+2         2 0.081
+3         3 0.161
+4         4 0.145
+5         5 0.097
+6         6 0.145
+# ... with 94 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="visualizing-the-null-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-null-distribution">Visualizing the null distribution</h2>
+<p>.question[ What would you expect the center of the null distribution to be?]</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> null_dist, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Null distribution"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:40.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="calculating-the-p-value-visually" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-p-value-visually">Calculating the p-value, visually</h2>
+<p>.question[ What is the p-value, i.e.&nbsp;in what % of the simulations was the simulated sample proportion at least as extreme as the observed sample proportion?]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="calculating-the-p-value-directly" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-p-value-directly">Calculating the p-value, directly</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat <span class="sc">&lt;=</span> (<span class="dv">3</span><span class="sc">/</span><span class="dv">62</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">n</span>()<span class="sc">/</span><span class="fu">nrow</span>(null_dist))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 1
+  p_value
+    &lt;dbl&gt;
+1    0.12</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="significance-level" class="level2">
+<h2 class="anchored" data-anchor-id="significance-level">Significance level</h2>
+<p>We often use 5% as the cutoff for whether the p-value is low enough that the data are unlikely to have come from the null model. This cutoff value is called the <strong>significance level</strong>, <span class="math inline">\(\alpha\)</span>.</p>
+<ul>
+<li><p>If p-value &lt; <span class="math inline">\(\alpha\)</span>, reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>: The data provide convincing evidence for the alternative hypothesis.</p></li>
+<li><p>If p-value &gt; <span class="math inline">\(\alpha\)</span>, fail to reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>: The data do not provide convincing evidence for the alternative hypothesis.</p></li>
+</ul>
+<hr>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>.question[ What is the conclusion of the hypothesis test?]</p>
+<p>–</p>
+<p>Since the p-value is greater than the significance level, we fail to reject the null hypothesis. These data do not provide convincing evidence that this consultant incurs a lower complication rate than 10% (overall US complication rate).</p>
+<hr>
+</section>
+<section id="lets-get-real" class="level2">
+<h2 class="anchored" data-anchor-id="lets-get-real">Let’s get real</h2>
+<ul>
+<li><p>100 simulations is not sufficient</p></li>
+<li><p>We usually simulate around 15,000 times to get an accurate distribution, but we’ll do 1,000 here for efficiency.</p></li>
+</ul>
+<hr>
+</section>
+<section id="run-the-test" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-test">Run the test</h2>
+<p>.small[]</p>
+<hr>
+</section>
+<section id="visualize-and-calculate" class="level2">
+<h2 class="anchored" data-anchor-id="visualize-and-calculate">Visualize and calculate</h2>
+<p>.small[]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="one-vs.-two-sided-hypothesis-tests" class="level1">
+<h1>One vs.&nbsp;two sided hypothesis tests</h1>
+<hr>
+<section id="types-of-alternative-hypotheses" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-alternative-hypotheses">Types of alternative hypotheses</h2>
+<ul>
+<li>One sided (one tailed) alternatives: The parameter is hypothesized to be less than or greater than the null value, &lt; or &gt;</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Two sided (two tailed) alternatives: The parameter is hypothesized to be not equal to the null value, <span class="math inline">\(\ne\)</span>
+<ul>
+<li>Calculated as two times the tail area beyond the observed sample statistic</li>
+<li>More objective, and hence more widely preferred</li>
+</ul></li>
+</ul>
+<p>–</p>
+<p>.question[ Average systolic blood pressure of people with Stage 1 Hypertension is 150 mm Hg. Suppose we want to use a hypothesis test to evaluate whether a new blood pressure medication has <b>an effect</b> on the average blood pressure of heart patients. What are the hypotheses?]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="testing-for-independence" class="level1">
+<h1>Testing for independence</h1>
+<hr>
+<section id="is-yawning-contagious" class="level2">
+<h2 class="anchored" data-anchor-id="is-yawning-contagious">Is yawning contagious?</h2>
+<p>.question[ Do you think yawning is contagious?]</p>
+<p>.pull-left[ <img src="img/yawn1.png" class="img-fluid">] .pull-right[ <img src="img/yawn2.png" class="img-fluid">]</p>
+<hr>
+</section>
+<section id="is-yawning-contagious-1" class="level2">
+<h2 class="anchored" data-anchor-id="is-yawning-contagious-1">Is yawning contagious?</h2>
+<p>An experiment conducted by the MythBusters tested if a person can be subconsciously influenced into yawning if another person near them yawns.</p>
+<p>https://www.discovery.com/tv-shows/mythbusters/videos/is-yawning-contagious-2</p>
+<hr>
+</section>
+<section id="study-description" class="level2">
+<h2 class="anchored" data-anchor-id="study-description">Study description</h2>
+<p>In this study 50 people were randomly assigned to two groups: 34 to a group where a person near them yawned (treatment) and 16 to a control group where they didn’t see someone yawn (control).</p>
+<p>The data are in the <strong>openintro</strong> package: <code>yawn</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>yawn <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(group, result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 3
+  group result       n
+  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt;
+1 ctrl  not yawn    12
+2 ctrl  yawn         4
+3 trmt  not yawn    24
+4 trmt  yawn        10</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="proportion-of-yawners" class="level2">
+<h2 class="anchored" data-anchor-id="proportion-of-yawners">Proportion of yawners</h2>
+<p>.small[]</p>
+<ul>
+<li>Proportion of yawners in the treatment group: <span class="math inline">\(\frac{10}{34} = 0.2941\)</span></li>
+<li>Proportion of yawners in the control group: <span class="math inline">\(\frac{4}{16} = 0.25\)</span></li>
+<li>Difference: <span class="math inline">\(0.2941 - 0.25 = 0.0441\)</span></li>
+<li>Our results match the ones calculated on the MythBusters episode.</li>
+</ul>
+<hr>
+</section>
+<section id="independence" class="level2">
+<h2 class="anchored" data-anchor-id="independence">Independence?</h2>
+<p>.question[ Based on the proportions we calculated, do you think yawning is really contagious, i.e.&nbsp;are seeing someone yawn and yawning dependent?]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 4
+# Groups:   group [2]
+  group result       n p_hat
+  &lt;fct&gt; &lt;fct&gt;    &lt;int&gt; &lt;dbl&gt;
+1 ctrl  not yawn    12 0.75 
+2 ctrl  yawn         4 0.25 
+3 trmt  not yawn    24 0.706
+4 trmt  yawn        10 0.294</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="dependence-or-another-possible-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="dependence-or-another-possible-explanation">Dependence, or another possible explanation?</h2>
+<ul>
+<li><p>The observed differences might suggest that yawning is contagious, i.e.&nbsp;seeing someone yawn and yawning are dependent.</p></li>
+<li><p>But the differences are small enough that we might wonder if they might simple be <strong>due to chance</strong>.</p></li>
+<li><p>Perhaps if we were to repeat the experiment, we would see slightly different results.</p></li>
+<li><p>So we will do just that - well, somewhat - and see what happens.</p></li>
+<li><p>Instead of actually conducting the experiment many times, we will <strong>simulate</strong> our results.</p></li>
+</ul>
+<hr>
+</section>
+<section id="two-competing-claims" class="level2">
+<h2 class="anchored" data-anchor-id="two-competing-claims">Two competing claims</h2>
+<ul>
+<li><p>“There is nothing going on.” Yawning and seeing someone yawn are <strong>independent</strong>, yawning is not contagious, observed difference in proportions is simply due to chance. <span class="math inline">\(\rightarrow\)</span> Null hypothesis</p></li>
+<li><p>“There is something going on.” Yawning and seeing someone yawn are <strong>dependent</strong>, yawning is contagious, observed difference in proportions is not due to chance. <span class="math inline">\(\rightarrow\)</span> Alternative hypothesis</p></li>
+</ul>
+<hr>
+</section>
+<section id="simulation-setup" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-setup">Simulation setup</h2>
+<ol type="1">
+<li><p>A regular deck of cards is comprised of 52 cards: 4 aces, 4 of numbers 2-10, 4 jacks, 4 queens, and 4 kings.</p></li>
+<li><p>Take out two aces from the deck of cards and set them aside.</p></li>
+<li><p>The remaining 50 playing cards to represent each participant in the study:</p>
+<ul>
+<li>14 face cards (including the 2 aces) represent the people who yawn.</li>
+<li>36 non-face cards represent the people who don’t yawn.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+<section id="running-the-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-simulation">Running the simulation</h2>
+<ol type="1">
+<li><p>Shuffle the 50 cards at least 7 times<sup>1</sup> to ensure that the cards counted out are from a random process.</p></li>
+<li><p>Count out the top 16 cards and set them aside. These cards represent the people in the control group.</p></li>
+<li><p>Out of the remaining 34 cards (treatment group) count the (the number of people who yawned in the treatment group).</p></li>
+<li><p>Calculate the difference in proportions of yawners (treatment - control), and plot it on the board.</p></li>
+<li><p>Mark the difference you find on the dot plot on the board.</p></li>
+</ol>
+<p>.footnote[ [1] http://www.dartmouth.edu/~chance/course/topics/winning_number.html]</p>
+<hr>
+</section>
+<section id="simulation-by-hand" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-hand">Simulation by hand</h2>
+<p>.question[ Do the simulation results suggest that yawning is contagious, i.e.&nbsp;does seeing someone yawn and yawning appear to be dependent?]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/yawn-sim-results.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">yawn-sim-results</figcaption><p></p>
+</figure>
+</div>
+<hr>
+</section>
+<section id="simulation-by-computation" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation">Simulation by computation</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> yawn <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">specify</span>(<span class="at">response =</span> result, <span class="at">explanatory =</span> group, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">success =</span> <span class="st">"yawn"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hypothesize</span>(<span class="at">null =</span> <span class="st">"independence"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">generate</span>(<span class="dv">100</span>, <span class="at">type =</span> <span class="st">"permute"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">calculate</span>(<span class="at">stat =</span> <span class="st">"diff in props"</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">order =</span> <span class="fu">c</span>(<span class="st">"trmt"</span>, <span class="st">"ctrl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="simulation-by-computation---1" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation---1">Simulation by computation - 1</h2>
+<p>.small[ - Start with the data frame - <strong>Specify the variables</strong> - <strong>Since the response variable is categorical, specify the level which should be considered as “success”</strong>]</p>
+<hr>
+</section>
+<section id="simulation-by-computation---2" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation---2">Simulation by computation - 2</h2>
+<p>.small[ - Start with the data frame - Specify the variables - Since the response variable is categorical, specify the level which should be considered as “success” - <strong>State the null hypothesis (yawning and whether or not you see someone yawn are independent)</strong>]</p>
+<hr>
+</section>
+<section id="simulation-by-computation---3" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation---3">Simulation by computation - 3</h2>
+<p>.small[ - Start with the data frame - Specify the variables - Since the response variable is categorical, specify the level which should be considered as “success” - State the null hypothesis (yawning and whether or not you see someone yawn are independent) - <strong>Generate simulated differences via permutation</strong>]</p>
+<hr>
+</section>
+<section id="simulation-by-computation---4" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation---4">Simulation by computation - 4</h2>
+<p>.small[ - Start with the data frame - Specify the variables - Since the response variable is categorical, specify the level which should be considered as “success” - State the null hypothesis (yawning and whether or not you see someone yawn are independent) - Generate simulated differences via permutation - <strong>Calculate the sample statistic of interest (difference in propotions)</strong> - <strong>Since the explanatory variable is categorical, specify the order in which the subtraction should occur for the calculation of the sample statistic, <span class="math inline">\((\hat{p}_{treatment} - \hat{p}_{control})\)</span>.</strong>]</p>
+<hr>
+</section>
+<section id="simulation-by-computation---0" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-by-computation---0">Simulation by computation - 0</h2>
+<p>.small[ - <strong>Save the result</strong> - Start with the data frame - Specify the variables - Since the response variable is categorical, specify the level which should be considered as “success” - State the null hypothesis (yawning and whether or not you see someone yawn are independent) - Generate simulated differences via permutation - Calculate the sample statistic of interest (difference in propotions) - Since the explanatory variable is categorical, specify the order in which the subtraction should occur for the calculation of the sample statistic, <span class="math inline">\((\hat{p}_{treatment} - \hat{p}_{control})\)</span>.]</p>
+<hr>
+</section>
+<section id="visualizing-the-null-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-null-distribution-1">Visualizing the null distribution</h2>
+<p>.question[ What would you expect the center of the null distribution to be?]</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> null_dist, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> stat)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Null distribution"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="calculating-the-p-value-visually-1" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-p-value-visually-1">Calculating the p-value, visually</h2>
+<p>.question[ What is the p-value, i.e.&nbsp;in what % of the simulations was the simulated difference in sample proportion at least as extreme as the observed difference in sample proportions?]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="u4-d12-hypothesis-testing_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="calculating-the-p-value-directly-1" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-the-p-value-directly-1">Calculating the p-value, directly</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat <span class="sc">&gt;=</span> <span class="fl">0.0441</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_value =</span> <span class="fu">n</span>()<span class="sc">/</span><span class="fu">nrow</span>(null_dist))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 1
+  p_value
+    &lt;dbl&gt;
+1    0.53</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<p>.question[ What is the conclusion of the hypothesis test?]</p>
+<p><br></p>
+<p>–</p>
+<p>.question[ Do you “buy” this conclusion?]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

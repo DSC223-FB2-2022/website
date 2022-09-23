@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Algorithmic bias</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Algorithmic bias">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Algorithmic bias">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Algorithmic bias</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#first-a-bit-of-fun" id="toc-first-a-bit-of-fun" class="nav-link active" data-scroll-target="#first-a-bit-of-fun">First a bit of fun…</a></li>
+  <li><a href="#the-hathaway-effect" id="toc-the-hathaway-effect" class="nav-link" data-scroll-target="#the-hathaway-effect">The Hathaway Effect</a></li>
+  <li><a href="#algorithmic-bias-and-gender" id="toc-algorithmic-bias-and-gender" class="nav-link" data-scroll-target="#algorithmic-bias-and-gender">Algorithmic bias and gender</a>
+  <ul class="collapse">
+  <li><a href="#google-translate" id="toc-google-translate" class="nav-link" data-scroll-target="#google-translate">Google Translate</a></li>
+  <li><a href="#amazons-experimental-hiring-algorithm" id="toc-amazons-experimental-hiring-algorithm" class="nav-link" data-scroll-target="#amazons-experimental-hiring-algorithm">Amazon’s experimental hiring algorithm</a></li>
+  </ul></li>
+  <li><a href="#algorithmic-bias-and-race" id="toc-algorithmic-bias-and-race" class="nav-link" data-scroll-target="#algorithmic-bias-and-race">Algorithmic bias and race</a>
+  <ul class="collapse">
+  <li><a href="#facial-recognition" id="toc-facial-recognition" class="nav-link" data-scroll-target="#facial-recognition">Facial recognition</a></li>
+  <li><a href="#criminal-sentencing" id="toc-criminal-sentencing" class="nav-link" data-scroll-target="#criminal-sentencing">Criminal Sentencing</a></li>
+  <li><a href="#a-tale-of-two-convicts" id="toc-a-tale-of-two-convicts" class="nav-link" data-scroll-target="#a-tale-of-two-convicts">A tale of two convicts</a></li>
+  <li><a href="#propublica-analysis" id="toc-propublica-analysis" class="nav-link" data-scroll-target="#propublica-analysis">ProPublica analysis</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><strong>Data:</strong></a></li>
+  </ul></li>
+  <li><a href="#propublica-analysis-1" id="toc-propublica-analysis-1" class="nav-link" data-scroll-target="#propublica-analysis-1">ProPublica analysis</a>
+  <ul class="collapse">
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><strong>Results:</strong></a></li>
+  </ul></li>
+  <li><a href="#how-to-write-a-racist-ai-without-trying" id="toc-how-to-write-a-racist-ai-without-trying" class="nav-link" data-scroll-target="#how-to-write-a-racist-ai-without-trying">How to write a racist AI without trying</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a>
+  <ul class="collapse">
+  <li><a href="#machine-bias" id="toc-machine-bias" class="nav-link" data-scroll-target="#machine-bias">Machine Bias</a></li>
+  <li><a href="#ethics-and-data-science" id="toc-ethics-and-data-science" class="nav-link" data-scroll-target="#ethics-and-data-science">Ethics and Data Science</a></li>
+  <li><a href="#weapons-of-math-destruction" id="toc-weapons-of-math-destruction" class="nav-link" data-scroll-target="#weapons-of-math-destruction">Weapons of Math Destruction</a></li>
+  <li><a href="#algorithms-of-oppression" id="toc-algorithms-of-oppression" class="nav-link" data-scroll-target="#algorithms-of-oppression">Algorithms of Oppression</a></li>
+  <li><a href="#parting-thoughts" id="toc-parting-thoughts" class="nav-link" data-scroll-target="#parting-thoughts">Parting thoughts</a></li>
+  <li><a href="#do-good-with-data" id="toc-do-good-with-data" class="nav-link" data-scroll-target="#do-good-with-data">Do good with data</a></li>
+  <li><a href="#further-watching" id="toc-further-watching" class="nav-link" data-scroll-target="#further-watching">Further watching</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u3-d03-algorithmic-bias/u3-d03-algorithmic-bias.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Algorithmic bias</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="first-a-bit-of-fun" class="level1">
+<h1>First a bit of fun…</h1>
+</section>
+<section id="the-hathaway-effect" class="level1">
+<h1>The Hathaway Effect</h1>
+<hr>
+<p>.pull-left[ - Oct.&nbsp;3, 2008: Rachel Getting Married opens, BRK.A up 0.44%<br>
+- Jan.&nbsp;5, 2009: Bride Wars opens, BRK.A up 2.61%<br>
+- Feb.&nbsp;8, 2010: Valentine’s Day opens, BRK.A up 1.01%<br>
+- March 5, 2010: Alice in Wonderland opens, BRK.A up 0.74%<br>
+- Nov.&nbsp;24, 2010: Love and Other Drugs opens, BRK.A up 1.62%<br>
+- Nov.&nbsp;29, 2010: Anne announced as co-host of the Oscars, BRK.A up 0.25%] .pull-right[]</p>
+<p>.footnote[ .midi[ Dan Mirvish. <a href="https://www.huffpost.com/entry/the-hathaway-effect-how-a_b_830041">The Hathaway Effect: How Anne Gives Warren Buffett a Rise</a>.<br>
+The Huffington Post. 2 Mar 2011.]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+<section id="algorithmic-bias-and-gender" class="level1">
+<h1>Algorithmic bias and gender</h1>
+<hr>
+<section id="google-translate" class="level2">
+<h2 class="anchored" data-anchor-id="google-translate">Google Translate</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/google-translate-gender-bias.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="amazons-experimental-hiring-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="amazons-experimental-hiring-algorithm">Amazon’s experimental hiring algorithm</h2>
+<ul>
+<li>Used AI to give job candidates scores ranging from one to five stars – much like shoppers rate products on Amazon</li>
+<li>Amazon’s system was not rating candidates for software developer jobs and other technical posts in a gender-neutral way; it taught itself that male candidates were preferable</li>
+</ul>
+<p>.pull-left-wide[ &gt;Gender bias was not the only issue. Problems with the data that underpinned the models’ judgments meant that unqualified candidates were often recommended for all manner of jobs, the people said.]</p>
+<p>.footnote[ Jeffrey Dastin. <a href="https://reut.rs/2Od9fPr">Amazon scraps secret AI recruiting tool that showed bias against women</a>.<br>
+Reuters. 10 Oct 2018.]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="algorithmic-bias-and-race" class="level1">
+<h1>Algorithmic bias and race</h1>
+<hr>
+<section id="facial-recognition" class="level2">
+<h2 class="anchored" data-anchor-id="facial-recognition">Facial recognition</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/guardian-facial-recognition.png" class="img-fluid figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>.footnote[ .midi[ Ian Tucker. <a href="https://www.theguardian.com/technology/2017/may/28/joy-buolamwini-when-algorithms-are-racist-facial-recognition-bias">‘A white mask worked better’: why algorithms are not colour blind</a>.<br>
+The Guardian. 28 May 2017.]]</p>
+<hr>
+</section>
+<section id="criminal-sentencing" class="level2">
+<h2 class="anchored" data-anchor-id="criminal-sentencing">Criminal Sentencing</h2>
+<p>.center[ There’s software used across the country to predict future criminals.<br>
+And it’s biased against blacks.]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/propublica-criminal-sentencing.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>.footnote[ .midi[ Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner. <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Machine Bias</a>. 23 May 2016. ProPublica.]]</p>
+<hr>
+</section>
+<section id="a-tale-of-two-convicts" class="level2">
+<h2 class="anchored" data-anchor-id="a-tale-of-two-convicts">A tale of two convicts</h2>
+<p>.pull-left[ <img src="img/propublica-prater-broden-1.png" class="img-fluid">] – .pull-right[ <img src="img/propublica-prater-broden-2.png" class="img-fluid">]</p>
+<hr>
+<p>class: middle</p>
+<blockquote class="blockquote">
+<p>“Although these measures were crafted with the best of intentions, I am concerned that they inadvertently undermine our efforts to ensure individualized and equal justice,” he said, adding, “they may exacerbate unwarranted and unjust disparities that are already far too common in our criminal justice system and in our society.”</p>
+<p>Then U.S. Attorney General Eric Holder (2014)</p>
+</blockquote>
+<hr>
+</section>
+<section id="propublica-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="propublica-analysis">ProPublica analysis</h2>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data"><strong>Data:</strong></h3>
+<p>Risk scores assigned to more than 7,000 people arrested in Broward County, Florida, in 2013 and 2014 + whether they were charged with new crimes over the next two years</p>
+<hr>
+</section>
+</section>
+<section id="propublica-analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="propublica-analysis-1">ProPublica analysis</h2>
+<section id="results" class="level3">
+<h3 class="anchored" data-anchor-id="results"><strong>Results:</strong></h3>
+<ul>
+<li>20% of those predicted to commit violent crimes actually did</li>
+<li>Algorithm had higher accuracy (61%) when full range of crimes taken into account (e.g.&nbsp;misdemeanors)</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/propublica-results.png" class="img-fluid figure-img" style="width:85.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Algorithm was more likely to falsely flag black defendants as future criminals, at almost twice the rate as white defendants</li>
+<li>White defendants were mislabeled as low risk more often than black defendants</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="how-to-write-a-racist-ai-without-trying" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-write-a-racist-ai-without-trying">How to write a racist AI without trying</h2>
+<p>.center[ <iframe width="900" height="450" src="https://notstatschat.rbind.io/2018/09/27/how-to-write-a-racist-ai-in-r-without-really-trying/" frameborder="0" style="background:white;"></iframe><br>
+]</p>
+<p>.footnote[ .midi[ Thomas Lumley. <a href="https://notstatschat.rbind.io/2018/09/27/how-to-write-a-racist-ai-in-r-without-really-trying/">How to write a racist AI in R without really trying</a>.<br>
+Biased and Inefficient. 27 September 2018.]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="further-reading" class="level1">
+<h1>Further reading</h1>
+<hr>
+<section id="machine-bias" class="level2">
+<h2 class="anchored" data-anchor-id="machine-bias">Machine Bias</h2>
+<p>.pull-left[] .pull-right[ <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">Machine Bias</a><br>
+<br> by Julia Angwin, Jeff Larson, Surya Mattu, and Lauren Kirchner]</p>
+<hr>
+</section>
+<section id="ethics-and-data-science" class="level2">
+<h2 class="anchored" data-anchor-id="ethics-and-data-science">Ethics and Data Science</h2>
+<p>.pull-left[] .pull-right[ <a href="https://www.amazon.com/Ethics-Data-Science-Mike-Loukides-ebook/dp/B07GTC8ZN7">Ethics and Data Science</a><br>
+<br> by Mike Loukides, Hilary Mason, DJ Patil<br>
+(Free Kindle download)]</p>
+<hr>
+</section>
+<section id="weapons-of-math-destruction" class="level2">
+<h2 class="anchored" data-anchor-id="weapons-of-math-destruction">Weapons of Math Destruction</h2>
+<p>.pull-left[] .pull-right[ <a href="https://www.penguin.co.uk/books/304/304513/weapons-of-math-destruction/9780141985411.html">Weapons of Math Destruction</a><br>
+How Big Data Increases Inequality and Threatens Democracy<br>
+<br> by Cathy O’Neil]</p>
+<hr>
+</section>
+<section id="algorithms-of-oppression" class="level2">
+<h2 class="anchored" data-anchor-id="algorithms-of-oppression">Algorithms of Oppression</h2>
+<p>.pull-left[] .pull-right[ <a href="https://nyupress.org/9781479837243/algorithms-of-oppression/">Algorithms of Oppression</a><br>
+How Search Engines Reinforce Racism<br>
+<br> by Safiya Umoja Noble]</p>
+<hr>
+</section>
+<section id="parting-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="parting-thoughts">Parting thoughts</h2>
+<ul>
+<li>At some point during your data science learning journey you will learn tools that can be used unethically</li>
+<li>You might also be tempted to use your knowledge in a way that is ethically questionable either because of business goals or for the pursuit of further knowledge (or because your boss told you to do so)</li>
+</ul>
+<p>.question[ How do you train yourself to make the right decisions (or reduce the likelihood of accidentally making the wrong decisions) at those points?]</p>
+<hr>
+</section>
+<section id="do-good-with-data" class="level2">
+<h2 class="anchored" data-anchor-id="do-good-with-data">Do good with data</h2>
+<ul>
+<li>Data Science for Social Good:
+<ul>
+<li><a href="https://www.turing.ac.uk/collaborate-turing/data-science-social-good">The Alan Turing Institute</a></li>
+<li><a href="https://dssg.uchicago.edu/">University of Chicago</a></li>
+</ul></li>
+<li><a href="https://www.datakind.org/">DataKind</a>: DataKind brings high-impact organizations together with leading data scientists to use data science in the service of humanity.</li>
+<li>Sign the Manifesto for Data Practices: <a href="https://datapractices.org/manifesto/">datapractices.org/manifesto</a></li>
+</ul>
+<hr>
+</section>
+<section id="further-watching" class="level2">
+<h2 class="anchored" data-anchor-id="further-watching">Further watching</h2>
+<p>.center[ <iframe width="800" height="450" src="https://www.youtube.com/embed/fgf2VjnhpCs?start=1162" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><br>
+]</p>
+<p>.footnote[ .midi[ Julien Cornebise. AI for Good in the R and Python ecosystems. useR 2019.]]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

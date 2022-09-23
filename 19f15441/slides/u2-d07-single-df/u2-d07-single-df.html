@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>DSC 223 - Fall 2022 - Block 2 - Working with a single data frame</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="../../site_libs/panelset/panelset.css" rel="stylesheet">
+<script src="../../site_libs/panelset/panelset.js"></script>
+
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Working with a single data frame">
+<meta property="og:description" content=" Data Science in a Box">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Working with a single data frame">
+<meta name="twitter:description" content=" Data Science in a Box">
+<meta name="twitter:image" content="https://DSC223-FB2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Working with a single data frame</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#handwe" id="toc-handwe" class="nav-link active" data-scroll-target="#handwe">.hand[We…]</a>
+  <ul class="collapse">
+  <li><a href="#data-hotel-bookings" id="toc-data-hotel-bookings" class="nav-link" data-scroll-target="#data-hotel-bookings">Data: Hotel bookings</a></li>
+  </ul></li>
+  <li><a href="#select-arrange-and-slice" id="toc-select-arrange-and-slice" class="nav-link" data-scroll-target="#select-arrange-and-slice"><code>select</code>, <code>arrange</code>, and <code>slice</code></a>
+  <ul class="collapse">
+  <li><a href="#select-to-keep-variables" id="toc-select-to-keep-variables" class="nav-link" data-scroll-target="#select-to-keep-variables"><code>select</code> to keep variables</a></li>
+  <li><a href="#select-to-exclude-variables" id="toc-select-to-exclude-variables" class="nav-link" data-scroll-target="#select-to-exclude-variables"><code>select</code> to exclude variables</a></li>
+  <li><a href="#select-a-range-of-variables" id="toc-select-a-range-of-variables" class="nav-link" data-scroll-target="#select-a-range-of-variables"><code>select</code> a range of variables</a></li>
+  <li><a href="#select-variables-with-certain-characteristics" id="toc-select-variables-with-certain-characteristics" class="nav-link" data-scroll-target="#select-variables-with-certain-characteristics"><code>select</code> variables with certain characteristics</a></li>
+  <li><a href="#select-variables-with-certain-characteristics-1" id="toc-select-variables-with-certain-characteristics-1" class="nav-link" data-scroll-target="#select-variables-with-certain-characteristics-1"><code>select</code> variables with certain characteristics</a></li>
+  <li><a href="#select-helpers" id="toc-select-helpers" class="nav-link" data-scroll-target="#select-helpers">Select helpers</a></li>
+  <li><a href="#arrange-in-ascending-descending-order" id="toc-arrange-in-ascending-descending-order" class="nav-link" data-scroll-target="#arrange-in-ascending-descending-order"><code>arrange</code> in ascending / descending order</a></li>
+  <li><a href="#slice-for-certain-row-numbers" id="toc-slice-for-certain-row-numbers" class="nav-link" data-scroll-target="#slice-for-certain-row-numbers"><code>slice</code> for certain row numbers</a></li>
+  </ul></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><code>filter</code></a>
+  <ul class="collapse">
+  <li><a href="#filter-to-select-a-subset-of-rows" id="toc-filter-to-select-a-subset-of-rows" class="nav-link" data-scroll-target="#filter-to-select-a-subset-of-rows"><code>filter</code> to select a subset of rows</a></li>
+  <li><a href="#filter-for-many-conditions-at-once" id="toc-filter-for-many-conditions-at-once" class="nav-link" data-scroll-target="#filter-for-many-conditions-at-once"><code>filter</code> for many conditions at once</a></li>
+  <li><a href="#filter-for-more-complex-conditions" id="toc-filter-for-more-complex-conditions" class="nav-link" data-scroll-target="#filter-for-more-complex-conditions"><code>filter</code> for more complex conditions</a></li>
+  <li><a href="#logical-operators-in-r" id="toc-logical-operators-in-r" class="nav-link" data-scroll-target="#logical-operators-in-r">Logical operators in R</a></li>
+  </ul></li>
+  <li><a href="#distinct-and-count" id="toc-distinct-and-count" class="nav-link" data-scroll-target="#distinct-and-count"><code>distinct</code> and <code>count</code></a>
+  <ul class="collapse">
+  <li><a href="#distinct-to-filter-for-unique-rows" id="toc-distinct-to-filter-for-unique-rows" class="nav-link" data-scroll-target="#distinct-to-filter-for-unique-rows"><code>distinct</code> to filter for unique rows</a></li>
+  <li><a href="#count-to-create-frequency-tables" id="toc-count-to-create-frequency-tables" class="nav-link" data-scroll-target="#count-to-create-frequency-tables"><code>count</code> to create frequency tables</a></li>
+  <li><a href="#count-and-arrange" id="toc-count-and-arrange" class="nav-link" data-scroll-target="#count-and-arrange"><code>count</code> and <code>arrange</code></a></li>
+  <li><a href="#count-for-multiple-variables" id="toc-count-for-multiple-variables" class="nav-link" data-scroll-target="#count-for-multiple-variables"><code>count</code> for multiple variables</a></li>
+  <li><a href="#order-matters-when-you-count" id="toc-order-matters-when-you-count" class="nav-link" data-scroll-target="#order-matters-when-you-count">order matters when you <code>count</code></a></li>
+  </ul></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><code>mutate</code></a>
+  <ul class="collapse">
+  <li><a href="#mutate-to-add-a-new-variable" id="toc-mutate-to-add-a-new-variable" class="nav-link" data-scroll-target="#mutate-to-add-a-new-variable"><code>mutate</code> to add a new variable</a></li>
+  <li><a href="#little-ones-in-resort-and-city-hotels" id="toc-little-ones-in-resort-and-city-hotels" class="nav-link" data-scroll-target="#little-ones-in-resort-and-city-hotels">Little ones in resort and city hotels</a></li>
+  </ul></li>
+  <li><a href="#summarise-and-group_by" id="toc-summarise-and-group_by" class="nav-link" data-scroll-target="#summarise-and-group_by"><code>summarise</code> and <code>group_by</code></a>
+  <ul class="collapse">
+  <li><a href="#summarise-for-summary-stats" id="toc-summarise-for-summary-stats" class="nav-link" data-scroll-target="#summarise-for-summary-stats"><code>summarise</code> for summary stats</a></li>
+  <li><a href="#group_by-for-grouped-operations" id="toc-group_by-for-grouped-operations" class="nav-link" data-scroll-target="#group_by-for-grouped-operations"><code>group_by</code> for grouped operations</a></li>
+  <li><a href="#calculating-frequencies" id="toc-calculating-frequencies" class="nav-link" data-scroll-target="#calculating-frequencies">Calculating frequencies</a></li>
+  <li><a href="#multiple-summary-statistics" id="toc-multiple-summary-statistics" class="nav-link" data-scroll-target="#multiple-summary-statistics">Multiple summary statistics</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/slides/u2-d07-single-df/u2-d07-single-df.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Working with a single data frame</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="handwe" class="level1">
+<h1>.hand[We…]</h1>
+<p>.huge[.green[have]] .hand[a single data frame]</p>
+<p>.huge[.pink[want]] .hand[to slice it, and dice it, and juice it, and process it]</p>
+<hr>
+<section id="data-hotel-bookings" class="level2">
+<h2 class="anchored" data-anchor-id="data-hotel-bookings">Data: Hotel bookings</h2>
+<ul>
+<li>Data from two hotels: one resort and one city hotel</li>
+<li>Observations: Each row represents a hotel booking</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hotels.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="select-arrange-and-slice" class="level1">
+<h1><code>select</code>, <code>arrange</code>, and <code>slice</code></h1>
+<hr>
+<section id="select-to-keep-variables" class="level2">
+<h2 class="anchored" data-anchor-id="select-to-keep-variables"><code>select</code> to keep variables</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hotel, lead_time) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 2
+  hotel        lead_time
+  &lt;chr&gt;            &lt;dbl&gt;
+1 Resort Hotel       342
+2 Resort Hotel       737
+3 Resort Hotel         7
+4 Resort Hotel        13
+5 Resort Hotel        14
+6 Resort Hotel        14
+# ... with 119,384 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="select-to-exclude-variables" class="level2">
+<h2 class="anchored" data-anchor-id="select-to-exclude-variables"><code>select</code> to exclude variables</h2>
+<p>.small[]</p>
+<hr>
+</section>
+<section id="select-a-range-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="select-a-range-of-variables"><code>select</code> a range of variables</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hotel<span class="sc">:</span>arrival_date_month) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 5
+  hotel        is_canceled lead_time arrival_date_year arrival_~1
+  &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;     
+1 Resort Hotel           0       342              2015 July      
+2 Resort Hotel           0       737              2015 July      
+3 Resort Hotel           0         7              2015 July      
+4 Resort Hotel           0        13              2015 July      
+5 Resort Hotel           0        14              2015 July      
+6 Resort Hotel           0        14              2015 July      
+# ... with 119,384 more rows, and abbreviated variable name
+#   1: arrival_date_month</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="select-variables-with-certain-characteristics" class="level2">
+<h2 class="anchored" data-anchor-id="select-variables-with-certain-characteristics"><code>select</code> variables with certain characteristics</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"arrival"</span>)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 4
+  arrival_date_year arrival_date_month arrival_date_wee~1 arriv~2
+              &lt;dbl&gt; &lt;chr&gt;                           &lt;dbl&gt;   &lt;dbl&gt;
+1              2015 July                               27       1
+2              2015 July                               27       1
+3              2015 July                               27       1
+4              2015 July                               27       1
+5              2015 July                               27       1
+6              2015 July                               27       1
+# ... with 119,384 more rows, and abbreviated variable names
+#   1: arrival_date_week_number, 2: arrival_date_day_of_month</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="select-variables-with-certain-characteristics-1" class="level2">
+<h2 class="anchored" data-anchor-id="select-variables-with-certain-characteristics-1"><code>select</code> variables with certain characteristics</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"type"</span>)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 4
+  reserved_room_type assigned_room_type deposit_type customer_t~1
+  &lt;chr&gt;              &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;       
+1 C                  C                  No Deposit   Transient   
+2 C                  C                  No Deposit   Transient   
+3 A                  C                  No Deposit   Transient   
+4 A                  A                  No Deposit   Transient   
+5 A                  A                  No Deposit   Transient   
+6 A                  A                  No Deposit   Transient   
+# ... with 119,384 more rows, and abbreviated variable name
+#   1: customer_type</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="select-helpers" class="level2">
+<h2 class="anchored" data-anchor-id="select-helpers">Select helpers</h2>
+<ul>
+<li><code>starts_with()</code>: Starts with a prefix</li>
+<li><code>ends_with()</code>: Ends with a suffix</li>
+<li><code>contains()</code>: Contains a literal string</li>
+<li><code>num_range()</code>: Matches a numerical range like x01, x02, x03</li>
+<li><code>one_of()</code>: Matches variable names in a character vector</li>
+<li><code>everything()</code>: Matches all variables</li>
+<li><code>last_col()</code>: Select last variable, possibly with an offset</li>
+<li><code>matches()</code>: Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)</li>
+</ul>
+<p>.footnote[ See help for any of these functions for more info, e.g.&nbsp;<code>?everything</code>.]</p>
+<hr>
+</section>
+<section id="arrange-in-ascending-descending-order" class="level2">
+<h2 class="anchored" data-anchor-id="arrange-in-ascending-descending-order"><code>arrange</code> in ascending / descending order</h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="slice-for-certain-row-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="slice-for-certain-row-numbers"><code>slice</code> for certain row numbers</h2>
+<p>.midi[]</p>
+<hr>
+<p>.tip[ In R, you can use the <code>#</code> for adding comments to your code. Any text following <code>#</code> will be printed as is, and won’t be run as R code. This is useful for leaving comments in your code and for temporarily disabling certain lines of code while debugging.]</p>
+<p>.small[]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="filter" class="level1">
+<h1><code>filter</code></h1>
+<hr>
+<section id="filter-to-select-a-subset-of-rows" class="level2">
+<h2 class="anchored" data-anchor-id="filter-to-select-a-subset-of-rows"><code>filter</code> to select a subset of rows</h2>
+<p>.midi[]</p>
+<hr>
+</section>
+<section id="filter-for-many-conditions-at-once" class="level2">
+<h2 class="anchored" data-anchor-id="filter-for-many-conditions-at-once"><code>filter</code> for many conditions at once</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    adults <span class="sc">==</span> <span class="dv">0</span>,     <span class="co">#&lt;&lt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    children <span class="sc">&gt;=</span> <span class="dv">1</span>    <span class="co">#&lt;&lt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adults, babies, children)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 223 x 3
+  adults babies children
+   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1      0      0        3
+2      0      0        2
+3      0      0        2
+4      0      0        2
+5      0      0        2
+6      0      0        3
+# ... with 217 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="filter-for-more-complex-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="filter-for-more-complex-conditions"><code>filter</code> for more complex conditions</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bookings with no adults and some children or babies in the room</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    adults <span class="sc">==</span> <span class="dv">0</span>,     </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    children <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">|</span> babies <span class="sc">&gt;=</span> <span class="dv">1</span>     <span class="co"># | means or  #&lt;&lt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(adults, babies, children)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 223 x 3
+  adults babies children
+   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+1      0      0        3
+2      0      0        2
+3      0      0        2
+4      0      0        2
+5      0      0        2
+6      0      0        3
+# ... with 217 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="logical-operators-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="logical-operators-in-r">Logical operators in R</h2>
+<p><br></p>
+<p>operator | definition || operator | definition ————|——————————||————–|—————- <code>&lt;</code> | less than ||<code>x</code>&nbsp;|&nbsp;<code>y</code> | <code>x</code> OR <code>y</code> <code>&lt;=</code> | less than or equal to ||<code>is.na(x)</code> | test if <code>x</code> is <code>NA</code> <code>&gt;</code> | greater than ||<code>!is.na(x)</code> | test if <code>x</code> is not <code>NA</code> <code>&gt;=</code> | greater than or equal to ||<code>x %in% y</code> | test if <code>x</code> is in <code>y</code> <code>==</code> | exactly equal to ||<code>!(x %in% y)</code> | test if <code>x</code> is not in <code>y</code> <code>!=</code> | not equal to ||<code>!x</code> | not <code>x</code> <code>x &amp; y</code> | <code>x</code> AND <code>y</code> || |</p>
+<hr>
+<p>.your-turn[ ### Your turn!]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="distinct-and-count" class="level1">
+<h1><code>distinct</code> and <code>count</code></h1>
+<hr>
+<section id="distinct-to-filter-for-unique-rows" class="level2">
+<h2 class="anchored" data-anchor-id="distinct-to-filter-for-unique-rows"><code>distinct</code> to filter for unique rows</h2>
+<p>… and <code>arrange</code> to order alphabetically</p>
+<p>.small[ .pull-left[] .pull-right[]]</p>
+<hr>
+</section>
+<section id="count-to-create-frequency-tables" class="level2">
+<h2 class="anchored" data-anchor-id="count-to-create-frequency-tables"><code>count</code> to create frequency tables</h2>
+<p>.pull-left[] – .pull-right[]</p>
+<hr>
+</section>
+<section id="count-and-arrange" class="level2">
+<h2 class="anchored" data-anchor-id="count-and-arrange"><code>count</code> and <code>arrange</code></h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="count-for-multiple-variables" class="level2">
+<h2 class="anchored" data-anchor-id="count-for-multiple-variables"><code>count</code> for multiple variables</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(hotel, market_segment) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 14 x 3
+   hotel        market_segment     n
+   &lt;chr&gt;        &lt;chr&gt;          &lt;int&gt;
+ 1 City Hotel   Aviation         237
+ 2 City Hotel   Complementary    542
+ 3 City Hotel   Corporate       2986
+ 4 City Hotel   Direct          6093
+ 5 City Hotel   Groups         13975
+ 6 City Hotel   Offline TA/TO  16747
+ 7 City Hotel   Online TA      38748
+ 8 City Hotel   Undefined          2
+ 9 Resort Hotel Complementary    201
+10 Resort Hotel Corporate       2309
+11 Resort Hotel Direct          6513
+12 Resort Hotel Groups          5836
+13 Resort Hotel Offline TA/TO   7472
+14 Resort Hotel Online TA      17729</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="order-matters-when-you-count" class="level2">
+<h2 class="anchored" data-anchor-id="order-matters-when-you-count">order matters when you <code>count</code></h2>
+<p>.midi[ .pull-left[] .pull-right[]]</p>
+<hr>
+<p>.your-turn[ ### Your turn!]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="mutate" class="level1">
+<h1><code>mutate</code></h1>
+<hr>
+<section id="mutate-to-add-a-new-variable" class="level2">
+<h2 class="anchored" data-anchor-id="mutate-to-add-a-new-variable"><code>mutate</code> to add a new variable</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">little_ones =</span> children <span class="sc">+</span> babies) <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(children, babies, little_ones) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(little_ones))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 119,390 x 3
+  children babies little_ones
+     &lt;dbl&gt;  &lt;dbl&gt;       &lt;dbl&gt;
+1       10      0          10
+2        0     10          10
+3        0      9           9
+4        2      1           3
+5        2      1           3
+6        2      1           3
+# ... with 119,384 more rows</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="little-ones-in-resort-and-city-hotels" class="level2">
+<h2 class="anchored" data-anchor-id="little-ones-in-resort-and-city-hotels">Little ones in resort and city hotels</h2>
+<p>.midi[ .pull-left[] .pull-right[]]</p>
+<hr>
+<p>.question[ What is happening in the following chunk?]</p>
+<p>.midi[]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="summarise-and-group_by" class="level1">
+<h1><code>summarise</code> and <code>group_by</code></h1>
+<hr>
+<section id="summarise-for-summary-stats" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-for-summary-stats"><code>summarise</code> for summary stats</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean average daily rate for all bookings</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_adr =</span> <span class="fu">mean</span>(adr)) <span class="co">#&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 1
+  mean_adr
+     &lt;dbl&gt;
+1     102.</code></pre>
+</div>
+</div>
+<p>–</p>
+<p>.pull-left-wide[ .tip[ <code>summarise()</code> changes the data frame entirely, it collapses rows down to a single summary statistic, and removes all columns that are irrelevant to the calculation.]]</p>
+<hr>
+<p>.tip[ <code>summarise()</code> also lets you get away with being sloppy and not naming your new column, but that’s not recommended!]</p>
+<p>.pull-left[ ❌] .pull-right[ ✅]</p>
+<hr>
+</section>
+<section id="group_by-for-grouped-operations" class="level2">
+<h2 class="anchored" data-anchor-id="group_by-for-grouped-operations"><code>group_by</code> for grouped operations</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean average daily rate for all booking at city and resort hotels</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hotel) <span class="sc">%&gt;%</span> <span class="co">#&lt;&lt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_adr =</span> <span class="fu">mean</span>(adr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 2
+  hotel        mean_adr
+  &lt;chr&gt;           &lt;dbl&gt;
+1 City Hotel      105. 
+2 Resort Hotel     95.0</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="calculating-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-frequencies">Calculating frequencies</h2>
+<p>The following two give the same result, so <code>count</code> is simply short for <code>group_by</code> then determine frequencies</p>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="multiple-summary-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-summary-statistics">Multiple summary statistics</h2>
+<p><code>summarise</code> can be used for multiple summary statistics as well</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hotels <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_adr =</span> <span class="fu">min</span>(adr),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_adr =</span> <span class="fu">mean</span>(adr),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_adr =</span> <span class="fu">median</span>(adr),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_adr =</span> <span class="fu">max</span>(adr)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 4
+  min_adr mean_adr median_adr max_adr
+    &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+1   -6.38     102.       94.6    5400</code></pre>
+</div>
+</div>
+<hr>
+<p>.your-turn[ ### Your turn!]</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

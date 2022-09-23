@@ -27,6 +27,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev
           sudo apt-get install -y libmagick++-dev
+          sudo apt-get install libharfbuzz-dev libfribidi-dev
 
       - name: Put pandoc in PATH
         run: |
@@ -51,7 +52,7 @@ jobs:
       - name: Install packages
         run: |
          #install.packages(c("rmarkdown", "tidyverse", "renv", "remotes"))
-         install.packages(c("magick","rmarkdown", "remotes","skimr","ggimage","mosaicData","datasauRus","xaringanthemer","xaringanExtra","usethis"))
+         install.packages(c("rmarkdown","remotes"))
          remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox", "hadley/emo", "yihui/xaringan"))
         shell: Rscript {0}
 
