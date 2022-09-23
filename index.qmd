@@ -6,80 +6,256 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page contains an outline of the topics, content, and assignments for the block. Note that this schedule will be updated as the block progresses, with all changes documented here.
 
 ::: column-screen-inset-right
-| Day | Date         | Topic                | Prepare |                              Slides                              | AE  |                                    Lab                                     | HW  | Exam | Project |
-|:---:|--------------|----------------------|:-------:|:----------------------------------------------------------------:|:---:|:--------------------------------------------------------------------------:|:---:|:----:|:-------:|
-|  1  | Mon, Sep 26  | Lab 0 - Meet + greet |         | [🖥️](/slides/lab-0.html "Lab slides"){aria-label="Lab 0 slides"} |     | [💻](/labs/lab-0.html "Lab instructions"){aria-label="Lab 0 instructions"} |     |      |         |
-|  2  | Tue, Sep 27  |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  3  | Wed, Sep 28  |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  4  | Thu, Sep 29  |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  5  | Fri, Sep 30  |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  6  | Mon, Oct 3   |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  7  | Tue, Oct 4   |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  8  | Wed, Oct 5   |                      |         |                                                                  |     |                                                                            |     |      |         |
-|  9  | Thu, Oct 6   |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 10  | Fri, Oct 7   |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 11  | Mon, Oct 10  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 12  | Tues, Oct 11 |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 13  | Wed, Oct 12  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 14  | Thu, Oct 13  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 15  | Fri, Oct 14  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 16  | Mon, Oct 17  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 17  | Tue, Oct 18  |                      |         |                                                                  |     |                                                                            |     |      |         |
-| 18  | Wed, Oct 19  |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
-|     |              |                      |         |                                                                  |     |                                                                            |     |      |         |
+<table style="width:99%;">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 8%" />
+<col style="width: 18%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><p>Day</p></th>
+<th><p>Date</p></th>
+<th><p>Topic</p></th>
+<th style="text-align: center;"><p>Prepare</p></th>
+<th style="text-align: center;"><p>Slides</p></th>
+<th style="text-align: center;"><p>AE</p></th>
+<th style="text-align: center;"><p>Lab</p></th>
+<th style="text-align: center;"><p>HW</p></th>
+<th style="text-align: center;"><p>Exam</p></th>
+<th style="text-align: center;"><p>Project</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><p>1</p></td>
+<td><p>Mon, Sep 26</p></td>
+<td><p>Welcome and Toolkits</p>
+<p>Data Viz</p></td>
+<td style="text-align: center;"><p>Show up!</p></td>
+<td style="text-align: center;"><p><a href="/slides/lab-0.html" aria-label="Lab 0 slides" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p>
+<p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="/labs/lab-0.html" aria-label="Lab 0 instructions" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>2</p></td>
+<td><p>Tue, Sep 27</p></td>
+<td><p>Tidy Data</p>
+<p>Data wrangling</p>
+<p>Data Frame</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>3</p></td>
+<td><p>Wed, Sep 28</p></td>
+<td><p>No afternoon class.</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>4</p></td>
+<td><p>Thu, Sep 29</p></td>
+<td><p>Data types and classes</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>5</p></td>
+<td><p>Fri, Sep 30</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>6</p></td>
+<td><p>Mon, Oct 3</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>7</p></td>
+<td><p>Tue, Oct 4</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>8</p></td>
+<td><p>Wed, Oct 5</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>9</p></td>
+<td><p>Thu, Oct 6</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>10</p></td>
+<td><p>Fri, Oct 7</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>11</p></td>
+<td><p>Mon, Oct 10</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>12</p></td>
+<td><p>Tues, Oct 11</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>13</p></td>
+<td><p>Wed, Oct 12</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>14</p></td>
+<td><p>Thu, Oct 13</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>15</p></td>
+<td><p>Fri, Oct 14</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>16</p></td>
+<td><p>Mon, Oct 17</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>17</p></td>
+<td><p>Tue, Oct 18</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>18</p></td>
+<td><p>Wed, Oct 19</p></td>
+<td><p>Final Exam</p></td>
+<td style="text-align: center;"><p>Know all the things.</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 :::
 
 ```{r echo = FALSE}
@@ -87,5 +263,5 @@ knitr::knit_exit()
 ```
 
 |      |      |       | Prepare | Slides | AE  |                                                    Labs                                                    | HW  | Exam | Project |
-|------|------|-------|:-------:|:------:|:---:|:----------------------------------------------------------------------------------------------------------:|:---:|:----:|:-------:|
+|-----|-----|-----|:---:|:---:|:---:|:---------------------------:|:---:|:---:|:---:|
 | Week | Date | Topic |   📖    |   🖥️   | 📋  | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️  |  ✅  |   📂    |
