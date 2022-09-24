@@ -12,6 +12,13 @@ staging/
 /.quarto/
 /ae/
 /starters/
+/labs/
+/exams/
+/hw/
+/project-instructions_in_dev/
+/project-tips-resources_files/
+/slides/
+/weeks_depr/
 _site/
 *.key
 *speaker.html
