@@ -1,24 +1,7 @@
-library/
-local/
-cellar/
-lock/
-python/
-staging/
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 
 /.quarto/
-/ae/
-/starters/
-/labs/
-/exams/
-/hw/
-/project-instructions_in_dev/
-/project-tips-resources_files/
-/slides/
-/weeks_depr/
-_site/
-*.key
-*speaker.html
+/_site/

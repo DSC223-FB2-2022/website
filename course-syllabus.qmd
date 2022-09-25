@@ -2,7 +2,7 @@
 title: "Syllabus"
 ---
 
-[**Click here**](/documents/DSC%20223%20Syllabus%20Fall%202022%20B2.pdf "PDF of syllabus") **to download a PDF copy of the FULL syllabus.**
+[**Click here**](/course-materials/documents/DSC_223_Syllabus_Fall_2022_B2 "PDF of syllabus") **to download a PDF copy of the FULL syllabus.**
 
 ## Textbooks
 
