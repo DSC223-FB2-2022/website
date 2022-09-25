@@ -1,46 +1,35 @@
 on:
+  workflow_dispatch:
   push:
     branches: main
-    paths: 
-    - 'course-materials/**'
 
-name: Render course materials
+name: Quarto Publish
 
 jobs:
-  render:
-    name: Render R Markdown files
-    runs-on: macOS-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    
-      - uses: actions/checkout@v2
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+      
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
         with:
-          fetch-depth: 2 # This is important to set for `git diff-tree` to work below
-    
-      - uses: r-lib/actions/setup-r@v1
-    
-      - uses: r-lib/actions/setup-pandoc@v1
-    
-      - name: Install packages
-        run: |
-         #install.packages(c("rmarkdown", "tidyverse", "renv", "remotes"))
-         install.packages(c("rmarkdown", "remotes"))
-         remotes::install_github(c("rundel/checklist", "rstudio-education/dsbox", "hadley/emo", "yihui/xaringan"))
-        shell: Rscript {0}
-    
-      - name: Render R Markdown files
-        run: |
-          changed_files = system("git diff-tree --no-commit-id --name-only -r HEAD", intern = TRUE, wait = TRUE)
-          changed_rmd_files = changed_files[grepl("course-materials/.*\\.[Rr]md", changed_files)]
-          print(changed_rmd_files) # for debugging
-          lapply(changed_rmd_files, checklist::check_rmd_renders, install_missing = TRUE)
-        shell: Rscript {0}
-    
-      - name: Commit results
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m 'Re-render R Markdown files' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
+          r-version: '4.2.0'
+
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
