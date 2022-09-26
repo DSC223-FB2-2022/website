@@ -262,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a>
   <ul class="collapse">
   <li><a href="#step-1.-get-url-of-repo-to-be-cloned" id="toc-step-1.-get-url-of-repo-to-be-cloned" class="nav-link" data-scroll-target="#step-1.-get-url-of-repo-to-be-cloned">Step 1. Get URL of repo to be cloned</a></li>
-  <li><a href="#step-2.-go-to-rstudio-cloud" id="toc-step-2.-go-to-rstudio-cloud" class="nav-link" data-scroll-target="#step-2.-go-to-rstudio-cloud">Step 2. Go to RStudio Cloud</a></li>
+  <li><a href="#step-2.-go-to-rstudio" id="toc-step-2.-go-to-rstudio" class="nav-link" data-scroll-target="#step-2.-go-to-rstudio">Step 2. Go to RStudio</a></li>
   <li><a href="#step-3.-clone-the-repo" id="toc-step-3.-clone-the-repo" class="nav-link" data-scroll-target="#step-3.-clone-the-repo">Step 3. Clone the repo</a></li>
   </ul></li>
   <li><a href="#hello-rstudio" id="toc-hello-rstudio" class="nav-link" data-scroll-target="#hello-rstudio">Hello RStudio!</a></li>
@@ -338,7 +338,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><p>have a GitHub account</p></li>
 <li><p>are a member of the course GitHub organization</p></li>
-<li><p>are a member of the course RStudio Cloud space</p></li>
+<li><p>can log into the on campus RStudio Server (link on course webpage)</p></li>
 </ul>
 <p>If you failed to confirm any of these, it means you have not yet completed the prerequisites for this assignment. Please go back to <a href="#prerequisites">Prerequisites</a> and complete them before continuing the assignment.</p>
 </section>
@@ -350,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>For each assignment in this course you will start with a GitHub repo that I created for you and that contains the starter documents you will build upon when working on your assignment. The first step is always to bring these files into RStudio so that you can edit them, run them, view your results, and interpret them. This action is called <strong>cloning</strong>.</p>
 <p>Then you will work in RStudio on the data analysis, making <strong>commits</strong> along the way (snapshots of your changes) and finally <strong>push</strong> all your work back to GitHub.</p>
-<p>The next few steps will walk you through the process of getting information of the repo to be cloned, cloning your repo in a new RStudio Cloud project, and getting started with the analysis.</p>
+<p>The next few steps will walk you through the process of getting information of the repo to be cloned, cloning your repo in a new RStudio Server project, and getting started with the analysis.</p>
 <section id="step-1.-get-url-of-repo-to-be-cloned" class="level3">
 <h3 class="anchored" data-anchor-id="step-1.-get-url-of-repo-to-be-cloned">Step 1. Get URL of repo to be cloned</h3>
 <div class="cell" data-fig.margin="true">
@@ -360,33 +360,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>On GitHub, click on the green <strong>Code</strong> button, select <strong>HTTPS</strong> (this might already be selected by default, and if it is, you’ll see the text <em>Use Git or checkout with SVN using the web URL</em> jas in the image on the right). Click on the clipboard icon 📋 to copy the repo URL.</p>
 </section>
-<section id="step-2.-go-to-rstudio-cloud" class="level3">
-<h3 class="anchored" data-anchor-id="step-2.-go-to-rstudio-cloud">Step 2. Go to RStudio Cloud</h3>
-<p>Go to <a href="https://rstudio.cloud/" title="RStudio Cloud">rstudio.cloud</a> and then <strong>navigate to the course workspace</strong> via the left sidebar. It’s very important that you do this for two reasons:</p>
-<ul>
-<li>It’s only when you’re in the course workspace that you’ll be able to benefit from R packages I’ve pre-installed for you so that your project can be configured correctly.</li>
-<li>It’s only when you’re in the course workspace that your usage of RStudio Cloud won’t count towards the free usage limits.</li>
-</ul>
-<div class="cell" data-fig.margin="true">
-<div class="cell-output-display">
-<p><img src="img/course-workspace.png" class="img-fluid" style="width:80.0%"></p>
-</div>
-</div>
-<p>Before you proceed, confirm that you are in the course workspace by checking out what’s on your top bar in RStudio Cloud.</p>
+<section id="step-2.-go-to-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="step-2.-go-to-rstudio">Step 2. Go to RStudio</h3>
+<p>Go to <a href="http://turing.cornellcollege.edu:8787/">RStudio</a> and then <strong>navigate to the course workspace</strong> via the left sidebar. It’s very important that you do this for two reasons:</p>
 </section>
 <section id="step-3.-clone-the-repo" class="level3">
 <h3 class="anchored" data-anchor-id="step-3.-clone-the-repo">Step 3. Clone the repo</h3>
-<p>In RStudio, click on the <strong>down arrow</strong> next to New Project and then choose <strong>New Project from Git Repository</strong>.</p>
-<p>In the pop-up window, <strong>paste the URL</strong> you copied from GitHub, make sure the box for <strong>Add packages from the base project</strong> is checked (it should be, by default) and then click <strong>OK</strong>.</p>
-<div class="cell" data-layout-align="left">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="img/new-project-from-git.png" class="img-fluid figure-img" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>In RStudio, click on <strong>File</strong> then choose <strong>New Project</strong>. Click <strong>Version control</strong> and then <strong>Git</strong>.</p>
+<p>In the pop-up window, <strong>paste the URL</strong> you copied from GitHub, then click <strong>OK</strong>.You may be asked to input your password and PAT.</p>
 </section>
 </section>
 <section id="hello-rstudio" class="level1">
@@ -441,13 +422,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="step-3.-push" class="level2">
 <h2 class="anchored" data-anchor-id="step-3.-push">Step 3. Push</h2>
-<p>Now that you have made an update and committed this change, it’s time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean the course teaching team (your repos in this course are private to you and us, only). In order to push your changes to GitHub, click on <strong>Push</strong>.</p>
+<p>Now that you have made an update and committed this change, it’s time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean your instructor or group. In order to push your changes to GitHub, click on <strong>Push</strong>.</p>
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
 <p><img src="img/ready-to-push.png" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
-<p>This will prompt a dialogue box where you first need to enter your user name, and then your password. This might feel cumbersome. Bear with me… I <em>will</em> teach you how to save your password so you don’t have to enter it every time. But for this one assignment you’ll have to manually enter each time you push in order to gain some experience with it.</p>
+<p>This will prompt a dialogue box where you first need to enter your user name, and then your <em>PAT</em>. This might feel cumbersome.But for this one assignment you’ll have to manually enter each time you push in order to gain some experience with it.</p>
 <p><strong>Thought exercise:</strong> Which of the above steps (updating the YAML, committing, and pushing) needs to talk to GitHub?<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 </section>
