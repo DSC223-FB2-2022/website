@@ -415,16 +415,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/50523?highlight=*:*"&gt;Unknown                           ...
- [2] &lt;a href="./record/21172?highlight=*:*"&gt;Portrait of a Seated Woman        ...
- [3] &lt;a href="./record/21876?highlight=*:*"&gt;Untitled                          ...
- [4] &lt;a href="./record/21407?highlight=*:*"&gt;Portrait of a Woman               ...
- [5] &lt;a href="./record/22497?highlight=*:*"&gt;Untitled                          ...
- [6] &lt;a href="./record/22657?highlight=*:*"&gt;Composition with Two Figures in L ...
- [7] &lt;a href="./record/21960?highlight=*:*"&gt;Porcus Omnivorous                 ...
- [8] &lt;a href="./record/21134?highlight=*:*"&gt;Portrait of a Man                 ...
- [9] &lt;a href="./record/21746?highlight=*:*"&gt;Untitled                          ...
-[10] &lt;a href="./record/53782?highlight=*:*"&gt;The Etiquette of Landscape and Fa ...</code></pre>
+ [1] &lt;a href="./record/21172?highlight=*:*"&gt;Portrait of a Seated Woman        ...
+ [2] &lt;a href="./record/21407?highlight=*:*"&gt;Portrait of a Woman               ...
+ [3] &lt;a href="./record/22497?highlight=*:*"&gt;Untitled                          ...
+ [4] &lt;a href="./record/21960?highlight=*:*"&gt;Porcus Omnivorous                 ...
+ [5] &lt;a href="./record/21134?highlight=*:*"&gt;Portrait of a Man                 ...
+ [6] &lt;a href="./record/21746?highlight=*:*"&gt;Untitled                          ...
+ [7] &lt;a href="./record/53782?highlight=*:*"&gt;The Etiquette of Landscape and Fa ...
+ [8] &lt;a href="./record/20759?highlight=*:*"&gt;Composition with Stripes and Full ...
+ [9] &lt;a href="./record/21473?highlight=*:*"&gt;Two Women                         ...
+[10] &lt;a href="./record/21463?highlight=*:*"&gt;Train Station                     ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -434,16 +434,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Unknown                                                                            (1957)"                                       
- [2] "Portrait of a Seated Woman                                                                            (1965-1966)"               
- [3] "Untitled                                                                            (1997)"                                      
- [4] "Portrait of a Woman                                                                            (02 Nov 1953)"                    
- [5] "Untitled                                                                            (1962)"                                      
- [6] "Composition with Two Figures in Lime Green                                    "                                                  
- [7] "Porcus Omnivorous                                                                            (1994)"                             
- [8] "Portrait of a Man                                                                            (1939)"                             
- [9] "Untitled                                                                            (1949)"                                      
-[10] "The Etiquette of Landscape and Face: Passage 2                                                                            (2015)"</code></pre>
+<pre><code> [1] "Portrait of a Seated Woman                                                                            (1965-1966)"               
+ [2] "Portrait of a Woman                                                                            (02 Nov 1953)"                    
+ [3] "Untitled                                                                            (1962)"                                      
+ [4] "Porcus Omnivorous                                                                            (1994)"                             
+ [5] "Portrait of a Man                                                                            (1939)"                             
+ [6] "Untitled                                                                            (1949)"                                      
+ [7] "The Etiquette of Landscape and Face: Passage 2                                                                            (2015)"
+ [8] "Composition with Stripes and Full Moon                                                                            (Circa 1973)"  
+ [9] "Two Women                                    "                                                                                   
+[10] "Train Station                                    "                                                                               </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -457,16 +457,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Unknown (1957)"                                       
- [2] "Portrait of a Seated Woman (1965-1966)"               
- [3] "Untitled (1997)"                                      
- [4] "Portrait of a Woman (02 Nov 1953)"                    
- [5] "Untitled (1962)"                                      
- [6] "Composition with Two Figures in Lime Green"           
- [7] "Porcus Omnivorous (1994)"                             
- [8] "Portrait of a Man (1939)"                             
- [9] "Untitled (1949)"                                      
-[10] "The Etiquette of Landscape and Face: Passage 2 (2015)"</code></pre>
+<pre><code> [1] "Portrait of a Seated Woman (1965-1966)"               
+ [2] "Portrait of a Woman (02 Nov 1953)"                    
+ [3] "Untitled (1962)"                                      
+ [4] "Porcus Omnivorous (1994)"                             
+ [5] "Portrait of a Man (1939)"                             
+ [6] "Untitled (1949)"                                      
+ [7] "The Etiquette of Landscape and Face: Passage 2 (2015)"
+ [8] "Composition with Stripes and Full Moon (Circa 1973)"  
+ [9] "Two Women"                                            
+[10] "Train Station"                                        </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -492,11 +492,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/50523?highlight=*:*" "./record/21172?highlight=*:*"
- [3] "./record/21876?highlight=*:*" "./record/21407?highlight=*:*"
- [5] "./record/22497?highlight=*:*" "./record/22657?highlight=*:*"
- [7] "./record/21960?highlight=*:*" "./record/21134?highlight=*:*"
- [9] "./record/21746?highlight=*:*" "./record/53782?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/21172?highlight=*:*" "./record/21407?highlight=*:*"
+ [3] "./record/22497?highlight=*:*" "./record/21960?highlight=*:*"
+ [5] "./record/21134?highlight=*:*" "./record/21746?highlight=*:*"
+ [7] "./record/53782?highlight=*:*" "./record/20759?highlight=*:*"
+ [9] "./record/21473?highlight=*:*" "./record/21463?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
