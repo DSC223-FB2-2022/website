@@ -1,5 +1,5 @@
 ---
-title: "Visualising categorical data"
+title: "Visualizing categorical data"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
@@ -25,16 +25,6 @@ loans_full_schema <- loans_full_schema %>%
 
 class: middle
 
-# Recap
-
----
-
-## Variables
-
-- **Numerical** variables can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
-- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
-
----
 
 ### Data 
 

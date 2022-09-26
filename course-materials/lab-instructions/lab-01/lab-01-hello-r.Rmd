@@ -92,13 +92,21 @@ knitr::include_graphics("img/github-conn-4.PNG")
 
 Keep your PAT somewhere you can copy it easily.
 
+
+### Step 7
+
+Now go back to the **terminal** in RStudio (bottom left). Type the following, changing out your email (that you used for your GitHub account) and your name where appropriate. 
+
+git config --global user.email "change this to your email"
+git config --global user.name "change this to your name"
+
 Yay! You did it!
 
 # Getting started
 
 Each of your assignments will begin with the following steps. We may have done this together in class already too; they're outlined in detail here again. Going forward each lab will start with a "Getting started" section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.
 
--   Go back to your GitHub account hompage. If you click your generic picture in the top right hand corner, you can then click **Your Repositories**. You should see in the list, one titled **lab-01-hello-r**. Click that one.
+-   Click your generic picture in the top right hand corner, and then click **Your Organizations**. You should see in the list, one with **DSC223** in the name. Click that one. Next click **repositories** at the top. Now you should see your repo's and the website repo. 
 
 ```{r clone-repo-link, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/clone-repo-link.png")
