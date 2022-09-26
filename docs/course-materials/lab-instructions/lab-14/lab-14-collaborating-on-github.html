@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DSC 223 - Fall 2022 - Block 2 - Lab 14 - Collaborating on GitHub</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 14 - Collaborating on GitHub">
+<meta property="og:description" content="This week you’ll continue working on your projects. The first half of the workshop is structured, and you can use the second half to make progress on your projects.">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 14 - Collaborating on GitHub">
+<meta name="twitter:description" content="This week you’ll continue working on your projects. The first half of the workshop is structured, and you can use the second half to make progress on your projects.">
+<meta name="twitter:image" content="https://dsc223-fb2-2022.github.io/website/images\twitter-card.png">
+<meta name="twitter:creator" content="@stats_tgeorge">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Lab 14 - Collaborating on GitHub</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">DSC 223 - Fall 2022 - Block 2</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/DSC223-FB2-2022/website" title="GitHub organization" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="http://turing.cornellcollege.edu:8787/" title="RStudio Server" class="sidebar-tool px-1"><i class="bi bi-code-square"></i></a>
+    <a href="" title="Moodle" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/mod/forum/view.php?id=239844">
+          Announcements
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/grade/report/user/index.php?id=6992">
+          Gradebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.cornellcollege.edu/course/view.php?id=6992">
+          Homepage
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-support.html" class="sidebar-item-text sidebar-link">Support</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-instructor.html" class="sidebar-item-text sidebar-link">Instructor</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../course-links.html" class="sidebar-item-text sidebar-link">Useful links</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Computing</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../computing-access.html" class="sidebar-item-text sidebar-link">Access</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#github-issues" id="toc-github-issues" class="nav-link active" data-scroll-target="#github-issues">GitHub issues</a>
+  <ul class="collapse">
+  <li><a href="#opening-an-issue" id="toc-opening-an-issue" class="nav-link" data-scroll-target="#opening-an-issue">Opening an issue</a></li>
+  <li><a href="#working-on-the-issue" id="toc-working-on-the-issue" class="nav-link" data-scroll-target="#working-on-the-issue">Working on the issue</a></li>
+  <li><a href="#closing-the-issue" id="toc-closing-the-issue" class="nav-link" data-scroll-target="#closing-the-issue">Closing the issue</a></li>
+  </ul></li>
+  <li><a href="#project-progress" id="toc-project-progress" class="nav-link" data-scroll-target="#project-progress">Project progress</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/DSC223-FB2-2022/website/edit/main/course-materials/lab-instructions/lab-14/lab-14-collaborating-on-github.Rmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/DSC223-FB2-2022/website/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Lab 14 - Collaborating on GitHub</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>This week you’ll continue working on your projects. The first half of the workshop is structured, and you can use the second half to make progress on your projects.</p>
+<section id="github-issues" class="level1">
+<h1>GitHub issues</h1>
+<p>Issues are a great way to keep track of tasks, enhancements, and bugs for your projects. They’re kind of like email—except they can be shared and discussed with the rest of your team. You can use issues as to-do lists as well as a place for brainstorming / discussing ideas.</p>
+<section id="opening-an-issue" class="level2">
+<h2 class="anchored" data-anchor-id="opening-an-issue">Opening an issue</h2>
+<ol type="1">
+<li>Go to your project repo and open a new issue titled “Practice issue”.</li>
+<li>Add the following text to the issue:</li>
+</ol>
+<!-- -->
+<pre><code>This is not a real issue. This is just some placeholder text.
+
+And the following is a bulleted to-do list:
+- [ ] Do this
+- [ ] Then that
+- [ ] And finally this</code></pre>
+<ol start="3" type="1">
+<li>Hit preview to make sure the issue looks like the following:</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-create.png" class="img-fluid" width="811"></p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Submit the issue.</li>
+<li>Then, assign the issue to one or few members of the team.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-assign.png" class="img-fluid" width="1095"></p>
+</div>
+</div>
+</section>
+<section id="working-on-the-issue" class="level2">
+<h2 class="anchored" data-anchor-id="working-on-the-issue">Working on the issue</h2>
+<p>As you work on the issue you can check the boxes.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-check.png" class="img-fluid" width="824"></p>
+</div>
+</div>
+<p>Note that this will also show progress on the issue on the issue dashboard.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-progress.png" class="img-fluid" width="1097"></p>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Check some of the boxes on your practice issue and confirm that you can see the progress result on the issue dashboard.</li>
+</ol>
+</section>
+<section id="closing-the-issue" class="level2">
+<h2 class="anchored" data-anchor-id="closing-the-issue">Closing the issue</h2>
+<p>Once you’re done with an issue, you should close it. You can do this in one of two ways: on GitHub by clicking on Close issue or via a commit that directly addresses the issue. We’ll practice the second one. If you preface your commits with “Fixes”, “Fixed”, “Fix”, “Closes”, “Closed”, or “Close”, the issue will be closed when you push the changes to your repo.</p>
+<ol start="7" type="1">
+<li>Take a note of the issue number, which will show up next to the issue title.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-number.png" class="img-fluid" width="608"></p>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Go to your project on RStudio and make a change. This can be something silly like adding a new line to the issue README. Then commit this change. In your commit message, use one of the special words listed above and reference the issue. For example, if the change I made was to add a new line to the README I would say something like the following:</li>
+</ol>
+<!-- -->
+<pre><code>Add a new line to the README, closes #2</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-commit.png" class="img-fluid" width="991"></p>
+</div>
+</div>
+<ol start="9" type="1">
+<li>Push your changes and observe that the issue is now closed on GitHub. Click on the referenced commit to confirm that it was your last commit that closed the issue.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/practice-issue-commit.png" class="img-fluid" width="991"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="project-progress" class="level1">
+<h1>Project progress</h1>
+<p>Now back to your project…</p>
+<ol start="10" type="1">
+<li><p><strong>Crafting your to-do list:</strong> Discuss your plan for your project as a team, and open <strong>at least n issues</strong>, where n is the number of students in your team. Not every issue needs to have a checklist, but you might want to include checklists in some of them to remind yourselves the exact steps you discussed to tackle the issue. Then assign <strong>at least one</strong> issue to each team member.</p></li>
+<li><p><strong>Customizing your website theme:</strong> (Optional) Edit the <code>_config.yml</code> document to change the theme of your project website. Your options are <a href="https://pages-themes.github.io/architect">architect</a>, <a href="https://pages-themes.github.io/cayman">cayman</a>, <a href="https://pages-themes.github.io/dinky">dinky</a>, <a href="https://pages-themes.github.io/hacker">hacker</a>, <a href="https://pages-themes.github.io/leap-day">leap-day</a>, <a href="https://pages-themes.github.io/merlot">merlot</a>, <a href="https://pages-themes.github.io/midnight">midnight</a>, <a href="https://pages-themes.github.io/minima">minima</a>, <a href="https://pages-themes.github.io/minimal">minimal</a>, <a href="https://pages-themes.github.io/modernist">modernist</a>, <a href="https://pages-themes.github.io/slate">slate</a>, <a href="https://pages-themes.github.io/tactile">tactile</a>, and <a href="https://pages-themes.github.io/time-machine">time-machine</a>. Suppose you want the <code>architect</code> theme, you’d add <code>theme: architect</code> to the <code>_config.yml</code> document, save, commit, and push.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/project-description.png" class="img-fluid" width="850"></p>
+</div>
+</div>
+<ol start="12" type="1">
+<li><p><strong>Updating your project description:</strong> If you have not yet done so, add a brief description, link to your project website, and topics to your project repo.</p></li>
+<li><p><strong>Citing your data:</strong> Now is the time to fix up those citations! In your project README there is a link to a resource for properly citing data. Develop a citation for your dataset and add it under the data section using this guidance. If you have questions, ask a tutor for help!</p></li>
+<li><p><strong>Confirming presentation format:</strong> Go to the website for your repo and click on the link that should take you to your presentation. Confirm that your latest changes to the presentation are reflected at this link (which means you must have pushed the resulting HTML file along with the Rmd file where you wrote your presentation).</p></li>
+<li><p><strong>Tidying up your coding style:</strong> Go to the pull requests tab and take a look at the code styling suggestions. Implement them in the relevant files. Make sure to check these before you finalize work on your repo.</p></li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="img/styler-1.png" class="img-fluid" width="835"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="img/styler-2.png" class="img-fluid" width="1088"></p>
+</div>
+</div>
+<ol start="16" type="1">
+<li><strong>Strongly recommended:</strong> Get a hold of a tutor and run your ideas by them.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Tyler George</div>   
+    <div class="nav-footer-right">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
