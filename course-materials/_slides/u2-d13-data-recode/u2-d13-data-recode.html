@@ -69,19 +69,18 @@ rel_inc &lt;- read_excel("data/relig-income.xlsx")
 .small[
 
 ```
-## # A tibble: 12 x 6
-##   `Religious tradition`   Less ~1 $30,0~2 $50,0~3 $100,~4 Sampl~5
+## # A tibble: 12 × 6
+##   `Religious tradition`   Less …¹ $30,0…² $50,0…³ $100,…⁴ Sampl…⁵
 ##   &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 Buddhist                   0.36    0.18    0.32    0.13     233
 ## 2 Catholic                   0.36    0.19    0.26    0.19    6137
 ## 3 Evangelical Protestant     0.35    0.22    0.28    0.14    7462
 ## 4 Hindu                      0.17    0.13    0.34    0.36     172
-## 5 Historically Black Pro~    0.53    0.22    0.17    0.08    1704
+## 5 Historically Black Pro…    0.53    0.22    0.17    0.08    1704
 ## 6 Jehovah's Witness          0.48    0.25    0.22    0.04     208
-## # ... with 6 more rows, and abbreviated variable names
-## #   1: `Less than $30,000`, 2: `$30,000-$49,999`,
-## #   3: `$50,000-$99,999`, 4: `$100,000 or more`,
-## #   5: `Sample Size`
+## # … with 6 more rows, and abbreviated variable names
+## #   ¹​`Less than $30,000`, ²​`$30,000-$49,999`,
+## #   ³​`$50,000-$99,999`, ⁴​`$100,000 or more`, ⁵​`Sample Size`
 ```
 ]
 
@@ -100,18 +99,18 @@ rel_inc %&gt;%
 ```
 
 ```
-## # A tibble: 12 x 6
-##   religion                  Less ~1 $30,0~2 $50,0~3 $100,~4     n
+## # A tibble: 12 × 6
+##   religion                  Less …¹ $30,0…² $50,0…³ $100,…⁴     n
 ##   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 Buddhist                     0.36    0.18    0.32    0.13   233
 ## 2 Catholic                     0.36    0.19    0.26    0.19  6137
 ## 3 Evangelical Protestant       0.35    0.22    0.28    0.14  7462
 ## 4 Hindu                        0.17    0.13    0.34    0.36   172
-## 5 Historically Black Prote~    0.53    0.22    0.17    0.08  1704
+## 5 Historically Black Prote…    0.53    0.22    0.17    0.08  1704
 ## 6 Jehovah's Witness            0.48    0.25    0.22    0.04   208
-## # ... with 6 more rows, and abbreviated variable names
-## #   1: `Less than $30,000`, 2: `$30,000-$49,999`,
-## #   3: `$50,000-$99,999`, 4: `$100,000 or more`
+## # … with 6 more rows, and abbreviated variable names
+## #   ¹​`Less than $30,000`, ²​`$30,000-$49,999`,
+## #   ³​`$50,000-$99,999`, ⁴​`$100,000 or more`
 ```
 ]
 
@@ -123,7 +122,7 @@ If we want a new variable called `income` with levels such as "Less than $30,000
 
 
 ```
-## # A tibble: 48 x 4
+## # A tibble: 48 × 4
 ##    religion                   n income            proportion
 ##    &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
 ##  1 Buddhist                 233 Less than $30,000       0.36
@@ -141,7 +140,7 @@ If we want a new variable called `income` with levels such as "Less than $30,000
 ## 13 Hindu                    172 Less than $30,000       0.17
 ## 14 Hindu                    172 $30,000-$49,999         0.13
 ## 15 Hindu                    172 $50,000-$99,999         0.34
-## # ... with 33 more rows
+## # … with 33 more rows
 ```
 
 ---
@@ -164,7 +163,7 @@ rel_inc %&gt;%
 ```
 
 ```
-## # A tibble: 48 x 4
+## # A tibble: 48 × 4
 ##   religion     n income            proportion
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
 ## 1 Buddhist   233 Less than $30,000       0.36
@@ -173,7 +172,7 @@ rel_inc %&gt;%
 ## 4 Buddhist   233 $100,000 or more        0.13
 ## 5 Catholic  6137 Less than $30,000       0.36
 ## 6 Catholic  6137 $30,000-$49,999         0.19
-## # ... with 42 more rows
+## # … with 42 more rows
 ```
 ]
 
@@ -198,7 +197,7 @@ rel_inc %&gt;%
 ```
 
 ```
-## # A tibble: 48 x 5
+## # A tibble: 48 × 5
 ##   religion     n income            proportion frequency
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 Buddhist   233 Less than $30,000       0.36        84
@@ -207,7 +206,7 @@ rel_inc %&gt;%
 ## 4 Buddhist   233 $100,000 or more        0.13        30
 ## 5 Catholic  6137 Less than $30,000       0.36      2209
 ## 6 Catholic  6137 $30,000-$49,999         0.19      1166
-## # ... with 42 more rows
+## # … with 42 more rows
 ```
 ]
 

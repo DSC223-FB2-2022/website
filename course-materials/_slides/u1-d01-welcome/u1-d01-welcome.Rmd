@@ -26,135 +26,135 @@ class: middle
 
 # Hello world!
 
-------------------------------------------------------------------------
+---
 
 ## Data science
 
 .pull-left-wide\[ - Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. \]
 
-------------------------------------------------------------------------
+---
 
 ## Course FAQ
 
 .pull-left-wide\[ **Q - What data science background does this course assume?**\
 A - None.\]
 
-------------------------------------------------------------------------
+---
 
 ## Course FAQ
 
 .pull-left-wide\[ **Q - Is this an intro CS course?**\
 A - No, but many themes are shared.\]
 
-------------------------------------------------------------------------
+---
 
 class: middle
 
 # Software
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="75%", fig.align="left"}
 knitr::include_graphics("img/excel.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="50%", fig.align="left"}
 knitr::include_graphics("img/r.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="73%", fig.align="left"}
 knitr::include_graphics("img/rstudio.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: middle
 
 # Data science life cycle
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.001.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.002.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.003.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.004.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.005.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.006.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 .pull-left\[\] .pull-right\[\]
 
-------------------------------------------------------------------------
+---
 
 .pull-left\[\] .pull-right\[\]
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.007.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.008.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="90%", fig.align="left"}
 knitr::include_graphics("img/data-science-cycle/data-science-cycle.009.png")
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r echo=FALSE, out.width="85%", fig.align="left"}
 knitr::include_graphics("img/unvotes/unvotes.gif")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: middle
 
 # Let's dive in!
 
-------------------------------------------------------------------------
+---
 
 background-image: url("img/unvotes/unvotes-01.jpeg")
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -162,7 +162,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-02.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -170,7 +170,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-03.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -178,7 +178,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-04.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -186,7 +186,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-05.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -194,7 +194,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-06.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -202,7 +202,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-07.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -210,7 +210,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-08.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -218,7 +218,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-09.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -226,7 +226,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-10.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -234,7 +234,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-11.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -242,7 +242,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-12.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -250,7 +250,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-13.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 class: inverse
 
@@ -258,7 +258,7 @@ class: inverse
 knitr::include_graphics("img/unvotes/unvotes-14.jpeg")
 ```
 
-------------------------------------------------------------------------
+---
 
 .center\[ .large\[ [minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)\]\]
 

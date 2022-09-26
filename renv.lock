@@ -3153,10 +3153,10 @@
     },
     "xaringan": {
       "Package": "xaringan",
-      "Version": "0.26",
+      "Version": "0.25",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3ad9326ab938c148730bb17c90f66b63",
+      "Hash": "d6123c2291c16c8e318c69a2630fa23c",
       "Requirements": [
         "htmltools",
         "knitr",

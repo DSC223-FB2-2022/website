@@ -95,14 +95,14 @@ train_data %&gt;%
 ```
 
 ```
-## # A tibble: 5 x 4
+## # A tibble: 5 × 4
 ##   time                date         dow month
 ##   &lt;dttm&gt;              &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1 2012-03-15 13:51:35 2012-03-15     5     3
-## 2 2012-03-03 08:24:02 2012-03-03     7     3
-## 3 2012-01-18 10:55:23 2012-01-18     4     1
-## 4 2012-02-24 22:08:59 2012-02-24     6     2
-## 5 2012-01-11 07:18:51 2012-01-11     4     1
+## 1 2012-03-15 18:51:35 2012-03-15     5     3
+## 2 2012-03-03 14:24:02 2012-03-03     7     3
+## 3 2012-01-18 16:55:23 2012-01-18     4     1
+## 4 2012-02-25 04:08:59 2012-02-25     7     2
+## 5 2012-01-11 13:18:51 2012-01-11     4     1
 ```
 
 ---
@@ -143,7 +143,7 @@ summary(email_rec)
 .xsmall[
 
 ```
-## # A tibble: 21 x 4
+## # A tibble: 21 × 4
 ##    variable     type    role      source  
 ##    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;   
 ##  1 to_multiple  nominal predictor original
@@ -382,22 +382,22 @@ email_wflow &lt;- workflow() %&gt;%
 .small[
 
 ```
-## == Workflow ========================================================================================
+## ══ Workflow ════════════════════════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: logistic_reg()
 ## 
-## -- Preprocessor ------------------------------------------------------------------------------------
+## ── Preprocessor ────────────────────────────────────────────────────────────────────────────────────
 ## 7 Recipe Steps
 ## 
-## * step_rm()
-## * step_date()
-## * step_rm()
-## * step_cut()
-## * step_cut()
-## * step_dummy()
-## * step_zv()
+## • step_rm()
+## • step_date()
+## • step_rm()
+## • step_cut()
+## • step_cut()
+## • step_dummy()
+## • step_zv()
 ## 
-## -- Model -------------------------------------------------------------------------------------------
+## ── Model ───────────────────────────────────────────────────────────────────────────────────────────
 ## Logistic Regression Model Specification (classification)
 ## 
 ## Computational engine: glm
@@ -427,40 +427,41 @@ tidy(email_fit) %&gt;% print(n = 31)
 ```
 
 ```
-## # A tibble: 31 x 5
+## # A tibble: 32 × 5
 ##    term               estimate  std.error statistic  p.value
 ##    &lt;chr&gt;                 &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-##  1 (Intercept)        -0.914      0.251     -3.65   2.62e- 4
-##  2 image              -1.65       0.933     -1.76   7.78e- 2
-##  3 viagra              2.27     182.         0.0125 9.90e- 1
-##  4 num_char            0.0469     0.0243     1.93   5.40e- 2
-##  5 line_breaks        -0.00509    0.00138   -3.68   2.32e- 4
-##  6 exclaim_subj       -0.202      0.277     -0.729  4.66e- 1
-##  7 exclaim_mess        0.00882    0.00186    4.74   2.17e- 6
-##  8 to_multiple_X1     -2.61       0.354     -7.37   1.69e-13
-##  9 cc_X.1.68.         -0.312      0.489     -0.638  5.24e- 1
-## 10 attach_X.1.21.      2.05       0.368      5.57   2.55e- 8
-## 11 dollar_X.1.64.      0.218      0.217      1.00   3.16e- 1
-## 12 winner_yes          2.18       0.428      5.08   3.71e- 7
-## 13 inherit_X.1.5.     -9.25     764.        -0.0121 9.90e- 1
-## 14 inherit_X.5.10.     2.52       1.44       1.75   7.97e- 2
-## 15 password_X.1.5.    -1.71       0.749     -2.29   2.22e- 2
-## 16 password_X.5.10.  -12.5      475.        -0.0263 9.79e- 1
-## 17 password_X.10.20. -13.7      813.        -0.0168 9.87e- 1
-## 18 password_X.20.22. -13.9     1029.        -0.0135 9.89e- 1
-## 19 format_X1          -0.920      0.159     -5.79   6.95e- 9
-## 20 re_subj_X1         -2.91       0.437     -6.65   2.88e-11
-## 21 urgent_subj_X1      3.52       1.08       3.25   1.16e- 3
-## 22 number_small       -0.902      0.168     -5.38   7.43e- 8
-## 23 number_big         -0.209      0.250     -0.838  4.02e- 1
-## 24 time_dow_Mon        0.134      0.297      0.453  6.51e- 1
-## 25 time_dow_Tue        0.441      0.268      1.65   9.99e- 2
-## 26 time_dow_Wed       -0.131      0.275     -0.478  6.33e- 1
-## 27 time_dow_Thu        0.123      0.279      0.442  6.58e- 1
-## 28 time_dow_Fri        0.0896     0.283      0.316  7.52e- 1
-## 29 time_dow_Sat        0.277      0.300      0.923  3.56e- 1
-## 30 time_month_Feb      0.760      0.180      4.22   2.41e- 5
-## 31 time_month_Mar      0.519      0.180      2.88   4.01e- 3
+##  1 (Intercept)        -0.831      0.257    -3.23    1.24e- 3
+##  2 image              -1.62       0.942    -1.72    8.50e- 2
+##  3 viagra              2.41     300.        0.00803 9.94e- 1
+##  4 num_char            0.0468     0.0244    1.92    5.48e- 2
+##  5 line_breaks        -0.00509    0.00138  -3.68    2.32e- 4
+##  6 exclaim_subj       -0.208      0.277    -0.751   4.53e- 1
+##  7 exclaim_mess        0.00883    0.00186   4.75    2.04e- 6
+##  8 to_multiple_X1     -2.58       0.354    -7.30    2.94e-13
+##  9 cc_X.1.68.         -0.297      0.491    -0.605   5.45e- 1
+## 10 attach_X.1.21.      2.03       0.368     5.51    3.54e- 8
+## 11 dollar_X.1.64.      0.225      0.216     1.04    2.99e- 1
+## 12 winner_yes          2.16       0.429     5.03    5.01e- 7
+## 13 inherit_X.1.5.    -10.5     1244.       -0.00845 9.93e- 1
+## 14 inherit_X.5.10.     2.53       1.45      1.74    8.10e- 2
+## 15 password_X.1.5.    -1.73       0.748    -2.32    2.05e- 2
+## 16 password_X.5.10.  -13.5      786.       -0.0172  9.86e- 1
+## 17 password_X.10.20. -14.9     1324.       -0.0113  9.91e- 1
+## 18 password_X.20.22. -14.9     1697.       -0.00881 9.93e- 1
+## 19 format_X1          -0.911      0.159    -5.75    9.09e- 9
+## 20 re_subj_X1         -2.89       0.437    -6.62    3.48e-11
+## 21 urgent_subj_X1      3.49       1.07      3.26    1.13e- 3
+## 22 number_small       -0.883      0.167    -5.30    1.18e- 7
+## 23 number_big         -0.163      0.249    -0.654   5.13e- 1
+## 24 time_dow_Mon       -0.110      0.305    -0.362   7.17e- 1
+## 25 time_dow_Tue        0.183      0.277     0.659   5.10e- 1
+## 26 time_dow_Wed       -0.0745     0.275    -0.270   7.87e- 1
+## 27 time_dow_Thu       -0.109      0.282    -0.385   7.00e- 1
+## 28 time_dow_Fri       -0.00243    0.282    -0.00862 9.93e- 1
+## 29 time_dow_Sat        0.221      0.296     0.747   4.55e- 1
+## 30 time_month_Feb      0.771      0.180     4.28    1.85e- 5
+## 31 time_month_Mar      0.556      0.180     3.08    2.04e- 3
+## # … with 1 more row
 ```
 ]
 
@@ -483,16 +484,16 @@ email_pred
 ```
 
 ```
-## # A tibble: 785 x 23
+## # A tibble: 785 × 23
 ##   .pred_0  .pred_1 spam  to_multiple from     cc sent_email
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;       &lt;fct&gt; &lt;int&gt; &lt;fct&gt;     
-## 1   0.995 0.00451  0     1           1         0 1         
-## 2   0.999 0.00129  0     0           1         1 1         
+## 1   0.995 0.00529  0     1           1         0 1         
+## 2   0.999 0.00146  0     0           1         1 1         
 ## 3   0.969 0.0306   0     0           1         0 0         
-## 4   0.999 0.000816 0     0           1         1 0         
-## 5   0.993 0.00680  0     0           1         4 0         
-## 6   0.852 0.148    0     0           1         0 0         
-## # ... with 779 more rows, and 16 more variables: time &lt;dttm&gt;,
+## 4   0.999 0.000744 0     0           1         1 0         
+## 5   0.994 0.00608  0     0           1         4 0         
+## 6   0.871 0.129    0     0           1         0 0         
+## # … with 779 more rows, and 16 more variables: time &lt;dttm&gt;,
 ## #   image &lt;dbl&gt;, attach &lt;dbl&gt;, dollar &lt;dbl&gt;, winner &lt;fct&gt;,
 ## #   inherit &lt;dbl&gt;, viagra &lt;dbl&gt;, password &lt;dbl&gt;, num_char &lt;dbl&gt;,
 ## #   line_breaks &lt;int&gt;, format &lt;fct&gt;, re_subj &lt;fct&gt;,
@@ -536,10 +537,10 @@ email_pred %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 3
+## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 roc_auc binary         0.856
+## 1 roc_auc binary         0.859
 ```
 ]
 .pull-right[
@@ -572,13 +573,13 @@ Suppose we decide to label an email as spam if the model predicts the probabilit
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled not spam &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 708 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 710 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 59 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled spam &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
@@ -625,12 +626,12 @@ Suppose we decide to label an email as spam if the model predicts the probabilit
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled not spam &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 665 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled spam &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; NA &lt;/td&gt;
@@ -676,12 +677,12 @@ Suppose we decide to label an email as spam if the model predicts the probabilit
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled not spam &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 714 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 715 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; Email labelled spam &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
