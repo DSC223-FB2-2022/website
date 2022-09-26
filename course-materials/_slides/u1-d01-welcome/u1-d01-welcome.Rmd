@@ -4,7 +4,7 @@ subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
 output:
   xaringan::moon_reader:
-    css: ["../xaringan-themer.css", "../slides.css"]
+    css: ["xaringan-themer.css", "slides.css"]
     lib_dir: libs
     nature:
       ratio: "16:9"
@@ -77,7 +77,7 @@ class: middle
 ---
 
 ```{r echo=FALSE, out.width="75%", fig.align="left"}
-knitr::include_graphics("img/excel.png")
+knitr::include_graphics("excel.png")
 ```
 
 ---
