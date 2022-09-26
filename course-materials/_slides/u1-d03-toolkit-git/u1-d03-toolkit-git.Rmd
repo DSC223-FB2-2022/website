@@ -27,7 +27,7 @@ library(lubridate)
 
 <br>
 
-.pull-left\[ \### .gray\[Course operation\] .gray\[ - introds.org - Learn - Zoom - Teams - Piazza\]\] .pull-right\[ \### .gray\[Doing data science\] - .gray\[Programming:\] - .gray\[R\] - .gray\[RStudio\] - .gray\[tidyverse\] - .gray\[R Markdown\] - .pink\[Version control and collaboration:\] - .pink\[Git\] - .pink\[GitHub\]\]
+.pull-left\[ \### .gray\[Course operation\] .gray\[ - Course website - Moodle\]\] .pull-right\[ \### .gray\[Doing data science\] - .gray\[Programming:\] - .gray\[R\] - .gray\[RStudio\] - .gray\[tidyverse\] - .gray\[R Markdown\] - .pink\[Version control and collaboration:\] - .pink\[Git\] - .pink\[GitHub\]\]
 
 ------------------------------------------------------------------------
 
@@ -119,7 +119,7 @@ knitr::include_graphics("img/whole-game-04.png")
 
 <br>
 
-*Next week...*
+*Next...*
 
 *Work with R, RStudio, Git, and GitHub together!*<sup>+</sup>
 
