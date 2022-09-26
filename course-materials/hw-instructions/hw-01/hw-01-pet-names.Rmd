@@ -66,7 +66,7 @@ Before you can get started with the analysis, you need to make sure you:
 
 -   are a member of the course GitHub organization
 
--   are a member of the course RStudio Cloud space
+-   can log into the on campus RStudio Server (link on course webpage)
 
 If you failed to confirm any of these, it means you have not yet completed the prerequisites for this assignment.
 Please go back to [Prerequisites] and complete them before continuing the assignment.
@@ -83,7 +83,7 @@ This action is called **cloning**.
 
 Then you will work in RStudio on the data analysis, making **commits** along the way (snapshots of your changes) and finally **push** all your work back to GitHub.
 
-The next few steps will walk you through the process of getting information of the repo to be cloned, cloning your repo in a new RStudio Cloud project, and getting started with the analysis.
+The next few steps will walk you through the process of getting information of the repo to be cloned, cloning your repo in a new RStudio Server project, and getting started with the analysis.
 
 ### Step 1. Get URL of repo to be cloned
 
@@ -94,29 +94,18 @@ knitr::include_graphics("img/clone-repo-link.png")
 On GitHub, click on the green **Code** button, select **HTTPS** (this might already be selected by default, and if it is, you'll see the text *Use Git or checkout with SVN using the web URL* jas in the image on the right).
 Click on the clipboard icon 📋 to copy the repo URL.
 
-### Step 2. Go to RStudio Cloud
+### Step 2. Go to RStudio
 
-Go to [rstudio.cloud](https://rstudio.cloud/ "RStudio Cloud") and then **navigate to the course workspace** via the left sidebar.
+Go to [RStudio](http://turing.cornellcollege.edu:8787/) and then **navigate to the course workspace** via the left sidebar.
 It's very important that you do this for two reasons:
 
--   It's only when you're in the course workspace that you'll be able to benefit from R packages I've pre-installed for you so that your project can be configured correctly.
--   It's only when you're in the course workspace that your usage of RStudio Cloud won't count towards the free usage limits.
-
-```{r course-workspace, fig.margin = TRUE, echo = FALSE, eval = TRUE}
-knitr::include_graphics("img/course-workspace.png")
-```
-
-Before you proceed, confirm that you are in the course workspace by checking out what's on your top bar in RStudio Cloud.
 
 ### Step 3. Clone the repo
 
-In RStudio, click on the **down arrow** next to New Project and then choose **New Project from Git Repository**.
+In RStudio, click on **File** then choose **New Project**. Click **Version control** and then **Git**.
 
-In the pop-up window, **paste the URL** you copied from GitHub, make sure the box for **Add packages from the base project** is checked (it should be, by default) and then click **OK**.
+In the pop-up window, **paste the URL** you copied from GitHub, then click **OK**.You may be asked to input your password and PAT.
 
-```{r new-project-from-git, echo = FALSE, eval = TRUE, fig.align = "left"}
-knitr::include_graphics("img/new-project-from-git.png")
-```
 
 # Hello RStudio!
 
@@ -172,17 +161,15 @@ Now that you have made an update and committed this change, it's time to push th
 Or more specifically, to your repo on GitHub.
 Why?
 So that others can see your changes.
-And by others, we mean the course teaching team (your repos in this course are private to you and us, only).
+And by others, we mean your instructor or group.
 In order to push your changes to GitHub, click on **Push**.
 
 ```{r ready-to-push, fig.margin = TRUE, echo = FALSE, eval = TRUE}
 knitr::include_graphics("img/ready-to-push.png")
 ```
 
-This will prompt a dialogue box where you first need to enter your user name, and then your password.
-This might feel cumbersome.
-Bear with me... I *will* teach you how to save your password so you don't have to enter it every time.
-But for this one assignment you'll have to manually enter each time you push in order to gain some experience with it.
+This will prompt a dialogue box where you first need to enter your user name, and then your *PAT*.
+This might feel cumbersome.But for this one assignment you'll have to manually enter each time you push in order to gain some experience with it.
 
 **Thought exercise:** Which of the above steps (updating the YAML, committing, and pushing) needs to talk to GitHub?[^hw-01-pet-names-1]
 
