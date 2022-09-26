@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DSC 223: Introduction to Data Science",
+    "section": "",
+    "text": "Day\nDate\nTopic\nSlides\nAE\nLab\nHW\nExam\nProject\n\n\n\n\n1\nMon, Sep 26\nWelcome and Toolkit & Data Viz\n🖥️🖥️🖥️\n📋📋📋\n💻\n📖Chapter 2 R4ds & 📖 Sec 1.1,1.2 IMS & ✍️\n\n\n\n\n2\nTue, Sep 27\nTidy Data & Data wrangling & Data Frame\n\n\n\n\n\n\n\n\n3\nWed, Sep 28\nNo afternoon class.\n\n\n\n\n\n\n\n\n4\nThu, Sep 29\nData types and classes\n\n\n\n\n\n\n\n\n5\nFri, Sep 30\n\n\n\n\n\n✅\n📂\n\n\n6\nMon, Oct 3\n\n\n\n\n\n\n\n\n\n7\nTue, Oct 4\n\n\n\n\n\n\n\n\n\n8\nWed, Oct 5\n\n\n\n\n\n\n\n\n\n9\nThu, Oct 6\n\n\n\n\n\n\n\n\n\n10\nFri, Oct 7\n\n\n\n\n\n\n📂\n\n\n11\nMon, Oct 10\n\n\n\n\n\n\n\n\n\n12\nTues, Oct 11\n\n\n\n\n\n\n\n\n\n13\nWed, Oct 12\n\n\n\n\n\n\n\n\n\n14\nThu, Oct 13\n\n\n\n\n\n\n\n\n\n15\nFri, Oct 14\n\n\n\n\n\n\n📂\n\n\n16\nMon, Oct 17\n\n\n\n\n\n\n\n\n\n17\nTue, Oct 18\n\n\n\n\n\n\n📂\n\n\n18\nWed, Oct 19\nFinal Exam\n\n\n\n\n✅"
+  },
+  {
     "objectID": "computing-access.html",
     "href": "computing-access.html",
     "title": "Computing access",
@@ -1622,13 +1629,6 @@
     "title": "Syllabus",
     "section": "Textbooks",
     "text": "Textbooks\nWhile there is no official textbook for the course, we will be assigning readings from the following textbooks.\n\nData Science in a Box by Mine Çetinkaya-Rundel\nR for Data Science by Garret Grolemund and Hadley Wickham\nIntroduction to Modern Statistics by Mine Çetinkaya-Rundel and Johanna Hardin\nTidy modeling with R by Max Kuhn and Julia Silge"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "DSC 223: Introduction to Data Science",
-    "section": "",
-    "text": "Day\nDate\nTopic\nSlides\nAE\nLab\nHW\nExam\nProject\n\n\n\n\n1\nMon, Sep 26\nWelcome and Toolkit & Data Viz\n🖥️🖥️🖥️\n📋📋📋\n💻\n📖Chapter 2 R4ds & 📖 Sec 1.1,1.2 IMS & ✍️\n\n\n\n\n2\nTue, Sep 27\nTidy Data & Data wrangling & Data Frame\n\n\n\n\n\n\n\n\n3\nWed, Sep 28\nNo afternoon class.\n\n\n\n\n\n\n\n\n4\nThu, Sep 29\nData types and classes\n\n\n\n\n\n\n\n\n5\nFri, Sep 30\n\n\n\n\n\n✅\n📂\n\n\n6\nMon, Oct 3\n\n\n\n\n\n\n\n\n\n7\nTue, Oct 4\n\n\n\n\n\n\n\n\n\n8\nWed, Oct 5\n\n\n\n\n\n\n\n\n\n9\nThu, Oct 6\n\n\n\n\n\n\n\n\n\n10\nFri, Oct 7\n\n\n\n\n\n\n📂\n\n\n11\nMon, Oct 10\n\n\n\n\n\n\n\n\n\n12\nTues, Oct 11\n\n\n\n\n\n\n\n\n\n13\nWed, Oct 12\n\n\n\n\n\n\n\n\n\n14\nThu, Oct 13\n\n\n\n\n\n\n\n\n\n15\nFri, Oct 14\n\n\n\n\n\n\n📂\n\n\n16\nMon, Oct 17\n\n\n\n\n\n\n\n\n\n17\nTue, Oct 18\n\n\n\n\n\n\n📂\n\n\n18\nWed, Oct 19\nFinal Exam\n\n\n\n\n✅"
   },
   {
     "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
