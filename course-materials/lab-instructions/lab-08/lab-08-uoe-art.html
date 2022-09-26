@@ -126,7 +126,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 08 - University of Edinburgh Art Collection">
 <meta property="og:description" content="The University of Edinburgh Art Collection “supports the world-leading research and teaching that happens within the University.">
-<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2">
+<meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2 ">
 <meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 08 - University of Edinburgh Art Collection">
 <meta name="twitter:description" content="The University of Edinburgh Art Collection “supports the world-leading research and teaching that happens within the University.">
 <meta name="twitter:image" content="https://dsc223-fb2-2022.github.io/website/images/twitter-card.png">
@@ -415,16 +415,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/21317?highlight=*:*"&gt;Man in Spanish Costume            ...
- [2] &lt;a href="./record/112348?highlight=*:*"&gt;Untitled                         ...
- [3] &lt;a href="./record/21079?highlight=*:*"&gt;Seated Male Nude                  ...
- [4] &lt;a href="./record/21441?highlight=*:*"&gt;Portrait of a Man                 ...
- [5] &lt;a href="./record/21352?highlight=*:*"&gt;Reclining Female Nude             ...
- [6] &lt;a href="./record/20540?highlight=*:*"&gt;Putto with a fish                 ...
- [7] &lt;a href="./record/99258?highlight=*:*"&gt;Untitled - Bearded Man at the Tab ...
- [8] &lt;a href="./record/22563?highlight=*:*"&gt;Two Boxes on Pink                 ...
- [9] &lt;a href="./record/112504?highlight=*:*"&gt;Untitled                         ...
-[10] &lt;a href="./record/21750?highlight=*:*"&gt;Evening Jaipur No.2               ...</code></pre>
+ [1] &lt;a href="./record/21292?highlight=*:*"&gt;Portrait of a Young Woman         ...
+ [2] &lt;a href="./record/20804?highlight=*:*"&gt;Drawing of a Man's Head           ...
+ [3] &lt;a href="./record/22593?highlight=*:*"&gt;Self Portrait against Window      ...
+ [4] &lt;a href="./record/20748?highlight=*:*"&gt;Seated Female Nude                ...
+ [5] &lt;a href="./record/22650?highlight=*:*"&gt;Male Nude Leaning on a Table (ver ...
+ [6] &lt;a href="./record/20571?highlight=*:*"&gt;Virgin and Child                  ...
+ [7] &lt;a href="./record/102660?highlight=*:*"&gt;Sienna Cathedral                 ...
+ [8] &lt;a href="./record/53674?highlight=*:*"&gt;Plate                             ...
+ [9] &lt;a href="./record/53557?highlight=*:*"&gt;Unknown                           ...
+[10] &lt;a href="./record/20846?highlight=*:*"&gt;Portrait of Head of a Woman       ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -434,16 +434,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Man in Spanish Costume                                                                            (1955)"                    
- [2] "Untitled                                    "                                                                                
- [3] "Seated Male Nude                                                                            (1959)"                          
- [4] "Portrait of a Man                                    "                                                                       
- [5] "Reclining Female Nude                                                                            (1952)"                     
- [6] "Putto with a fish                                    "                                                                       
- [7] "Untitled - Bearded Man at the Table                                                                            (20 Oct 1962)"
- [8] "Two Boxes on Pink                                                                            (Circa 1968)"                   
- [9] "Untitled                                    "                                                                                
-[10] "Evening Jaipur No.2                                    "                                                                     </code></pre>
+<pre><code> [1] "Portrait of a Young Woman                                                                            (1965)"         
+ [2] "Drawing of a Man's Head                                                                            (1955)"           
+ [3] "Self Portrait against Window                                                                            (Circa 1983)"
+ [4] "Seated Female Nude                                                                            (Circa 1968)"          
+ [5] "Male Nude Leaning on a Table (verso)                                    "                                            
+ [6] "Virgin and Child                                    "                                                                
+ [7] "Sienna Cathedral                                                                            (1982)"                  
+ [8] "Plate                                    "                                                                           
+ [9] "Unknown                                                                            (1950)"                           
+[10] "Portrait of Head of a Woman                                                                            (1952)"       </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -457,16 +457,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Man in Spanish Costume (1955)"                    
- [2] "Untitled"                                         
- [3] "Seated Male Nude (1959)"                          
- [4] "Portrait of a Man"                                
- [5] "Reclining Female Nude (1952)"                     
- [6] "Putto with a fish"                                
- [7] "Untitled - Bearded Man at the Table (20 Oct 1962)"
- [8] "Two Boxes on Pink (Circa 1968)"                   
- [9] "Untitled"                                         
-[10] "Evening Jaipur No.2"                              </code></pre>
+<pre><code> [1] "Portrait of a Young Woman (1965)"         
+ [2] "Drawing of a Man's Head (1955)"           
+ [3] "Self Portrait against Window (Circa 1983)"
+ [4] "Seated Female Nude (Circa 1968)"          
+ [5] "Male Nude Leaning on a Table (verso)"     
+ [6] "Virgin and Child"                         
+ [7] "Sienna Cathedral (1982)"                  
+ [8] "Plate"                                    
+ [9] "Unknown (1950)"                           
+[10] "Portrait of Head of a Woman (1952)"       </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -492,11 +492,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/21317?highlight=*:*"  "./record/112348?highlight=*:*"
- [3] "./record/21079?highlight=*:*"  "./record/21441?highlight=*:*" 
- [5] "./record/21352?highlight=*:*"  "./record/20540?highlight=*:*" 
- [7] "./record/99258?highlight=*:*"  "./record/22563?highlight=*:*" 
- [9] "./record/112504?highlight=*:*" "./record/21750?highlight=*:*" </code></pre>
+<pre><code> [1] "./record/21292?highlight=*:*"  "./record/20804?highlight=*:*" 
+ [3] "./record/22593?highlight=*:*"  "./record/20748?highlight=*:*" 
+ [5] "./record/22650?highlight=*:*"  "./record/20571?highlight=*:*" 
+ [7] "./record/102660?highlight=*:*" "./record/53674?highlight=*:*" 
+ [9] "./record/53557?highlight=*:*"  "./record/20846?highlight=*:*" </code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
