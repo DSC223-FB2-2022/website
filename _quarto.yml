@@ -1,6 +1,5 @@
 project:
   type: website
-  output-dir: docs
 
 website:
   page-navigation: true
@@ -131,7 +130,7 @@ format:
     code-overflow: wrap
     toc: true
 
-#execute:
- # freeze: auto
+execute:
+  freeze: auto
 
 editor: visual
