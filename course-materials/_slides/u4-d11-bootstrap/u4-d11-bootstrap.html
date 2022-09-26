@@ -71,16 +71,16 @@ edi_3br &lt;- read_csv2("data/edi-3br.csv") # ; separated
 .small[
 
 ```
-## # A tibble: 15 × 4
+## # A tibble: 15 x 4
 ##   flat_id  rent title                       address              
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;                       &lt;chr&gt;                
-## 1 flat_01   825 3 bedroom apartment to rent Burnhead Grove, Edin…
-## 2 flat_02  2400 3 bedroom flat to rent      Simpson Loan, Quarte…
-## 3 flat_03  1900 3 bedroom flat to rent      FETTES ROW, NEW TOWN…
-## 4 flat_04  1500 3 bedroom apartment to rent Eyre Crescent, Edinb…
-## 5 flat_05  3250 3 bedroom flat to rent      Walker Street, Edinb…
-## 6 flat_06  2145 3 bedroom flat to rent      George Street, City …
-## # … with 9 more rows
+## 1 flat_01   825 3 bedroom apartment to rent Burnhead Grove, Edin~
+## 2 flat_02  2400 3 bedroom flat to rent      Simpson Loan, Quarte~
+## 3 flat_03  1900 3 bedroom flat to rent      FETTES ROW, NEW TOWN~
+## 4 flat_04  1500 3 bedroom apartment to rent Eyre Crescent, Edinb~
+## 5 flat_05  3250 3 bedroom flat to rent      Walker Street, Edinb~
+## 6 flat_06  2145 3 bedroom flat to rent      George Street, City ~
+## # ... with 9 more rows
 ```
 ]
 
@@ -200,7 +200,7 @@ boot_df
 
 ```
 ## Response: rent (numeric)
-## # A tibble: 15,000 × 2
+## # A tibble: 15,000 x 2
 ##   replicate  stat
 ##       &lt;int&gt; &lt;dbl&gt;
 ## 1         1 1793.
@@ -209,7 +209,7 @@ boot_df
 ## 4         4 2159.
 ## 5         5 2084 
 ## 6         6 1761 
-## # … with 14,994 more rows
+## # ... with 14,994 more rows
 ```
 
 ---
@@ -239,7 +239,7 @@ boot_df %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   lower upper
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 1603. 2213.

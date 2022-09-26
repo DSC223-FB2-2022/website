@@ -98,8 +98,8 @@ ht_wt_fit_aug
 ```
 
 ```
-## # A tibble: 3,135 × 9
-##    .rown…¹ Heigh…² Width…³ .fitted  .resid    .hat .sigma .cooksd
+## # A tibble: 3,135 x 9
+##    .rown~1 Heigh~2 Width~3 .fitted  .resid    .hat .sigma .cooksd
 ##    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 1            37    29.5   26.7  10.3    3.99e-4   8.30 3.10e-4
 ##  2 2            18    14     14.6   3.45   3.96e-4   8.31 3.42e-5
@@ -111,8 +111,9 @@ ht_wt_fit_aug
 ##  8 8             6    13     13.8  -7.77   4.18e-4   8.30 1.83e-4
 ##  9 9            15    15     15.3  -0.333  3.77e-4   8.31 3.04e-7
 ## 10 10            9     7      9.09 -0.0870 6.01e-4   8.31 3.30e-8
-## # … with 3,125 more rows, 1 more variable: .std.resid &lt;dbl&gt;, and
-## #   abbreviated variable names ¹​.rownames, ²​Height_in, ³​Width_in
+## # ... with 3,125 more rows, 1 more variable: .std.resid &lt;dbl&gt;,
+## #   and abbreviated variable names 1: .rownames, 2: Height_in,
+## #   3: Width_in
 ```
 ]
 ]
@@ -129,15 +130,15 @@ glimpse(ht_wt_fit_aug)
 ```
 ## Rows: 3,135
 ## Columns: 9
-## $ .rownames  &lt;chr&gt; "1", "2", "3", "4", "5", "6", "7", "8", "9",…
-## $ Height_in  &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 1…
-## $ Width_in   &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13…
-## $ .fitted    &lt;dbl&gt; 26.65490, 14.55256, 16.11415, 17.67574, 17.6…
-## $ .resid     &lt;dbl&gt; 10.3451004, 3.4474447, -3.1141481, -3.675740…
-## $ .hat       &lt;dbl&gt; 0.0003991488, 0.0003961825, 0.0003611963, 0.…
-## $ .sigma     &lt;dbl&gt; 8.303538, 8.305367, 8.305409, 8.305336, 8.30…
-## $ .cooksd    &lt;dbl&gt; 3.099689e-04, 3.416655e-05, 2.541574e-05, 3.…
-## $ .std.resid &lt;dbl&gt; 1.24600543, 0.41522347, -0.37507338, -0.4427…
+## $ .rownames  &lt;chr&gt; "1", "2", "3", "4", "5", "6", "7", "8", "9",~
+## $ Height_in  &lt;dbl&gt; 37, 18, 13, 14, 14, 7, 6, 6, 15, 9, 9, 16, 1~
+## $ Width_in   &lt;dbl&gt; 29.5, 14.0, 16.0, 18.0, 18.0, 10.0, 13.0, 13~
+## $ .fitted    &lt;dbl&gt; 26.65490, 14.55256, 16.11415, 17.67574, 17.6~
+## $ .resid     &lt;dbl&gt; 10.3451004, 3.4474447, -3.1141481, -3.675740~
+## $ .hat       &lt;dbl&gt; 0.0003991488, 0.0003961825, 0.0003611963, 0.~
+## $ .sigma     &lt;dbl&gt; 8.303538, 8.305367, 8.305409, 8.305336, 8.30~
+## $ .cooksd    &lt;dbl&gt; 3.099689e-04, 3.416655e-05, 2.541574e-05, 3.~
+## $ .std.resid &lt;dbl&gt; 1.24600543, 0.41522347, -0.37507338, -0.4427~
 ```
 
 
@@ -305,7 +306,7 @@ linear_reg() %&gt;%
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   4.67     0.0585      79.9  0       

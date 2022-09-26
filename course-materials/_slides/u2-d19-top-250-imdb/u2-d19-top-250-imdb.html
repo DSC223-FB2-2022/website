@@ -719,7 +719,7 @@ imdb_top_250
 ```
 
 ```
-## # A tibble: 250 × 3
+## # A tibble: 250 x 3
 ##   title                     year rating
 ##   &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 The Shawshank Redemption  1994    9.2
@@ -728,7 +728,7 @@ imdb_top_250
 ## 4 The Godfather Part II     1974    9  
 ## 5 12 Angry Men              1957    8.9
 ## 6 Schindler's List          1993    8.9
-## # … with 244 more rows
+## # ... with 244 more rows
 ```
 
 ---
@@ -752,9 +752,9 @@ glimpse(imdb_top_250)
 ```
 ## Rows: 250
 ## Columns: 3
-## $ title  &lt;chr&gt; "The Shawshank Redemption", "The Godfather", "Th…
-## $ year   &lt;dbl&gt; 1994, 1972, 2008, 1974, 1957, 1993, 2003, 1994, …
-## $ rating &lt;dbl&gt; 9.2, 9.2, 9.0, 9.0, 8.9, 8.9, 8.9, 8.8, 8.8, 8.8…
+## $ title  &lt;chr&gt; "The Shawshank Redemption", "The Godfather", "Th~
+## $ year   &lt;dbl&gt; 1994, 1972, 2008, 1974, 1957, 1993, 2003, 1994, ~
+## $ rating &lt;dbl&gt; 9.2, 9.2, 9.0, 9.0, 8.9, 8.9, 8.9, 8.8, 8.8, 8.8~
 ```
 
 - Add a variable for rank
@@ -769,7 +769,7 @@ imdb_top_250 &lt;- imdb_top_250 %&gt;%
 
 
 ```
-## # A tibble: 250 × 4
+## # A tibble: 250 x 4
 ##     rank title                                        year rating
 ##    &lt;int&gt; &lt;chr&gt;                                       &lt;dbl&gt;  &lt;dbl&gt;
 ##  1     1 The Shawshank Redemption                     1994    9.2
@@ -778,21 +778,21 @@ imdb_top_250 &lt;- imdb_top_250 %&gt;%
 ##  4     4 The Godfather Part II                        1974    9  
 ##  5     5 12 Angry Men                                 1957    8.9
 ##  6     6 Schindler's List                             1993    8.9
-##  7     7 The Lord of the Rings: The Return of the K…  2003    8.9
+##  7     7 The Lord of the Rings: The Return of the K~  2003    8.9
 ##  8     8 Pulp Fiction                                 1994    8.8
-##  9     9 The Lord of the Rings: The Fellowship of t…  2001    8.8
+##  9     9 The Lord of the Rings: The Fellowship of t~  2001    8.8
 ## 10    10 The Good, the Bad and the Ugly               1966    8.8
 ## 11    11 Forrest Gump                                 1994    8.8
 ## 12    12 Fight Club                                   1999    8.7
 ## 13    13 Inception                                    2010    8.7
 ## 14    14 The Lord of the Rings: The Two Towers        2002    8.7
-## 15    15 Star Wars: Episode V - The Empire Strikes …  1980    8.7
+## 15    15 Star Wars: Episode V - The Empire Strikes ~  1980    8.7
 ## 16    16 The Matrix                                   1999    8.7
 ## 17    17 Goodfellas                                   1990    8.7
 ## 18    18 One Flew Over the Cuckoo's Nest              1975    8.6
 ## 19    19 Se7en                                        1995    8.6
 ## 20    20 Seven Samurai                                1954    8.6
-## # … with 230 more rows
+## # ... with 230 more rows
 ```
 
 ---
@@ -816,7 +816,7 @@ imdb_top_250 %&gt;%
 ```
 
 ```
-## # A tibble: 86 × 2
+## # A tibble: 86 x 2
 ##    year     n
 ##   &lt;dbl&gt; &lt;int&gt;
 ## 1  1995     8
@@ -825,7 +825,7 @@ imdb_top_250 %&gt;%
 ## 4  1999     6
 ## 5  2003     6
 ## 6  2009     6
-## # … with 80 more rows
+## # ... with 80 more rows
 ```
 
 ---
@@ -844,7 +844,7 @@ imdb_top_250 %&gt;%
 ```
 
 ```
-## # A tibble: 8 × 4
+## # A tibble: 8 x 4
 ##    rank title               year rating
 ##   &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
 ## 1    19 Se7en               1995    8.6

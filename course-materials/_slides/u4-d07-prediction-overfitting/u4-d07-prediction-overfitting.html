@@ -71,7 +71,7 @@ class: middle
 .small[
 
 ```
-## # A tibble: 22 × 5
+## # A tibble: 22 x 5
 ##    term         estimate std.error statistic  p.value
 ##    &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 (Intercept)  -9.09e+1   9.80e+3  -0.00928 9.93e- 1
@@ -196,27 +196,27 @@ glimpse(train_data)
 ```
 ## Rows: 3,136
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
-## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, …
-## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
-## $ cc           &lt;int&gt; 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35,…
-## $ sent_email   &lt;fct&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ time         &lt;dttm&gt; 2012-01-25 22:46:55, 2012-01-03 05:28:28,…
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ dollar       &lt;dbl&gt; 10, 0, 0, 0, 0, 0, 13, 0, 0, 0, 2, 0, 0, 0…
-## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, yes, no, no, n…
-## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ num_char     &lt;dbl&gt; 23.308, 1.162, 4.732, 42.238, 1.228, 25.59…
-## $ line_breaks  &lt;int&gt; 477, 2, 127, 712, 30, 674, 367, 226, 98, 6…
-## $ format       &lt;fct&gt; 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, …
-## $ re_subj      &lt;fct&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, …
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, …
-## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ exclaim_mess &lt;dbl&gt; 12, 0, 2, 2, 2, 31, 2, 0, 0, 1, 0, 1, 2, 0…
-## $ number       &lt;fct&gt; small, none, big, big, small, small, small…
+## $ spam         &lt;fct&gt; 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, ~
+## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, ~
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ cc           &lt;int&gt; 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35,~
+## $ sent_email   &lt;fct&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ time         &lt;dttm&gt; 2012-01-25 16:46:55, 2012-01-02 23:28:28,~
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ dollar       &lt;dbl&gt; 10, 0, 0, 0, 0, 0, 13, 0, 0, 0, 2, 0, 0, 0~
+## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, yes, no, no, n~
+## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ password     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ num_char     &lt;dbl&gt; 23.308, 1.162, 4.732, 42.238, 1.228, 25.59~
+## $ line_breaks  &lt;int&gt; 477, 2, 127, 712, 30, 674, 367, 226, 98, 6~
+## $ format       &lt;fct&gt; 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, ~
+## $ re_subj      &lt;fct&gt; 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, ~
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, ~
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ exclaim_mess &lt;dbl&gt; 12, 0, 2, 2, 2, 31, 2, 0, 0, 1, 0, 1, 2, 0~
+## $ number       &lt;fct&gt; small, none, big, big, small, small, small~
 ```
 ]
 .pull-right[
@@ -228,27 +228,27 @@ glimpse(test_data)
 ```
 ## Rows: 785
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ to_multiple  &lt;fct&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, …
-## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
-## $ cc           &lt;int&gt; 0, 1, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ sent_email   &lt;fct&gt; 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ time         &lt;dttm&gt; 2012-01-01 17:55:06, 2012-01-01 19:38:32,…
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
-## $ dollar       &lt;dbl&gt; 0, 0, 5, 0, 0, 0, 0, 5, 4, 0, 0, 0, 21, 0,…
-## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no…
-## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, …
-## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ password     &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, …
-## $ num_char     &lt;dbl&gt; 4.837, 15.075, 18.037, 45.842, 11.438, 1.4…
-## $ line_breaks  &lt;int&gt; 193, 354, 345, 881, 125, 24, 296, 13, 192,…
-## $ format       &lt;fct&gt; 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, …
-## $ re_subj      &lt;fct&gt; 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, …
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ exclaim_mess &lt;dbl&gt; 1, 10, 20, 5, 2, 0, 0, 0, 6, 0, 0, 1, 3, 0…
-## $ number       &lt;fct&gt; big, small, small, big, small, none, small…
+## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ to_multiple  &lt;fct&gt; 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, ~
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ cc           &lt;int&gt; 0, 1, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ sent_email   &lt;fct&gt; 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ time         &lt;dttm&gt; 2012-01-01 11:55:06, 2012-01-01 13:38:32,~
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, ~
+## $ dollar       &lt;dbl&gt; 0, 0, 5, 0, 0, 0, 0, 5, 4, 0, 0, 0, 21, 0,~
+## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no~
+## $ inherit      &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, ~
+## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ password     &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, ~
+## $ num_char     &lt;dbl&gt; 4.837, 15.075, 18.037, 45.842, 11.438, 1.4~
+## $ line_breaks  &lt;int&gt; 193, 354, 345, 881, 125, 24, 296, 13, 192,~
+## $ format       &lt;fct&gt; 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, ~
+## $ re_subj      &lt;fct&gt; 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, ~
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ exclaim_mess &lt;dbl&gt; 1, 10, 20, 5, 2, 0, 0, 0, 6, 0, 0, 1, 3, 0~
+## $ number       &lt;fct&gt; big, small, small, big, small, none, small~
 ```
 ]
 ]
@@ -294,7 +294,7 @@ train_data %&gt;%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   spam  from      n
 ##   &lt;fct&gt; &lt;fct&gt; &lt;int&gt;
 ## 1 0     1      2837
@@ -312,7 +312,7 @@ train_data %&gt;%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   spam  sent_email     n
 ##   &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;
 ## 1 0     0           1972
@@ -329,7 +329,7 @@ train_data %&gt;%
 
 ```
 ## 
-## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
+## -- Variable type: numeric --------------------------------------------------------------------------
 ##    skim_variable spam n_missing complete_rate      mean       sd    p0    p25     p50    p75  p100
 ##  1 cc            0            0             1   0.393     2.62   0      0       0       0      68 
 ##  2 cc            1            0             1   0.388     3.25   0      0       0       0      50 
@@ -358,16 +358,16 @@ train_data %&gt;%
 ```
 ## $numeric
 ## 
-## ── Variable type: numeric ──────────────────────────────────────────────────────────────────────────
-##   skim_…¹ spam n_mis…² compl…³    mean     sd p0 p25 p50 p75 p100
+## -- Variable type: numeric --------------------------------------------------------------------------
+##   skim_~1 spam n_mis~2 compl~3    mean     sd p0 p25 p50 p75 p100
 ## 1 cc      0          0       1 0.393   2.62    0   0   0   0   68
 ## 2 cc      1          0       1 0.388   3.25    0   0   0   0   50
 ## 3 image   0          0       1 0.0536  0.503   0   0   0   0   20
 ## 4 image   1          0       1 0.00334 0.0578  0   0   0   0    1
 ## 5 attach  0          0       1 0.124   0.775   0   0   0   0   21
 ## 6 attach  1          0       1 0.227   0.620   0   0   0   0    2
-## # … with 16 more rows, and abbreviated variable names
-## #   ¹​skim_variable, ²​n_missing, ³​complete_rate
+## # ... with 16 more rows, and abbreviated variable names
+## #   1: skim_variable, 2: n_missing, 3: complete_rate
 
 *NA
 *NA```
@@ -425,7 +425,7 @@ predict(email_fit, test_data)
 ```
 
 ```
-## # A tibble: 785 × 1
+## # A tibble: 785 x 1
 ##   .pred_class
 ##   &lt;fct&gt;      
 ## 1 0          
@@ -434,7 +434,7 @@ predict(email_fit, test_data)
 ## 4 0          
 ## 5 0          
 ## 6 0          
-## # … with 779 more rows
+## # ... with 779 more rows
 ```
 
 
@@ -451,16 +451,16 @@ email_pred
 ```
 
 ```
-## # A tibble: 785 × 4
+## # A tibble: 785 x 4
 ##   .pred_0 .pred_1 spam  time               
 ##     &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
-## 1   0.993 0.00709 0     2012-01-01 17:55:06
-## 2   0.998 0.00181 0     2012-01-01 19:38:32
-## 3   0.981 0.0191  0     2012-01-02 05:42:16
-## 4   0.999 0.00124 0     2012-01-02 15:12:51
-## 5   0.988 0.0121  0     2012-01-02 16:45:36
-## 6   0.830 0.170   0     2012-01-02 21:55:03
-## # … with 779 more rows
+## 1   0.993 0.00709 0     2012-01-01 11:55:06
+## 2   0.998 0.00181 0     2012-01-01 13:38:32
+## 3   0.981 0.0191  0     2012-01-01 23:42:16
+## 4   0.999 0.00124 0     2012-01-02 09:12:51
+## 5   0.988 0.0121  0     2012-01-02 10:45:36
+## 6   0.830 0.170   0     2012-01-02 15:55:03
+## # ... with 779 more rows
 ```
 
 ---
@@ -476,20 +476,20 @@ email_pred %&gt;%
 ```
 
 ```
-## # A tibble: 785 × 4
+## # A tibble: 785 x 4
 ##    .pred_0 .pred_1 spam  time               
 ##      &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt; &lt;dttm&gt;             
-##  1  0.0972   0.903 1     2012-02-13 12:15:00
-##  2  0.167    0.833 0     2012-01-27 20:05:06
-*##  3  0.175    0.825 1     2012-03-01 05:40:27
-##  4  0.267    0.733 1     2012-03-17 10:13:27
-##  5  0.317    0.683 1     2012-03-21 12:33:12
-##  6  0.374    0.626 1     2012-02-08 08:00:05
-*##  7  0.386    0.614 0     2012-01-30 14:20:29
-##  8  0.403    0.597 1     2012-01-07 16:11:49
-##  9  0.462    0.538 1     2012-03-06 11:46:20
-## 10  0.463    0.537 0     2012-02-17 22:54:16
-## # … with 775 more rows
+##  1  0.0972   0.903 1     2012-02-13 06:15:00
+##  2  0.167    0.833 0     2012-01-27 14:05:06
+*##  3  0.175    0.825 1     2012-02-29 23:40:27
+##  4  0.267    0.733 1     2012-03-17 05:13:27
+##  5  0.317    0.683 1     2012-03-21 07:33:12
+##  6  0.374    0.626 1     2012-02-08 02:00:05
+*##  7  0.386    0.614 0     2012-01-30 08:20:29
+##  8  0.403    0.597 1     2012-01-07 10:11:49
+##  9  0.462    0.538 1     2012-03-06 05:46:20
+## 10  0.463    0.537 0     2012-02-17 16:54:16
+## # ... with 775 more rows
 ```
 ]
 
@@ -539,7 +539,7 @@ email_pred %&gt;%
 ```
 
 ```
-## # A tibble: 1 × 3
+## # A tibble: 1 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 roc_auc binary         0.857

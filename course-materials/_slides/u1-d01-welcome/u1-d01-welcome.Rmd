@@ -30,21 +30,43 @@ class: middle
 
 ## Data science
 
-.pull-left-wide\[ - Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. \]
+.pull-left-wide[
+- Data science is an exciting discipline that allows you to turn raw data into understanding, insight, and knowledge. 
+
+- We're going to learn to do this in a `tidy` way -- more on that later!
+
+- This is a course on introduction to data science, with an emphasis on statistical thinking.
+]
 
 ---
 
 ## Course FAQ
 
-.pull-left-wide\[ **Q - What data science background does this course assume?**\
-A - None.\]
+.pull-left-wide[
+**Q - What data science background does this course assume?**  
+A - None.
+
+**Q - Is this an intro stat course?**  
+A - While statistics $\ne$ data science, they are very closely related and have tremendous of overlap. Hence, this course is a great way to get started with statistics. However this course is *not* your typical high school statistics course.
+
+**Q - Will we be doing computing?**   
+A - Yes.
+]
 
 ---
 
 ## Course FAQ
 
-.pull-left-wide\[ **Q - Is this an intro CS course?**\
-A - No, but many themes are shared.\]
+.pull-left-wide[
+**Q - Is this an intro CS course?**  
+A - No, but many themes are shared.
+
+**Q - What computing language will we learn?**  
+A - R.
+
+**Q: Why not language X?**  
+A: We can discuss that over `r emo::ji("coffee")`.
+]
 
 ---
 
@@ -114,11 +136,40 @@ knitr::include_graphics("img/data-science-cycle/data-science-cycle.006.png")
 
 ---
 
-.pull-left\[\] .pull-right\[\]
+.pull-left[
+```{r echo=FALSE, out.width="75%", fig.align="left"}
+knitr::include_graphics("img/google-trend-index.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="90%", fig.align="right"}
+knitr::include_graphics("img/data-science-cycle/data-science-cycle.006.png")
+```
+]
 
 ---
 
-.pull-left\[\] .pull-right\[\]
+.pull-left[
+```{r echo=FALSE, out.width="75%", fig.align="left"}
+knitr::include_graphics("img/google-trend-index.png")
+```
+]
+.pull-right[
+```{r echo=FALSE, out.width="90%", fig.align="right"}
+knitr::include_graphics("img/data-science-cycle/data-science-cycle.006.png")
+```
+```{r echo=FALSE}
+travel <- tribble(
+  ~date,              ~season,
+  "23 January 2017",  "winter",
+  "4 March 2017",     "spring",
+  "14 June 2017",     "summer",
+  "1 September 2017", "fall",
+  "...", "..."
+)
+travel
+```
+]
 
 ---
 
@@ -148,7 +199,7 @@ knitr::include_graphics("img/unvotes/unvotes.gif")
 
 class: middle
 
-# Let's dive in!
+# Let's dive in! You can follow long in AE01a!
 
 ---
 
@@ -260,7 +311,11 @@ knitr::include_graphics("img/unvotes/unvotes-14.jpeg")
 
 ---
 
-.center\[ .large\[ [minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)\]\]
+.center[
+.large[
+[minecr.shinyapps.io/unvotes](https://minecr.shinyapps.io/unvotes/)
+]
+]
 
 ```{r echo=FALSE, out.width="65%"}
 knitr::include_graphics("img/unvotes/unvotes-15.png")

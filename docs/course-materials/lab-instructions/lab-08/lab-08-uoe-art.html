@@ -411,15 +411,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
  [1] &lt;a href="./record/21317?highlight=*:*"&gt;Man in Spanish Costume            ...
- [2] &lt;a href="./record/22667?highlight=*:*"&gt;Portrait of a Boy                 ...
- [3] &lt;a href="./record/112348?highlight=*:*"&gt;Untitled                         ...
- [4] &lt;a href="./record/21079?highlight=*:*"&gt;Seated Male Nude                  ...
- [5] &lt;a href="./record/21565?highlight=*:*"&gt;Untitled                          ...
- [6] &lt;a href="./record/21441?highlight=*:*"&gt;Portrait of a Man                 ...
- [7] &lt;a href="./record/99909?highlight=*:*"&gt;Unitled                           ...
- [8] &lt;a href="./record/21352?highlight=*:*"&gt;Reclining Female Nude             ...
- [9] &lt;a href="./record/20540?highlight=*:*"&gt;Putto with a fish                 ...
-[10] &lt;a href="./record/99258?highlight=*:*"&gt;Untitled - Bearded Man at the Tab ...</code></pre>
+ [2] &lt;a href="./record/112348?highlight=*:*"&gt;Untitled                         ...
+ [3] &lt;a href="./record/21079?highlight=*:*"&gt;Seated Male Nude                  ...
+ [4] &lt;a href="./record/21441?highlight=*:*"&gt;Portrait of a Man                 ...
+ [5] &lt;a href="./record/21352?highlight=*:*"&gt;Reclining Female Nude             ...
+ [6] &lt;a href="./record/20540?highlight=*:*"&gt;Putto with a fish                 ...
+ [7] &lt;a href="./record/99258?highlight=*:*"&gt;Untitled - Bearded Man at the Tab ...
+ [8] &lt;a href="./record/22563?highlight=*:*"&gt;Two Boxes on Pink                 ...
+ [9] &lt;a href="./record/112504?highlight=*:*"&gt;Untitled                         ...
+[10] &lt;a href="./record/21750?highlight=*:*"&gt;Evening Jaipur No.2               ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -430,15 +430,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Man in Spanish Costume                                                                            (1955)"                    
- [2] "Portrait of a Boy                                                                            (1950)"                         
- [3] "Untitled                                    "                                                                                
- [4] "Seated Male Nude                                                                            (1959)"                          
- [5] "Untitled                                                                            (Unknown)"                               
- [6] "Portrait of a Man                                    "                                                                       
- [7] "Unitled                                                                            (Unknown)"                                
- [8] "Reclining Female Nude                                                                            (1952)"                     
- [9] "Putto with a fish                                    "                                                                       
-[10] "Untitled - Bearded Man at the Table                                                                            (20 Oct 1962)"</code></pre>
+ [2] "Untitled                                    "                                                                                
+ [3] "Seated Male Nude                                                                            (1959)"                          
+ [4] "Portrait of a Man                                    "                                                                       
+ [5] "Reclining Female Nude                                                                            (1952)"                     
+ [6] "Putto with a fish                                    "                                                                       
+ [7] "Untitled - Bearded Man at the Table                                                                            (20 Oct 1962)"
+ [8] "Two Boxes on Pink                                                                            (Circa 1968)"                   
+ [9] "Untitled                                    "                                                                                
+[10] "Evening Jaipur No.2                                    "                                                                     </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -453,15 +453,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Man in Spanish Costume (1955)"                    
- [2] "Portrait of a Boy (1950)"                         
- [3] "Untitled"                                         
- [4] "Seated Male Nude (1959)"                          
- [5] "Untitled (Unknown)"                               
- [6] "Portrait of a Man"                                
- [7] "Unitled (Unknown)"                                
- [8] "Reclining Female Nude (1952)"                     
- [9] "Putto with a fish"                                
-[10] "Untitled - Bearded Man at the Table (20 Oct 1962)"</code></pre>
+ [2] "Untitled"                                         
+ [3] "Seated Male Nude (1959)"                          
+ [4] "Portrait of a Man"                                
+ [5] "Reclining Female Nude (1952)"                     
+ [6] "Putto with a fish"                                
+ [7] "Untitled - Bearded Man at the Table (20 Oct 1962)"
+ [8] "Two Boxes on Pink (Circa 1968)"                   
+ [9] "Untitled"                                         
+[10] "Evening Jaipur No.2"                              </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -487,11 +487,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/21317?highlight=*:*"  "./record/22667?highlight=*:*" 
- [3] "./record/112348?highlight=*:*" "./record/21079?highlight=*:*" 
- [5] "./record/21565?highlight=*:*"  "./record/21441?highlight=*:*" 
- [7] "./record/99909?highlight=*:*"  "./record/21352?highlight=*:*" 
- [9] "./record/20540?highlight=*:*"  "./record/99258?highlight=*:*" </code></pre>
+<pre><code> [1] "./record/21317?highlight=*:*"  "./record/112348?highlight=*:*"
+ [3] "./record/21079?highlight=*:*"  "./record/21441?highlight=*:*" 
+ [5] "./record/21352?highlight=*:*"  "./record/20540?highlight=*:*" 
+ [7] "./record/99258?highlight=*:*"  "./record/22563?highlight=*:*" 
+ [9] "./record/112504?highlight=*:*" "./record/21750?highlight=*:*" </code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
