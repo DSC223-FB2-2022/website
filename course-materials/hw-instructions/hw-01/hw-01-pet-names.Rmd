@@ -73,9 +73,8 @@ Please go back to [Prerequisites] and complete them before continuing the assign
 
 # Workflow
 
-```{marginfigure}
-**IMPORTANT:** If there is no GitHub repo created for you for this assignment, it means I didn't have your GitHub username as of when I assigned the homework. Please let me know your GitHub username asap, and I can create your repo.
-```
+***IMPORTANT: If there is no GitHub repo created for you for this assignment, it means I didn't have your GitHub username as of when I assigned the homework. Please let me know your GitHub username asap, and I can create your repo.***
+
 
 For each assignment in this course you will start with a GitHub repo that I created for you and that contains the starter documents you will build upon when working on your assignment.
 The first step is always to bring these files into RStudio so that you can edit them, run them, view your results, and interpret them.
@@ -124,9 +123,7 @@ knitr::include_graphics("img/rstudio-anatomy.png")
 
 Before we introduce the data, let's warm up with some simple exercises.
 
-```{marginfigure}
-The top portion of your R Markdown file (between the three dashed lines) is called **YAML**. It stands for "YAML Ain't Markup Language". It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
-```
+***The top portion of your R Markdown file (between the three dashed lines) is called **YAML**. It stands for "YAML Ain't Markup Language". It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.***
 
 ## Step 1. Update the YAML
 
@@ -236,9 +233,7 @@ seattlepets %>%
 Let's also look to see what the most common pet names are for various species.
 For this we need to first `group_by()` the `species`, and then do the same counting we did before.
 
-```{marginfigure}
-Looks like many of those NAs were cats. Poor unnamed kitties…
-```
+***Looks like many of those NAs were cats. Poor unnamed kitties…***
 
 ```{r species-names, eval=TRUE}
 seattlepets %>% 
@@ -251,9 +246,7 @@ We wanted to know the most common cat and dog names, but there are barely any ca
 This is because there are more dogs than cats in the dataset overall.
 We can confirm this by counting the various species in the data.
 
-```{marginfigure}
-6 pigs in the city? Ok… But we'll continue with cats and dogs.
-```
+***6 pigs in the city? Ok… But we'll continue with cats and dogs.***
 
 ```{r species, eval=TRUE}
 seattlepets %>%
@@ -273,7 +266,7 @@ seattlepets %>%
   slice_max(n, n = 5)
 ```
 
-1.  Based on the previous output we can easily identify the most common cat and dog names in Seattle, but the output is sorted by `n` (the frequencies) as opposed to being organized by the `species`. Build on the pipeline to arrange the results so that they're arranged by `species` first, and then `n`. This means you will need to add one more step to the pipeline, and you have two options: `arrange(species, n)` or `arrange(n, species)`. You should try both and decide which one organizes the output by species and then ranks the names in order of frequency for each species.
+4.  Based on the previous output we can easily identify the most common cat and dog names in Seattle, but the output is sorted by `n` (the frequencies) as opposed to being organized by the `species`. Build on the pipeline to arrange the results so that they're arranged by `species` first, and then `n`. This means you will need to add one more step to the pipeline, and you have two options: `arrange(species, n)` or `arrange(n, species)`. You should try both and decide which one organizes the output by species and then ranks the names in order of frequency for each species. 
 
 🧶 ✅ ⬆️ *Write your answer in your R Markdown document under Exercise 4. In this exercise you're asked to complete the code provided for you. You should insert the code in the code chunk provided for you, knit the document to see the output, and then write your narrative for the answer based on the output of this function, and knit again to see your narrative, code, and output in the resulting document. Then, commit your changes with a commit message that says "Completed Exercise 4", and push. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -329,8 +322,8 @@ ggplot(comb_name_props, aes(x = cat_prop, y = dog_prop)) +
       )
 ```
 
-1.  What names are more common for cats than dogs? The ones above the line or the ones below the line?
-2.  Is the relationship between the two variables (proportion of cats with a given name and proportion of dogs with a given name) positive or negative? What does this mean in context of the data?
+5.  What names are more common for cats than dogs? The ones above the line or the ones below the line?
+6.  Is the relationship between the two variables (proportion of cats with a given name and proportion of dogs with a given name) positive or negative? What does this mean in context of the data?
 
 🧶 ✅ ⬆️ *Now is a good time to commit and push your changes to GitHub with an appropriate commit message. Commit and push all changed files so that your Git pane is cleared up afterwards. Make sure that your last push to the repo comes before the deadline. You should confirm that what you committed and pushed are indeed in your repo that we will see by visiting your repo on GitHub.*
 

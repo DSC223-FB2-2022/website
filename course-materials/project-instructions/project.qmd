@@ -20,7 +20,7 @@ More details below.
 # May be too long, but please do read
 
 The final project for this class will consist of analysis on a dataset of your own choosing.
-The dataset may already exist, or you may collect your own data using a survey or by conducting an experiment.
+The dataset may already exist, or you may collect your own data using a survey or by conducting an experiment (this is especially hard on the block plan).
 You can choose the data based on your interests or based on work in other courses or research projects.
 The goal of this project is for you to demonstrate proficiency in the techniques we have covered in this class (and beyond, if you like) and apply them to a novel dataset in a meaningful way.
 
@@ -28,11 +28,11 @@ The goal is not to do an exhaustive data analysis i.e., do not calculate every s
 Focus on methods that help you begin to answer your research questions.
 You do not have to apply every statistical procedure we learned (and you can use techniques we haven't officially covered in class, if you're feeling adventurous).
 Also, critique your own methods and provide suggestions for improving your analysis.
-Issues pertaining to the reliability and validity of your data, and appropriateness of the statistical analysis should be discussed here.
+Issues pertaining to the reliability and validity of your data, and appropriateness of the statistical analysis should be discussed here. You could discuss why you make certain description in your analysis to be an ethical data scientist. 
 
-The project is very open ended.
-You should create some kind of compelling visualization(s) of this data in R.
-There is no limit on what tools or packages you may use, but sticking to packages we learned in class (`tidyverse`) is required.
+The project is very open ended. You should conduct an investigation of the data, investigate variables, and searching for new insights. You should also create at least one very compelling visualization to can be used to shed light on your research question. You not required to fit any advanced statistical models but perform a through descriptive investigation using R and convey they results in a meaningful way. 
+
+There is no limit on what tools or packages you may use, but sticking to packages we learned in class (`tidyverse`) is recommended. If you decide to do something with mapping you will likely need to use new packages.
 You do not need to visualize all of the data at once.
 A single high quality visualization will receive a much higher grade than a large number of poor quality visualizations.
 Also pay attention to your presentation.
@@ -51,39 +51,37 @@ If you are having trouble ask for help before it is too late.
 
 **Note on reusing datasets from class:** Do not reuse datasets used in examples, homework assignments, or labs in the class.
 
-Below are a list of data repositories that might be of interest to browse.
-You're not limited to these resources, and in fact you're encouraged to venture beyond them.
-But you might find something interesting there:
+On the useful links part of the website you will find a list of data repositories that might be of interest to browse. You're not limited to these resources, and in fact you're encouraged to venture beyond them.
 
--   [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
--   [NHS Scotland Open Data](https://www.opendata.nhs.scot/)
--   [Edinburgh Open Data](https://edinburghopendata.info/)
--   [Open access to Scotland's official statistics](https://statistics.gov.scot/home)
--   [Bikeshare data portal](https://www.bikeshare.com/data/)
--   [UK Gov Data](https://data.gov.uk/)
--   [Kaggle datasets](https://www.kaggle.com/datasets)
--   [OpenIntro datasets](http://openintrostat.github.io/openintro/)
--   [Awesome public datasets](https://github.com/awesomedata/awesome-public-datasets)
--   [Youth Risk Behavior Surveillance System (YRBSS)](https://chronicdata.cdc.gov/Youth-Risk-Behaviors/DASH-Youth-Risk-Behavior-Surveillance-System-YRBSS/q6p7-56au)
--   [PRISM Data Archive Project](https://www.icpsr.umich.edu/icpsrweb/content/ICPSR/fenway.html)
--   [Harvard Dataverse](https://dataverse.harvard.edu/)
--   If you know of others, let me know, and we'll add here...
+## Deliverables and Due Dates
 
-## Deliverables
+1)  Proposal - due 9/30/2022 at meeting.
+2)  Update - due 10/7/2022 at meeting. 
+3)  Paper - due 10/14/2022 at meeting. 
+4)  Presentation - due 10/18/2022 in class. 
+5)  Executive summary - due 10/18/2022 11:59pm. 
 
-1.  Proposal - due \[ENTER DUE DATE\]
-2.  Presentation - due \[ENTER DUE DATE\]
-3.  Executive summary - due \[ENTER DUE DATE\]
+### Initial Meeting
+This includes a research question and one paragraph describing your intended project. Place your writing in an RMarkdown document in your proposal folder in your project repository. Your group will also present the data you have found. Together, as a group, we will review your idea and discuss your ideas. *Every group member must contribute to this conversation.* This also gives me an opportunity to help you decide if the data you have chosen will work for your questions of interest. **I will be cloning you a repository to work on your project with. You do not need to copy and paste from this document.** 
 
-### Proposal
+The grading scheme for the project proposal is as follows.
 
-This is a draft of the introduction section of your project as well as a data analysis plan and your dataset.
++-----------------------------------------------------------+----------+
+| Total                                                     | 10 pts   |
++===========================================================+==========+
+| Data                                                      | 4 pts    |
++-----------------------------------------------------------+----------+
+| Proposal                                                  | 4 pts    |
++-----------------------------------------------------------+----------+
+| Teamwork                                                  | 2 pt     |
++-----------------------------------------------------------+----------+
 
--   **Section 1 - Introduction:** The introduction should introduce your general
 
-    research question and your data (where it came from, how it was collected,
+### Update
 
-    what are the cases, what are the variables, etc.).
+This is a draft of the introduction section of your project as well as a data analysis plan and your dataset. Place your writing in an RMarkdown document in your update folder in your project repository.
+
+-   **Section 1 - Introduction:** The introduction should introduce your general research question and your data (where it came from, how it was collected,what are the cases, what are the variables, etc.).
 
 -   **Section 2 - Data:** Place your data in the \`/data\` folder, and add dimensions and codebook to the README in that folder.
     Then print out the output of and codebook to the README in that folder.
@@ -95,11 +93,9 @@ This is a draft of the introduction section of your project as well as a data an
 
     -   The comparison groups you will use, if applicable.
 
-    -   Very preliminary exploratory data analysis, including some summary statistics and visualizations, along with some explanation on how they help you learn more about your data.
-        (You can add to these later as you work on your project.)
+    -   Very exploratory data analysis, including some summary statistics and visualizations, along with explanation on how they help you learn more about your data.
 
     -   The method(s) that you believe will be useful in answering your question(s).
-        (You can update these later as you work on your project.)
 
     -   What results from these specific statistical methods are needed to support your hypothesized answer?
 
@@ -107,62 +103,169 @@ Each section should be no more than 1 page (excluding figures).
 You can check a print preview to confirm length.
 
 The grading scheme for the project proposal is as follows.
-Note that after you receive feedback for your proposal you can improve it based on the feedback and re-submit it.
-If you re-submit, your final score for the proposal will be the average of two scores you receive (first and second submission).
 
-| Total                                | 10 pts |
-|--------------------------------------|--------|
-| Data                                 | 3 pts  |
-| Proposal                             | 5 pts  |
-| Workflow, organization, code quality | 1 pt   |
-| Teamwork                             | 1 pt   |
++-----------------------------------------------------------+-----------+
+| Total                                                     | 20 pts    |
++===========================================================+===========+
+| Cleaned Data                                              | 2  pts    |
++-----------------------------------------------------------+-----------+
+| Preliminary Paper                                         | 10  pts   |
++-----------------------------------------------------------+-----------+
+| Workflow, organization, code quality                      | 3   pt    |
++-----------------------------------------------------------+-----------+
+| Teamwork                                                  | 5  pt     |
++-----------------------------------------------------------+-----------+
 
-### Presentation
+### Paper
 
-5 minutes maximum, and each team member should say something substantial.
-You can either present live during your workshop or pre-record and submit your video to be played during the workshop.
+This is should include a complete group presentation, paper, and documentation of your analysis. 
 
+#### 1. Title
+
+Give an informative title to your project.
+
+*Assessment: Does the title give an accurate preview of what the paper is about? Is it informative, specific and precise?*
+
+#### 2. Abstract
+
+The abstract provides a brief summary of the entire paper (background, methods, results and conclusions). The suggested length is no more than 150 words. This allows you approximately 1 sentence (and likely no more than two sentences) summarizing each of the following sections. Typically, abstracts are the last thing you write.
+
+*Assessment: Are the main points of the paper described clearly and succinctly?*
+
+#### 3. Background and significance
+
+In this section you are providing the background of the research area and arguing why it is interesting and significant. This section relies heavily on literature review (prior research done in this area and facts that argue why the research is important). This whole section should provide the necessary background leading up to a presentation (in the last few sentences of this section) of the research hypotheses that you will be testing in your study.  Well-accepted facts and/or referenced statements should serve as the majority of content of this section. Typically, the background and significance section starts very broad and moves towards the specific area/hypotheses you are testing.
+
+*Assessment:*
+ - *Does the background and significance have a logical organization? Does it move from the general to the specific?*
+ - *Has sufficient background been provided to understand the paper? How does this work relate to other work in the scientific literature?*
+- *Has a reasonable explanation been given for why the research was done? Why is the work important? Why is it relevant?*
+- *Does this section end with statements about the hypothesis/goals of the paper?*
+
+#### 4. Methods
+
+a. Data collection. Explain how the data was collected/experiment was conducted. Additionally, you should provide information on the individuals who participated to assess representativeness. Non-response rates and other relevant data collection details should be mentioned here if they are an issue. However, you should not discuss the impact of these issues here---save that for the limitations section.
+
+b. Variable creation. Detail the variables in your analysis and how they are defined (if necessary). For example, if you created a combined (frequency times quantity) drinking variable you should describe how. If you are talking about gender no further explanation is really needed.
+
+c. Analytic Methods. Explain the statistical procedures that will be used to analyze your data. E.g. Boxplots are used to illustrate differences in GPA across gender and class standing. Correlations are used to assess the impacts of gender and class standing on GPA.
+
+*Assessment:*
+    *Could the study be repeated based on the information given here? Is the material organized into logical categories (like the one’s above)?*
+
+#### 5. Results
+
+Typically, results sections start with descriptive statistics, e.g. what percent of the sample is male/female, what is the mean GPA overall, in the different groups, etc. Figures can be nice to illustrate these differences! However, information presented must be relevant in helping to answer the research question(s) of interest. Typically, inferential (i.e. hypothesis tests) statistics come next. Tables can often be helpful for results from multiple regression. Do not give computer output here! This should look like a peer-reviewed journal article results section. Tables and figures should be labeled, embedded in the text, and referenced appropriately. The results section typically makes for fairly dry reading. It does not explain the impact of findings, it merely highlights and reports statistical information.
+
+*Assessment:*
+ - *Is the content appropriate for a results section? Is there a clear description of the results?*
+ - *Are the results/data analyzed well? Given the data in each figure/table is the interpretation accurate and logical? Is the analysis of the data thorough (anything ignored?)*
+ - *Are the figures/tables appropriate for the data being discussed? Are the figure legends and titles clear and concise?*
+
+#### 6. Discussion/Conclusions
+
+Restate your objective and draw connections between your analyses and objective. In other words, how did (or didn’t) you answer/address your objective. Place these all in the larger scope of previous research on your topic (i.e. what you found from the literature review), that is, how do your findings help the field move forward? Talk about the limitations of your findings and possible areas for future research to better investigate your research question. End with a concluding sentence or two that summarizes your key findings and impact on the field.
+
+*Assessment:*
+ - *Does the author clearly state whether the results answer the question (support or disprove the hypothesis)?*
+ - *Were specific data cited from the results to support each interpretation? Does the author clearly articulate the basis for supporting or rejecting each hypothesis?*
+ - *Does the author adequately relate the results of the current work to previous research?*
+
+#### 7. References
+
+*Assessment:*
+    *Are the references appropriate and of adequate quality? Are the references citied properly (both in the text and at the end of the paper)?*
+
+
+Some additional general criteria that will be used to evaluate:
+ - Description of the data source
+ - Accuracy of data analysis
+ - Accuracy of conclusions and discussion
+ - Overall clarity and presentation
+ - Originality and significance of the study 
+ - Writing quality and organization of the paper
+
+Credit: [The Undergraduate Statistics Project Competition](https://www.causeweb.org/usproc/report-template)
+
+
++-----------------------------------------------------------+-----------+
+| Total                                                     | 75 pts    |
++===========================================================+===========+
+| Cleaned Data                                              | 5  pts    |
++-----------------------------------------------------------+-----------+
+| Paper                                                     | 20  pts   |
++-----------------------------------------------------------+-----------+
+| Workflow, organization, code quality                      | 10  pt    |
++-----------------------------------------------------------+-----------+
+| Teamwork and Presentation                                 | 5  pt     |
++-----------------------------------------------------------+-----------+
+
+
+### Presentation or Poster
+
+3 minutes, per person, maximum, and each team member should say something substantial.
+You can either present live during class with either a poster, virtual poster, or presentation or pre-record and submit your video to be played during class.
+
+#### Slide Option
 Prepare a slide deck using the template in your repo.
 This template uses a package called `xaringan`, and allows you to make presentation slides using R Markdown syntax.
-There isn't a limit to how many slides you can use, just a time limit (5 minutes total).
+There isn't a limit to how many slides you can use, just a time limit (3 minutes, per person, total).
 Each team member should get a chance to speak during the presentation.
-Your presentation should not just be an account of everything you tried ("then we did this, then we did this, etc."), instead it should convey what choices you made, and why, and what you found.
 
 Before you finalize your presentation, make sure your chunks are turned off with `echo = FALSE`.
 
-Presentations will take place during the last workshop of the semester.
-You can choose to do your presentation live or pre-record it.
-During your workshop you will watch presentations from other teams in your workshop and provide feedback in the form of peer evaluations.
-The presentation line-up will be generated randomly.
+#### Virtual Poster
+See website supplementary documents for a template.
 
-The grading scheme for the presentation is as follows:
+#### Poster (you need to get this printed)
+See website supplementary documents for a template.
 
-| Total                                                                                                                                                                                                          | 50 pts |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
-| Time management: Did the team divide the time well amongst themselves or got cut off going over time?                                                                                                          | 4 pts  |
+Whichever form you choose, your presentation should not just be an account of everything you tried ("then we did this, then we did this, etc."), instead it should convey what choices you made, and why, and what you found.
+
+Presentations will take place during the last day of class.
+
+During class you will watch presentations from other teams in class and provide feedback in the form of peer evaluations. See website supplementary documents.
+The presentation line-up will be in group number order (since that was random).
+
+The professors grading scheme for the presentation is as follows:
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| Total                                                                                                                                                                                                          | 45 pts |
++================================================================================================================================================================================================================+========+
+| Time management: Did the team divide the time well among themselves or got cut off going over time?                                                                                                          | 4 pts  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
 | Content: Is the research question well designed and is the data being used relevant to the research question?                                                                                                  | 5 pts  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
 | Professionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?                                    | 5 pts  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
 | Teamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?                                                                                               | 6 pts  |
-| Content: Did the team use appropriate statistical procedures and interpretations of results accurately?                                                                                                        | 10 pts |
-| Creativity and Critical Thought: Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project? | 10 pts |
-| Slides: Are the slides well organized, readable, not full of text, featuring figures with legible labels, legends, etc.?                                                                                       | 10 pts |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| Content: Did the team use impact visualizations and/or appropriate statistical procedures, and interpret the results accurately?                                                                                                        | 10 pts |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| Creativity and Critical Thought: Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project? | 8 pts |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| Are the slides/poster well organized, readable, not full of text, featuring figures with legible labels, legends, etc.?                                                                                       | 7 pts |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
 
 ### Executive summary
 
-Along with your presentation slides, we want you to provide a brief summary of your project in the README of your repository.
+Along with your visual presentation, your team should provide a brief summary of your project in the README of your repository.
 
-This executive summary should provide information on the dataset you're using, your research question(s), your methodology, and your findings.
+This executive summary should provide information on the dataset you're using, your research question(s), your methodology, and your findings.Place your writing in an RMarkdown document in your executive_summary folder in your project repository.
 
-The executive summary is worth 15 points and will be evaluated based on whether it follows guidance and whether it's concise but detailed enough.
+The executive summary and repo organization is worth *30 points* and will be evaluated based on whether it follows guidance and whether it's concise but detailed enough.
 
 ### Repo organization
 
 The following folders and files in your project repository:
 
--   `presentation.Rmd` + `presentation.html`: Your presentation slides
--   `README.Rmd` + `README.md`: Your write-up
+-   `README.Rmd` + `README.md`: Will contain your executive summary and links to your other content. 
 -   `/data`: Your dataset in CSV or RDS format and your data dictionary
 -   `/proposal`: Your project proposal
+-   `/update`: Your first major update files
+-   `/paper`: Your paper
+-   `/extra`: Extra files you may use
+-   `/presentation`+ `presentation.Rmd` + `presentation.html`: Your presentation slides
 
 Style and format does count for this assignment, so please take the time to make sure everything looks good and your data and code are properly formatted.
 
@@ -172,9 +275,9 @@ Style and format does count for this assignment, so please take the time to make
 
 -   Review the marking guidelines below and ask questions if any of the expectations are unclear.
 
--   Make sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team members).
+-   Make sure each team member is contributing, both in terms of quality and quantity of contribution (I will be reviewing commits from different team members).
 
--   Set aside time to work together and apart (physically).
+-   Set aside time to work together and apart.
 
 -   When you're done, review the documents on GitHub to make sure you're happy with the final state of your work.
     Then go get some rest!
@@ -184,29 +287,27 @@ Style and format does count for this assignment, so please take the time to make
 
     -   Exception: If you want to highlight something specific about a piece of code, you're welcomed to show that portion.
 
--   Teamwork: You are to complete the assignment as a team.
-    All team members are expected to contribute equally to the completion of this assignment and team evaluations will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized.
-    While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment works.
-
 ## Marking
 
-| Total                            | 100 pts |
-|----------------------------------|---------|
-| Proposal                         | 10 pts  |
-| Presentation                     | 50 pts  |
-| Executive summary                | 15 pts  |
-| Reproducibility and organization | 10 pts  |
-| Team peer evaluation             | 10 pts  |
-| Classmates' evaluation           | 5 pts   |
++----------------------------------------------------------+------------+
+| Total                                                    | 200 pts    |
++==========================================================+============+
+| Proposal                                                 |  10 pts    |
++----------------------------------------------------------+------------+
+| Update                                                   |  20 pts    |
++----------------------------------------------------------+------------+
+| Paper                                                    |  75 pts    |
++----------------------------------------------------------+------------+
+| Executive summary                                        |  30 pts    |
++----------------------------------------------------------+------------+
+| Presentation                                             |  45 pts    |
++----------------------------------------------------------+------------+
+| Reproducibility and organization                         |  10 pts    |
++----------------------------------------------------------+------------+
+| Classmates' presentation evaluation                      |  10 pts    |
++----------------------------------------------------------+------------+
 
-### Criteria
-
-Your project will be assessed on the following criteria:
-
--   Content - What is the quality of research and/or policy question and relevancy of data to those questions?
--   Correctness - Are statistical procedures carried out and explained correctly?
--   Writing and Presentation - What is the quality of the statistical presentation, writing, and explanations?
--   Creativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?
+### Criteria/Rubric
 
 A general breakdown of scoring is as follows:
 
@@ -218,12 +319,8 @@ A general breakdown of scoring is as follows:
 
 ### Team peer evaluation
 
-You will be asked to fill out a survey where you rate the contribution and teamwork of each team member out of 10 points.
-You will additionally report a contribution percentage for each team member.
-Filling out the survey is a prerequisite for getting credit on the team member evaluation.If you are suggesting that an individual did less than 20% of the work, please provide some explanation.
-If any individual gets an average peer score indicating that they did less than 10% of the work, this person will receive half the grade of the rest of the group.
-
+You are to complete the assignment as a team. All team members are expected to contribute equally to the completion of this assignment and team evaluations will be given at its completion - anyone judged, *by their teammates*, to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment works. GitHub shows who submits changes and can also be used to see who participated. You will be asked to fill out a survey where you report a contribution percentage for each team member. If you are suggesting that an individual did less than 20% of the work, please provide some explanation. *If any individual gets an average peer score indicating that they did less than 10% of the work, this person will receive half the grade of the rest of the group.*
+    
 ### Late work policy
 
 -   There is no late submission / make up for the presentation. You must be in class on the day of the presentation to get credit for it *or* pre-record and submit your presentation by 9am in the morning of the presentations.
--   The late work policy for the write-up is 5% of the maximum obtainable mark per calendar day up to seven calendar days after the deadline. If you intend to submit work late for the project, you must notify the course organizer before the original deadline as well as as soon as the completed work is submitted on GitHub.

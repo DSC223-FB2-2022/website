@@ -1,5 +1,5 @@
 ---
-title: "HW 01 - Airbnb listings in Edinburgh"
+title: "HW 02 - Airbnb listings in Edinburgh"
 author: "Insert your name here"
 date: "Insert date here"
 output: github_document
