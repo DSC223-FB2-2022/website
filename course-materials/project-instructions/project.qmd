@@ -51,7 +51,7 @@ If you are having trouble ask for help before it is too late.
 
 **Note on reusing datasets from class:** Do not reuse datasets used in examples, homework assignments, or labs in the class.
 
-On the useful links part of the website you will find a list of data repositories that might be of interest to browse. You're not limited to these resources, and in fact you're encouraged to venture beyond them.
+On the [useful links](course-links.qmd) part of the website you will find a list of data repositories that might be of interest to browse. You're not limited to these resources, and in fact you're encouraged to venture beyond them.
 
 ## Deliverables and Due Dates
 

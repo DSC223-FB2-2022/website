@@ -1,0 +1,20 @@
+---
+title: "Ethics Discussion 2"
+author: "Wellesley College"
+---
+
+*Remember to follow the suggestions for healthy discourse in your groups on your group contract. If you have lost that document, [see a blank copy with the discourse suggestions](/course-materials/documents/teamcontracttemplate.docx).*
+
+You should have read [*Data Ethics Reading Honesty and transparency are not enough*](http://www.stat.columbia.edu/~gelman/research/published/ChanceEthics14.pdf)by Andrew Gelman, published in Chance in 2017 and [*ethical guidelines for statistical practice*](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice)from the American Statistical Association, 2022.
+
+Review the [CARVE](/course-materials/documents/CARVE.pdf) ethical principals. For each of the questions below, as part of your discussion, consider which of these principals are relevant to the the discussion question.
+
+Discuss the following questions with your group.
+
+(a) Regarding Andrew Gelman's article, "Honesty and transparency are not enough." Gelman refers to an "Excel error" by Reinhart and Rogoff. Google, read, and explain the mistake made by those authors.
+
+(b) List some specific actions researchers can take that Gelman would label "honesty and transparency."
+
+(c) What would Gelman like researchers to do in addition to acting in an honest and transparent way?
+
+(d) Open the American Statistical Association's "Ethical guidelines for statistical practice." Note that clicking on the blue bars labeled "The ethical statistical practitioner:" expands sets of specific guidelines. Identify at least two guidelines that Gelman would call "honesty and transparency" and at least one guideline that address his desire for researchers to go beyond honesty and transparency. Which of CARVE do those correspond to, or do they not?
