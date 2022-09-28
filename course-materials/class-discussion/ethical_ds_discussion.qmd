@@ -1,0 +1,24 @@
+---
+title: "Ethical Data Scientist Discussion"
+author: "Wellesley College"
+---
+
+*Remember to follow the suggestions for healthy discourse in your groups on your group contract. If you have lost that document, [see a blank copy with the discourse suggestions](/course-materials/documents/teamcontracttemplate.docx)"*
+
+You should have read *The Ethical Data Scientist* by Cathy O'Neil, published in Slate on Feb 4, 2016.
+
+Review the [CARVE](/course-materials/documents/CARVE.pdf) ethical principals. For each of the questions below, as part of your discussion, consider which of these principals are relevant to the the discussion question.
+
+Discuss the following questions with your group.
+
+(a) Discuss with your group the author's argument that it would not be ethical to use race as a predictor for the homelessness project she worked on.
+
+(b) Think of a different context where a predictor variable might be available, but it might not be ethical to use it.
+
+(c) The author argues that data scientists are not paid to assess the effects of their algorithms. Choose one of the questions below, quoted from the article. List some positive and negative effects that an algorithm might have on people's lives in that context. Cosider CARVE for each one as well.
+
+"Do new-fangled social media algorithms encourage addictive gambling behavior?
+
+"Do the teacher assessments encourage good teachers to stay in education?
+
+"Does predictive policing improve long-term outcomes for the people targeted by their models?"
