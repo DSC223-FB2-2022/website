@@ -243,6 +243,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">Project</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../project-description.html" class="sidebar-item-text sidebar-link">Description</a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -415,16 +430,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/21172?highlight=*:*"&gt;Portrait of a Seated Woman        ...
- [2] &lt;a href="./record/21407?highlight=*:*"&gt;Portrait of a Woman               ...
- [3] &lt;a href="./record/22497?highlight=*:*"&gt;Untitled                          ...
- [4] &lt;a href="./record/21960?highlight=*:*"&gt;Porcus Omnivorous                 ...
- [5] &lt;a href="./record/21134?highlight=*:*"&gt;Portrait of a Man                 ...
- [6] &lt;a href="./record/21746?highlight=*:*"&gt;Untitled                          ...
- [7] &lt;a href="./record/53782?highlight=*:*"&gt;The Etiquette of Landscape and Fa ...
- [8] &lt;a href="./record/20759?highlight=*:*"&gt;Composition with Stripes and Full ...
- [9] &lt;a href="./record/21473?highlight=*:*"&gt;Two Women                         ...
-[10] &lt;a href="./record/21463?highlight=*:*"&gt;Train Station                     ...</code></pre>
+ [1] &lt;a href="./record/21746?highlight=*:*"&gt;Untitled                          ...
+ [2] &lt;a href="./record/113779?highlight=*:*"&gt;Performing Labour: a guide to cr ...
+ [3] &lt;a href="./record/21697?highlight=*:*"&gt;Allegro Moderato Firemans' Parade ...
+ [4] &lt;a href="./record/20714?highlight=*:*"&gt;Chariot from North Frieze of the  ...
+ [5] &lt;a href="./record/20719?highlight=*:*"&gt;Riders from South Frieze of the P ...
+ [6] &lt;a href="./record/53757?highlight=*:*"&gt;Cow                               ...
+ [7] &lt;a href="./record/99398?highlight=*:*"&gt;Self-Portrait                     ...
+ [8] &lt;a href="./record/21134?highlight=*:*"&gt;Portrait of a Man                 ...
+ [9] &lt;a href="./record/21672?highlight=*:*"&gt;Man in His Garden                 ...
+[10] &lt;a href="./record/21745?highlight=*:*"&gt;Untitled                          ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -434,16 +449,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Portrait of a Seated Woman                                                                            (1965-1966)"               
- [2] "Portrait of a Woman                                                                            (02 Nov 1953)"                    
- [3] "Untitled                                                                            (1962)"                                      
- [4] "Porcus Omnivorous                                                                            (1994)"                             
- [5] "Portrait of a Man                                                                            (1939)"                             
- [6] "Untitled                                                                            (1949)"                                      
- [7] "The Etiquette of Landscape and Face: Passage 2                                                                            (2015)"
- [8] "Composition with Stripes and Full Moon                                                                            (Circa 1973)"  
- [9] "Two Women                                    "                                                                                   
-[10] "Train Station                                    "                                                                               </code></pre>
+<pre><code> [1] "Untitled                                                                            (1949)"                                         
+ [2] "Performing Labour: a guide to creative resistance                                                                            (2020)"
+ [3] "Allegro Moderato Firemans' Parade                                                                            (1977)"                
+ [4] "Chariot from North Frieze of the Parthenon                                                                            (1836-1837)"  
+ [5] "Riders from South Frieze of the Parthenon                                                                            (1836-1837)"   
+ [6] "Cow                                    "                                                                                            
+ [7] "Self-Portrait                                                                            (1967)"                                    
+ [8] "Portrait of a Man                                                                            (1939)"                                
+ [9] "Man in His Garden                                                                            (Dec 1977)"                            
+[10] "Untitled                                                                            (1947)"                                         </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -457,16 +472,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Portrait of a Seated Woman (1965-1966)"               
- [2] "Portrait of a Woman (02 Nov 1953)"                    
- [3] "Untitled (1962)"                                      
- [4] "Porcus Omnivorous (1994)"                             
- [5] "Portrait of a Man (1939)"                             
- [6] "Untitled (1949)"                                      
- [7] "The Etiquette of Landscape and Face: Passage 2 (2015)"
- [8] "Composition with Stripes and Full Moon (Circa 1973)"  
- [9] "Two Women"                                            
-[10] "Train Station"                                        </code></pre>
+<pre><code> [1] "Untitled (1949)"                                         
+ [2] "Performing Labour: a guide to creative resistance (2020)"
+ [3] "Allegro Moderato Firemans' Parade (1977)"                
+ [4] "Chariot from North Frieze of the Parthenon (1836-1837)"  
+ [5] "Riders from South Frieze of the Parthenon (1836-1837)"   
+ [6] "Cow"                                                     
+ [7] "Self-Portrait (1967)"                                    
+ [8] "Portrait of a Man (1939)"                                
+ [9] "Man in His Garden (Dec 1977)"                            
+[10] "Untitled (1947)"                                         </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -492,11 +507,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/21172?highlight=*:*" "./record/21407?highlight=*:*"
- [3] "./record/22497?highlight=*:*" "./record/21960?highlight=*:*"
- [5] "./record/21134?highlight=*:*" "./record/21746?highlight=*:*"
- [7] "./record/53782?highlight=*:*" "./record/20759?highlight=*:*"
- [9] "./record/21473?highlight=*:*" "./record/21463?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/21746?highlight=*:*"  "./record/113779?highlight=*:*"
+ [3] "./record/21697?highlight=*:*"  "./record/20714?highlight=*:*" 
+ [5] "./record/20719?highlight=*:*"  "./record/53757?highlight=*:*" 
+ [7] "./record/99398?highlight=*:*"  "./record/21134?highlight=*:*" 
+ [9] "./record/21672?highlight=*:*"  "./record/21745?highlight=*:*" </code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
