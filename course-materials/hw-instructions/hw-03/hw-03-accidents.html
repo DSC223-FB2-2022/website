@@ -266,6 +266,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../supplement.html" class="sidebar-item-text sidebar-link">Supplementary Documents</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">Ethics Materials</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../ethics.html" class="sidebar-item-text sidebar-link">Ethics</a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -316,12 +336,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<p>In this assignment we’ll look at traffic accidents in Edinburgh. The data are made available <a href="https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview">online</a> by the UK Government. It covers all recorded accidents in Edinburgh in 2018 and some of the variables were modified for the purposes of this assignment.</p>
+<p>In this assignment we’ll look at traffic accidents in Edinburgh. The data are made available <a href="https://roadtraffic.dft.gov.uk/downloads">online</a> by the UK Government. It covers all recorded accidents in Edinburgh in 2018 and some of the variables were modified for the purposes of this assignment.</p>
 <section id="getting-started" class="level1">
 <h1>Getting started</h1>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>**IMPORTANT:** If there is no GitHub repo created for you for this assignment, it means I didn't have your GitHub username as of when I assigned the homework. Please let me know your GitHub username asap, and I can create your repo.</code></pre>
-</div>
+<p><strong><em>IMPORTANT: If there is no GitHub repo created for you for this assignment, it means I didn’t have your GitHub username as of when I assigned the homework. Please let me know your GitHub username asap, and I can create your repo.</em></strong></p>
 <p>Go to the course GitHub organization and locate your homework repo, which should be named <code>hw-03-accidents-YOUR_GITHUB_USERNAME</code>. Grab the URL of the repo, and clone it in RStudio. First, open the R Markdown document <code>hw-03.Rmd</code> and Knit it. Make sure it compiles without errors. The output will be in the file markdown <code>.md</code> file with the same name.</p>
 <section id="warm-up" class="level2">
 <h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
@@ -337,8 +355,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
 <p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualisation and the data lives in the <strong>dsbox</strong> package. These packages are already installed for you. You can load them by running the following in your Console:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dsbox)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dsbox)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data" class="level2">
@@ -351,9 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol type="1">
 <li>How many observations (rows) does the dataset have? Instead of hard coding the number in your answer, use inline code.</li>
 </ol>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>**Tired of typing your password?** Chances are your browser has already saved your password, but if not, you can ask Git to save (cache) your password for a period of time, where you indicate the period of time in seconds. For example, if you want it to cache your password for 1 hour, that would be 3,600 seconds. To do so, run the following *in the Console*: `usethis::use_git_config(credential.helper = "cache --timeout=3600")`. If you want to cache it for a longer time, you can adjust the number of seconds in the code.</code></pre>
-</div>
+<p><em><strong>Tired of typing your password?</strong> Chances are your browser has already saved your password, but if not, you can ask Git to save (cache) your password for a period of time, where you indicate the period of time in seconds. For example, if you want it to cache your password for 1 hour, that would be 3,600 seconds. To do so, run the following </em>in the Console<em>: <code>usethis::use_git_config(credential.helper = "cache --timeout=3600")</code>. If you want to cache it for a longer time, you can adjust the number of seconds in the code. Note - this may or may not work with PAT’s</em>**</p>
 <ol type="1">
 <li>Run <code>View(accidents)</code> in your Console to view the data in the data viewer. What does each row in the dataset represent?</li>
 </ol>
@@ -363,12 +379,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
-<p><img src="hw-03-accidents_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="hw-03-accidents_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
 <p>🧶 ✅ ⬆️ Knit, <em>commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.</em></p>
 <ol start="4" type="1">
-<li>Create another data visualisation based on these data and interpret it. You can choose any variables and any type of visualisation you like, but it must have at least three variables, e.g.&nbsp;a scatterplot of x vs.&nbsp;y isn’t enough, but if points are coloured by z, that’s fine. In your answer, don’t forget to label your R chunk as well (where it says <code>label-me-2</code>).</li>
+<li>Create another data visualization based on these data and interpret it. You can choose any variables and any type of visualization you like, but it must have at least three variables, e.g.&nbsp;a scatterplot of x vs.&nbsp;y isn’t enough, but if points are colored by z, that’s fine. In your answer, don’t forget to label your R chunk as well (where it says <code>label-me-2</code>).</li>
 </ol>
 <p>🧶 ✅ ⬆️ Knit, <em>commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you’re happy with the final state of your work.</em></p>
 
