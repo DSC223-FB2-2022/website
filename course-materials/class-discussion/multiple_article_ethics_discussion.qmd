@@ -1,4 +1,45 @@
 ---
-title: "Ethics Discussion 3+"
+title: "Ethics Discussion 3 and Beyond"
+tbl-colwidths: [30,5,5,5]
 ---
 
+## Round 0
+
+Read [*Of oaths and checklists*](https://www.oreilly.com/radar/of-oaths-and-checklists/?utm_medium=email&utm_source=topic+optin&utm_campaign=awareness&utm_content=20180725+data+nl&mkt_tok=eyJpIjoiWlRNeU1XTXdZakZrWVdSayIsInQiOiI5QkFSRDZtalgwRE1ZaG92dWU2YXRHTll1dkxoV3U3YjVxT1dLWmxqQTlNODk1d3JuXC9KR1RUNHpXRkNaYnhOMCtnXC9NeWtWTEdpV2hcL20xQXBQdkZ2ZUxMZHNxM3VVWlwvVGFcL0pwVEp6VFUxVDBybk52VW9nVXpNXC8yZGNBb3BjbyJ) by Patil, Mason, and Loukides.
+
+## Rounds 1,2 and 3
+
+There will be 3 days where you will be asked to read an article. **You are only reading 1 article per assignment.** Use the table below to know what articles to read and use their links by clicking the article title. Your group number is based on the class group you are in at the time of the assignment. See our groups table in [Moodle](https://moodle.cornellcollege.edu/course/view.php?id=6992).
+
+## In Class Discussion Questions
+
+*Remember to follow the suggestions for healthy discourse in your groups on your group contract. If you have lost that document, [see a blank copy with the discourse suggestions](/course-materials/documents/teamcontracttemplate.docx).*
+
+You will discuss your shared read article in class with your group. Choose at least one recorder to take notes during discussion and one speaker for the group during the full class discussion.
+
+1\) Discuss which [CARVE](/course-materials/documents/CARVE.pdf) principals are relevant and way.
+
+1\) Suggest and briefly discuss one or two check-list items that might have helped prevent the ethical problem described or that relate to the issues discussed in the article.
+
+## Article Table
+
+| Articles                                                                                                                                                                                                                                                                                                                          | Round 1 | Round 2 | Round 3 |
+|:--------------------|:------------------|:-----------------|:-------------|
+| [Guardian article on Cambridge Analytica](https://www.theguardian.com/news/2018/mar/17/data-war-whistleblower-christopher-wylie-faceook-nix-bannon-trump)                                                                                                                                                                         | Group 1 |         |         |
+| [Propublica article on risk assessment in criminal sentencing](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing)                                                                                                                                                                           | Group 2 |         |         |
+| [NYTimes: Gender discrimination by an approval algorithm for Apple's credit card](https://www.nytimes.com/2019/11/10/business/Apple-credit-card-investigation.html?smprod=nytcore-iphone&smid=nytcore-iphone-share)                                                                                                               | Group 3 |         |         |
+| [NYTimes: Changes to the Census could make small towns disappear](https://www.nytimes.com/interactive/2020/02/06/opinion/census-algorithm-privacy.html?smid=nytcore-ios-share)                                                                                                                                                    | Group 4 |         |         |
+| [NYTimes: Location tracking cell phones](https://www.nytimes.com/interactive/2019/12/19/opinion/location-tracking-cell-phone.html?smid=nytcore-ios-share)                                                                                                                                                                         | Group 5 |         |         |
+| [NYTimes: Data protection](https://www.nytimes.com/2019/11/02/sunday-review/data-protection-privacy.html?smprod=nytcore-iphone&smid=nytcore-iphone-share)                                                                                                                                                                         | Group 6 |         |         |
+| [Washington Post article on racial bias in medical algorithms](https://www.washingtonpost.com/health/2019/10/24/racial-bias-medical-algorithm-favors-white-patients-over-sicker-black-patients/)                                                                                                                                  |         | Group 1 |         |
+| [NPR: IBM discontinues facial recognition products](https://www.npr.org/2020/06/09/873298837/ibm-abandons-facial-recognition-products-condemns-racially-biased-surveillance)                                                                                                                                                      |         | Group 2 |         |
+| [Ethics of digital contact tracing](https://hub.jhu.edu/2020/05/26/digital-contact-tracing-ethics/)                                                                                                                                                                                                                               |         | Group 3 |         |
+| [NPR: Fired data scientist launches coronavirus dashboard](https://www.npr.org/2020/06/14/876584284/fired-florida-data-scientist-launches-a-coronavirus-dashboard-of-her-ownhttps://www.npr.org/2020/06/14/876584284/fired-florida-data-scientist-launches-a-coronavirus-dashboard-of-her-own)                                    |         | Group 4 |         |
+| [Harvard Business Review: Racial disparities in health care outcomes](https://hbr.org/2020/07/a-data-driven-approach-to-addressing-racial-disparities-in-health-care-outcomes)                                                                                                                                                    |         | Group 5 |         |
+| [Reuters: Amazon's recruiting tool that filtered out women's colleges](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight/amazon-scraps-secret-ai-recruiting-tool-that-showed-bias-against-women-idUSKCN1MK08G)                                                                                                |         | Group 6 |         |
+| [NYTimes: Indigenous data sovereignty](https://www.nytimes.com/2021/06/29/science/indigenous-data-microbiome-science.html?referringSource=articleShare)                                                                                                                                                                           |         |         | Group 1 |
+| [NYTimes: Many trial volunteers got the placebo vaccine. Do they now deserve the real ones?](https://www.nytimes.com/2020/12/02/health/covid-vaccine-placebo-group.html?surface=home-discovery-vi-prg&fellback=false&req_id=680573560&algo=identity&imp_id=333780084&action=click&module=Science%20%20Technology&pgtype=Homepage) |         |         | Group 2 |
+| [NYTimes: An algorithm that grants freedom, or takes it away](https://www.nytimes.com/2020/02/06/technology/predictive-algorithms-crime.html?smid=nytcore-ios-share)                                                                                                                                                              |         |         | Group 3 |
+| [NYTimes: Using A.I. to find bias in A.I.](https://www.nytimes.com/2021/06/30/technology/artificial-intelligence-bias.html?referringSource=articleShare)                                                                                                                                                                          |         |         | Group 4 |
+| [NYTimes: 2020 Census undercounted](https://www.nytimes.com/2022/03/10/us/census-undercounted-population.html?referringSource=articleShare)                                                                                                                                                                                       |         |         | Group 5 |
+| [NYTimes: What should happen to our data when we die?](https://www.nytimes.com/2021/07/24/style/what-should-happen-to-our-data-when-we-die.html?referringSource=articleShare)                                                                                                                                                     |         |         | Group 6 |

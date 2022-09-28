@@ -100,11 +100,11 @@ The grading scheme for the project proposal is as follows.
 +===========================================================+===========+
 | Cleaned Data                                              | 2  pts    |
 +-----------------------------------------------------------+-----------+
-| Preliminary Paper                                         | 10  pts   |
+| Preliminary Paper                                         | 10 pts    |
 +-----------------------------------------------------------+-----------+
-| Workflow, organization, code quality                      | 3   pt    |
+| Workflow, organization, code quality                      | 3  pts    |
 +-----------------------------------------------------------+-----------+
-| Teamwork                                                  | 5  pt     |
+| Teamwork                                                  | 5  pts    |
 +-----------------------------------------------------------+-----------+
 
 ### Paper

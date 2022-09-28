@@ -1,0 +1,9 @@
+---
+title: "Supplementary Documents"
+---
+
+## Templates
+
+-   [Virtual poster](course-materials/documents/Virtual Poster Template.pptx)
+
+-   [Poster](course-materials/documents/Poster Template.pptx)

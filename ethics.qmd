@@ -1,0 +1,16 @@
+---
+title: "Ethics Materials"
+---
+
+This page contains homework and class materials on ethics in data science. Much of this work is by the [Quantitative Analysis Institute Online Resources](https://sites.google.com/wellesley.edu/qai-online-resources/home) at Wellesley College, created by Director Casey Pattanayak et al.
+
+-   [CARVE](/course-materials/documents/CARVE.pdf) moral dilemmas from *Ethics in Action A Case-Based Approach* by Connolly, Cox-White, Keller, and Leever.
+
+```{=html}
+<!-- -->
+```
+-   [The Ethical Data Scientist](https://slate.com/technology/2016/02/how-to-bring-better-ethics-to-data-science.html "Read Chapter 2 R4ds") by Cathy O' Neil. [Class discussion questions](/course-materials/class-discussion/ethical_ds_discussion.html).
+
+-   [*Honesty and Transparency Are Not Enough*](http://www.stat.columbia.edu/~gelman/research/published/ChanceEthics14.pdf)by Andrew Gelman and [ASA's 2022 Ethical Guidelines for Statistical Practice](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice). [Class discussion questions](/course-materials/class-discussion/gelman_asa_ethics_discussion.html).
+
+-   [Multiple article and repeated class discussion questions](/course-materials/class-discussion/multiple_article_ethics_discussion.html).

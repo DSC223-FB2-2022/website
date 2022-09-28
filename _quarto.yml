@@ -71,7 +71,12 @@ website:
             text: Description
       - section: "Supplementary Documents"
         contents:
-          - href: course-materials/documents
+          - href: supplement.qmd
+            text: Supplementary Documents
+      - section: "Ethics Materials"
+        contents:
+          - href: ethics.qmd
+            text: Ethics
 
 format:
   html:
