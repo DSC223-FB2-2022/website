@@ -130,7 +130,7 @@
     "href": "index.html",
     "title": "DSC 223: Introduction to Data Science",
     "section": "",
-    "text": "Day\nDate\nTopic\nSlides\nAE\nLab\nHW\nExam\nProject\n\n\n\n\n1\nMon, Sep 26\nWelcome and Toolkit & Data Viz\n🖥️🖥️🖥️\n📋📋📋\n💻\n📖 Chp 2 R4ds & 📖 Sec 1.1,1.2 IMS & 📖 Chp 3 R4ds & Read CARVE & Start ✍️\n\n\n\n\n2\nTue, Sep 27\nTidy Data & Data wrangling & Data Frame\n🖥️🖥️🖥️🖥️\n📋\n💻\nFinish HW 01✍️ & 📖 Chp 4 IMS & 📖 Chp 5 IMS & 📖 The Ethical Data Scientist\n\n\n\n\n3\nWed, Sep 28\n📋 Ethical DS Ethics Discussion.Practice Tuesday content. No afternoon class.\nNone\n\n💻\n📖Tidy data & 📖 Chp 13 R4ds & 📖 Chp 12 R4ds & ✍️Complete HW 02\n\n\n\n\n4\nThu, Sep 29\nData types and classes\n\n\n\n\n\n\n\n\n5\nFri, Sep 30\n\n\n\n\n\n✅\n📂\n\n\n6\nMon, Oct 3\n\n\n\n\n\n\n\n\n\n7\nTue, Oct 4\n\n\n\n\n\n\n\n\n\n8\nWed, Oct 5\n\n\n\n\n\n\n\n\n\n9\nThu, Oct 6\n\n\n\n\n\n\n\n\n\n10\nFri, Oct 7\n\n\n\n\n\n\n📂\n\n\n11\nMon, Oct 10\n\n\n\n\n\n\n\n\n\n12\nTues, Oct 11\n\n\n\n\n\n\n\n\n\n13\nWed, Oct 12\n\n\n\n\n\n\n\n\n\n14\nThu, Oct 13\n\n\n\n\n\n\n\n\n\n15\nFri, Oct 14\n\n\n\n\n\n\n📂\n\n\n16\nMon, Oct 17\n\n\n\n\n\n\n\n\n\n17\nTue, Oct 18\n\n\n\n\n\n\n📂\n\n\n18\nWed, Oct 19\nFinal Exam\n\n\n\n\n✅"
+    "text": "Day\nDate\nTopic\nSlides\nAE\nLab\nHW\nExam\nProject\n\n\n\n\n1\nMon, Sep 26\nWelcome and Toolkit & Data Viz\n🖥️🖥️🖥️\n📋📋📋\n💻\n📖 Chp 2 R4ds & 📖 Sec 1.1,1.2 IMS & 📖 Chp 3 R4ds & Read CARVE & Start ✍️\n\n\n\n\n2\nTue, Sep 27\nTidy Data & Data wrangling & Data Frame\n🖥️🖥️🖥️🖥️\n📋\n💻\nFinish HW 01✍️ & 📖 Chp 4 IMS & 📖 Chp 5 IMS & 📖 The Ethical Data Scientist\n\n\n\n\n3\nWed, Sep 28\n📋 Ethical DS Ethics Discussion.Practice Tuesday content. No afternoon class.\nNone\n\n💻\n📖Tidy data & 📖 Chp 13 R4ds & 📖 Chp 12 R4ds & 📖 Gelman & 📖ASA Guidelines ✍️Complete HW 02\n\n\n\n\n4\nThu, Sep 29\nData types and classes\n\n\n\n\n\n\n\n\n5\nFri, Sep 30\n\n\n\n\n\n\n📂\n\n\n6\nMon, Oct 3\n\n\n\n\n\n\n\n\n\n7\nTue, Oct 4\n\n\n\n\n\n\n\n\n\n8\nWed, Oct 5\n\n\n\n\n\n\n\n\n\n9\nThu, Oct 6\n\n\n\n\n\n\n\n\n\n10\nFri, Oct 7\n\n\n\n\n\n✅\n📂\n\n\n11\nMon, Oct 10\n\n\n\n\n\n\n\n\n\n12\nTues, Oct 11\n\n\n\n\n\n\n\n\n\n13\nWed, Oct 12\n\n\n\n\n\n\n\n\n\n14\nThu, Oct 13\n\n\n\n\n\n\n\n\n\n15\nFri, Oct 14\n\n\n\n\n\n\n📂\n\n\n16\nMon, Oct 17\n\n\n\n\n\n\n\n\n\n17\nTue, Oct 18\n\n\n\n\n\n\n📂\n\n\n18\nWed, Oct 19\nFinal Exam\n\n\n\n\n✅"
   },
   {
     "objectID": "course-links.html",
@@ -138,6 +138,20 @@
     "title": "Useful links",
     "section": "",
     "text": "RStudio Server\n🔗 on Cornell College Cluster\n\n\nCourse GitHub organization\n🔗 on GitHub\n\n\nGradebook\n🔗 on Moodle"
+  },
+  {
+    "objectID": "course-links.html#other-useful-links",
+    "href": "course-links.html#other-useful-links",
+    "title": "Useful links",
+    "section": "Other Useful Links",
+    "text": "Other Useful Links\n\nRStudio Cheatsheets"
+  },
+  {
+    "objectID": "course-links.html#data-links",
+    "href": "course-links.html#data-links",
+    "title": "Useful links",
+    "section": "Data Links",
+    "text": "Data Links\n\nTidyTuesday\nAmazon Registry of Open Data\nOpen data StackExchange\nMicrosoft R Application Window\nData.gov\nUS Census\nNew York City data\nGeorge Mason University Data Link List\nToward Data Science list of Data Sources\nNHS Scotland Open Data\nEdinburgh Open Data\nOpen access to Scotland’s official statistics\nBikeshare data portal\nUK Gov Data\nKaggle datasets\nOpenIntro datasets\nAwesome public datasets\nYouth Risk Behavior Surveillance System (YRBSS)\nPRISM Data Archive Project\nHarvard Dataverse\nIf you know of others, let me know, and we’ll add here…"
   },
   {
     "objectID": "computing-access.html",
@@ -977,7 +991,14 @@
     "href": "course-materials/class-discussion/ethical_ds_discussion.html",
     "title": "Ethical Data Scientist Discussion",
     "section": "",
-    "text": "You should have read The Ethical Data Scientist by Cathy O’Neil, published in Slate on Feb 4, 2016.\nReview the CARVE ethical principals. For each of the questions below, as part of your discussion, consider which of these principals are relevant to the the discussion question.\nDiscuss the following questions with your group.\n\nDiscuss with your group the author’s argument that it would not be ethical to use race as a predictor for the homelessness project she worked on.\nThink of a different context where a predictor variable might be available, but it might not be ethical to use it.\nThe author argues that data scientists are not paid to assess the effects of their algorithms. Choose one of the questions below, quoted from the article. List some positive and negative effects that an algorithm might have on people’s lives in that context. Cosider CARVE for each one as well.\n\n“Do new-fangled social media algorithms encourage addictive gambling behavior?\n“Do the teacher assessments encourage good teachers to stay in education?\n“Does predictive policing improve long-term outcomes for the people targeted by their models?”"
+    "text": "You should have read The Ethical Data Scientist by Cathy O’Neil, published in Slate on Feb 4, 2016.\nReview the CARVE ethical principals. For each of the questions below, as part of your discussion, consider which of these principals are relevant to the the discussion question.\nDiscuss the following questions with your group.\n\nDiscuss with your group the author’s argument that it would not be ethical to use race as a predictor for the homelessness project she worked on.\nThink of a different context where a predictor variable might be available, but it might not be ethical to use it.\nThe author argues that data scientists are not paid to assess the effects of their algorithms. Choose one of the questions below, quoted from the article. List some positive and negative effects that an algorithm might have on people’s lives in that context. Consider CARVE for each one as well.\n\n“Do new-fangled social media algorithms encourage addictive gambling behavior?\n“Do the teacher assessments encourage good teachers to stay in education?\n“Does predictive policing improve long-term outcomes for the people targeted by their models?”"
+  },
+  {
+    "objectID": "course-materials/class-discussion/gemlan_asa_ethics_discussion.html",
+    "href": "course-materials/class-discussion/gemlan_asa_ethics_discussion.html",
+    "title": "Ethics Discussion 2",
+    "section": "",
+    "text": "You should have read Data Ethics Reading Honesty and transparency are not enoughby Andrew Gelman, published in Chance in 2017 and ethical guidelines for statistical practicefrom the American Statistical Association, 2022.\nReview the CARVE ethical principals. For each of the questions below, as part of your discussion, consider which of these principals are relevant to the the discussion question.\nDiscuss the following questions with your group.\n\nRegarding Andrew Gelman’s article, “Honesty and transparency are not enough.” Gelman refers to an “Excel error” by Reinhart and Rogoff. Google, read, and explain the mistake made by those authors.\nList some specific actions researchers can take that Gelman would label “honesty and transparency.”\nWhat would Gelman like researchers to do in addition to acting in an honest and transparent way?\nOpen the American Statistical Association’s “Ethical guidelines for statistical practice.” Note that clicking on the blue bars labeled “The ethical statistical practitioner:” expands sets of specific guidelines. Identify at least two guidelines that Gelman would call “honesty and transparency” and at least one guideline that address his desire for researchers to go beyond honesty and transparency. Which of CARVE do those correspond to, or do they not?"
   },
   {
     "objectID": "course-materials/hw-instructions/hw-03/hw-03-accidents.html",
