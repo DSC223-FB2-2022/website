@@ -10,7 +10,7 @@ website:
   repo-url: https://github.com/DSC223-FB2-2022/website
   repo-actions: [edit, issue]
 
-  open-graph: true
+  open-graph: false
 
   twitter-card:
     creator: "@stats_tgeorge"
