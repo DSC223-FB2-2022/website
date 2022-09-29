@@ -10,7 +10,7 @@ website:
   repo-url: https://github.com/DSC223-FB2-2022/website
   repo-actions: [edit, issue]
 
-  open-graph: false
+  open-graph: true
 
   twitter-card:
     creator: "@stats_tgeorge"
@@ -19,11 +19,11 @@ website:
   page-footer:
     right: "This page is built with [Quarto](https://quarto.org/)."
     left: "&copy; Copyright 2022, Tyler George"
-    background: "#D9E3E4"
+    background: "#BBBCBC"
 
   sidebar:
-    background: "#D9E3E4"
-    # logo: "images/logo.png" # This is where I put my hex
+    background: "#BBBCBC"
+    logo: "images/logo.png" # This is where I put my hex
     pinned: true
     align: center
     tools:
