@@ -42,7 +42,7 @@ If you are having trouble ask for help before it is too late.
 
 **Note on reusing datasets from class:** Do not reuse datasets used in examples, homework assignments, or labs in the class.
 
-On the useful links part of the website you will find a list of data repositories that might be of interest to browse. You're not limited to these resources, and in fact you're encouraged to venture beyond them.
+On the [useful links](/course-links.qmd) part of the website you will find a list of data repositories that might be of interest to browse. You're not limited to these resources, and in fact you're encouraged to venture beyond them.
 
 ## Deliverables and Due Dates
 
@@ -206,10 +206,10 @@ Each team member should get a chance to speak during the presentation.
 Before you finalize your presentation, make sure your chunks are turned off with `echo = FALSE`.
 
 #### Virtual Poster
-See website supplementary documents for a template.
+See website [supplementary](supplement.qmd) documents for a template.
 
 #### Poster (you need to get this printed)
-See website supplementary documents for a template.
+See website [supplementary](supplement.qmd) documents for a template.
 
 Whichever form you choose, your presentation should not just be an account of everything you tried ("then we did this, then we did this, etc."), instead it should convey what choices you made, and why, and what you found.
 
