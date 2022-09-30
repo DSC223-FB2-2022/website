@@ -460,16 +460,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/22499?highlight=*:*"&gt;Untitled                          ...
- [2] &lt;a href="./record/21217?highlight=*:*"&gt;Drawing of Monaghan               ...
- [3] &lt;a href="./record/53581?highlight=*:*"&gt;Unknown                           ...
- [4] &lt;a href="./record/50434?highlight=*:*"&gt;Unknown                           ...
- [5] &lt;a href="./record/50571?highlight=*:*"&gt;Unknown                           ...
- [6] &lt;a href="./record/21151?highlight=*:*"&gt;Standing Male Nude                ...
- [7] &lt;a href="./record/22543?highlight=*:*"&gt;Still Life with Green Boots and K ...
- [8] &lt;a href="./record/22025?highlight=*:*"&gt;Untitled                          ...
- [9] &lt;a href="./record/21674?highlight=*:*"&gt;Swirl V                           ...
-[10] &lt;a href="./record/21551?highlight=*:*"&gt;Untitled                          ...</code></pre>
+ [1] &lt;a href="./record/21837?highlight=*:*"&gt;Untitled                          ...
+ [2] &lt;a href="./record/53628?highlight=*:*"&gt;Saucer                            ...
+ [3] &lt;a href="./record/22543?highlight=*:*"&gt;Still Life with Green Boots and K ...
+ [4] &lt;a href="./record/22025?highlight=*:*"&gt;Untitled                          ...
+ [5] &lt;a href="./record/22499?highlight=*:*"&gt;Untitled                          ...
+ [6] &lt;a href="./record/50571?highlight=*:*"&gt;Unknown                           ...
+ [7] &lt;a href="./record/21151?highlight=*:*"&gt;Standing Male Nude                ...
+ [8] &lt;a href="./record/20889?highlight=*:*"&gt;Portrait of Standing Woman wearin ...
+ [9] &lt;a href="./record/50434?highlight=*:*"&gt;Unknown                           ...
+[10] &lt;a href="./record/21674?highlight=*:*"&gt;Swirl V                           ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -479,16 +479,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Untitled                                                                            (1968)"                                    
- [2] "Drawing of Monaghan                                                                            (1955)"                         
- [3] "Unknown                                    "                                                                                   
- [4] "Unknown                                    "                                                                                   
- [5] "Unknown                                                                            (1950)"                                     
- [6] "Standing Male Nude                                                                            (1959)"                          
- [7] "Still Life with Green Boots and Knotted Rope                                                                            (1987)"
- [8] "Untitled                                                                            (1965)"                                    
- [9] "Swirl V                                                                            (1998)"                                     
-[10] "Untitled                                                                            (Unknown)"                                 </code></pre>
+<pre><code> [1] "Untitled                                                                            (1983)"                                    
+ [2] "Saucer                                    "                                                                                    
+ [3] "Still Life with Green Boots and Knotted Rope                                                                            (1987)"
+ [4] "Untitled                                                                            (1965)"                                    
+ [5] "Untitled                                                                            (1968)"                                    
+ [6] "Unknown                                                                            (1950)"                                     
+ [7] "Standing Male Nude                                                                            (1959)"                          
+ [8] "Portrait of Standing Woman wearing Overalls                                                                            (1959)" 
+ [9] "Unknown                                    "                                                                                   
+[10] "Swirl V                                                                            (1998)"                                     </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -502,16 +502,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Untitled (1968)"                                    
- [2] "Drawing of Monaghan (1955)"                         
- [3] "Unknown"                                            
- [4] "Unknown"                                            
- [5] "Unknown (1950)"                                     
- [6] "Standing Male Nude (1959)"                          
- [7] "Still Life with Green Boots and Knotted Rope (1987)"
- [8] "Untitled (1965)"                                    
- [9] "Swirl V (1998)"                                     
-[10] "Untitled (Unknown)"                                 </code></pre>
+<pre><code> [1] "Untitled (1983)"                                    
+ [2] "Saucer"                                             
+ [3] "Still Life with Green Boots and Knotted Rope (1987)"
+ [4] "Untitled (1965)"                                    
+ [5] "Untitled (1968)"                                    
+ [6] "Unknown (1950)"                                     
+ [7] "Standing Male Nude (1959)"                          
+ [8] "Portrait of Standing Woman wearing Overalls (1959)" 
+ [9] "Unknown"                                            
+[10] "Swirl V (1998)"                                     </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -537,11 +537,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/22499?highlight=*:*" "./record/21217?highlight=*:*"
- [3] "./record/53581?highlight=*:*" "./record/50434?highlight=*:*"
- [5] "./record/50571?highlight=*:*" "./record/21151?highlight=*:*"
- [7] "./record/22543?highlight=*:*" "./record/22025?highlight=*:*"
- [9] "./record/21674?highlight=*:*" "./record/21551?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/21837?highlight=*:*" "./record/53628?highlight=*:*"
+ [3] "./record/22543?highlight=*:*" "./record/22025?highlight=*:*"
+ [5] "./record/22499?highlight=*:*" "./record/50571?highlight=*:*"
+ [7] "./record/21151?highlight=*:*" "./record/20889?highlight=*:*"
+ [9] "./record/50434?highlight=*:*" "./record/21674?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
