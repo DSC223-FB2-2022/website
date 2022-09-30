@@ -1,8 +1,7 @@
 ---
 title: "Type coercion"
-author: "Mine Çetinkaya-Rundel"
+author: "Your Name"
 format: html
-editor: visual
 ---
 
 -   `c(1, 1L, "C")`

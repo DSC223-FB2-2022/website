@@ -2,7 +2,7 @@ library(xaringanBuilder)
 
 setwd("C:/Users/tgeorge/Desktop/website/course-materials/_slides")
 
-slide_name = "u2-d09-tidying"
+slide_name = "u2-d11-data-classes"
 slide_name = paste0(slide_name,"/",slide_name)
 
 # This sometimes needs run twice

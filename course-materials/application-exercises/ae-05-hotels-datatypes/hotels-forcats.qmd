@@ -1,8 +1,7 @@
 ---
 title: "Hotel bookings - factors"
-author: "Mine Çetinkaya-Rundel"
+author: "Your Name"
 format: html
-editor: visual
 ---
 
 ```{r}
@@ -22,7 +21,7 @@ library(skimr)
 hotels <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-02-11/hotels.csv")
 ```
 
-First, knit the document and view the following visualisation.
+First, knit the document and view the following visualization.
 How are the months ordered?
 What would be a better order?
 Then, reorder the months on the x-axis (levels of `arrival_date_month`) in a way that makes more sense.

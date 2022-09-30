@@ -51,7 +51,7 @@ Before we introduce the data, let's warm up with some simple exercises.
 
 ## Packages
 
-We'll use the **tidyverse** package for much of the data wrangling and visualisation, the **scales** package for better formatting of labels on visualisations, and the data lives in the **fivethirtyeight** package.
+We'll use the **tidyverse** package for much of the data wrangling and visualization, the **scales** package for better formatting of labels on visualizations, and the data lives in the **fivethirtyeight** package.
 These packages are already installed for you.
 You can load them by running the following in your Console:
 
@@ -131,9 +131,7 @@ college_recent_grads %>%
 To answer such a question we need to arrange the data in descending order.
 For example, if earlier we were interested in the major with the highest unemployment rate, we would use the following:
 
-```{marginfigure}
-The `desc` function specifies that we want `unemployment_rate` in descending order.
-```
+***The `desc` function specifies that we want `unemployment_rate` in descending order.***
 
 ```{r}
 college_recent_grads %>%
@@ -141,8 +139,8 @@ college_recent_grads %>%
   select(rank, major, unemployment_rate)
 ```
 
-1.  Using what you've learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major, the total number of people with major, and proportion of women. Show only the top 3 majors by adding `top_n(3)` at the end of the pipeline.
-
+1.  Using what you've learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major, the total number of people with major, and proportion of women. Show only the top 3 majors by adding `slice_max()` at the end of the pipeline.
+  
 ## How do the distributions of median income compare across major categories?
 
 ```{marginfigure}
