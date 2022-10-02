@@ -158,9 +158,7 @@ The following exercises walk you through how to make these fixes to the data.
     -   Calculate sum of total contributions from PACs for each year for each country by using a sequence of `group_by()` then `summarise()`.
     -   Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colours represent each of Canada and Mexico.
 
-```{marginfigure}
-**Note:** The figure you create might look slightly different than this one if the data on the website has been updated recently.
-```
+***Note: The figure you create might look slightly different than this one if the data on the website has been updated recently.***
 
 4.  Recreate the following visualisation. Once you have made the plot, write a brief interpretation of what the graph reveals. Note that these are only UK contributions. You will need to make use of functions from the **scales** package for axis labels as well as from **ggplot2**.
 

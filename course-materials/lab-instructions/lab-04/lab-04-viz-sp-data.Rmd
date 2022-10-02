@@ -113,18 +113,16 @@ We know exactly which states are in the US, and we have this information in the 
 "Filter for `state`s that are not in `states$abbreviation`."
 ```
 
-```{r}
+```{r,eval = F, include = F}
 dennys %>%
   filter(!(state %in% states$abbreviation))
 ```
 
 6.  Add a country variable to the Denny's dataset and set all observations equal to `"United States"`. Remember, you can use the `mutate` function for adding a variable. Make sure to save the result of this as `dennys` again so that the stored data frame contains the new variable going forward.
 
-```{marginfigure}
-We don't need to tell R how many times to repeat the character string "United States" to fill in the data for all observations, R takes care of that automatically.
-```
+***We don't need to tell R how many times to repeat the character string "United States" to fill in the data for all observations, R takes care of that automatically.***
 
-```{r}
+```{r,eval = F, include = F}
 dennys %>%
   mutate(country = "United States")
 ```
@@ -167,7 +165,7 @@ This requires *joining* information from the frequency tables you created in Exe
 First, we count how many observations are in each state, which will give us a data frame with two variables: `state` and `n`.
 Then, we join this data frame with the `states` data frame.
 However note that the variables in the `states` data frame that has the two-letter abbreviations is called `abbreviation`.
-So when we're joining the two data frames we specify that the `state` variable from the Denny's data should be matched `by` the `abbreviation` variable from the `states` data:
+So when we're joining the two data frames we specify that the `state` variable from the Denny's data should be matched `by` the `abbreviation` variable from the `states` data.
 
 ```{r}
 dennys %>%

@@ -5,6 +5,8 @@
 library(tidyverse)
 library(rvest)
 
+# Check and make sure you are allowed to scrape!
+
 # Read html page ---------------------------------------------------------------
 
 page <- read_html("___")

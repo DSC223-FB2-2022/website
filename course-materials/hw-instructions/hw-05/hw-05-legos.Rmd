@@ -69,15 +69,11 @@ Note that the answers to all questions are within the context of this particular
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
-```{marginfigure}
-**Hint:** Use the `case_when()` function.
-```
+***Hint: Use the `case_when()` function.***
 
 4.  Create a new variable called `age_group` and group the ages into the following categories: "18 and under", "19 - 25", "26 - 35", "36 - 50", "51 and over".
 
-```{marginfigure}
-**Hint:** You will need to consider quantity of purchases.
-```
+***Hint:Hint: You will need to consider quantity of purchases.***
 
 5.  Which age group has purchased the highest number of Lego sets.
 
@@ -87,9 +83,8 @@ Note that the answers to all questions are within the context of this particular
 
 6.  Which age group has spent the most money on Legos?
 
-```{marginfigure}
-**Hint:** The [`str_sub()`](https://stringr.tidyverse.org/reference/str_sub.html) function will be helpful here!
-```
+***Hint: The [`str_sub()`](https://stringr.tidyverse.org/reference/str_sub.html) function will be helpful here!***
+
 
 7.  Which Lego theme has made the most money for Lego?
 

@@ -32,7 +32,7 @@ In addition, six students rated the professors' physical appearance.
 
 # Getting started
 
-Go to the course GitHub organization and locate your homework repo, clone it in RStudio and open the R Markdown document.
+Go to the course GitHub organization and locate your lab repo, clone it in RStudio and open the R Markdown document.
 Knit the document to make sure it compiles without errors.
 
 ## Warm up
@@ -45,7 +45,7 @@ If anything is missing, commit and push again.
 
 ## Packages
 
-We'll use the **tidyverse** package for much of the data wrangling and visualisation, the **tidymodels** package for modeling and inference, and the data lives in the **dsbox** package.
+We'll use the **tidyverse** package for much of the data wrangling and visualization, the **tidymodels** package for modeling and inference, and the data lives in the **dsbox** package.
 These packages are already installed for you.
 You can load them by running the following in your Console:
 
@@ -75,9 +75,7 @@ You can also find this information [here](https://www.openintro.org/data/index.p
 
 2.  Visualize and describe the relationship between `score` and `bty_avg`.
 
-```{marginfigure}
-**Hint:** See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.
-```
+***Hint: See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.***
 
 3.  Recreate the scatterplot from Exercise 2, but this time use\
     `geom_jitter()`? What does "jitter" mean? What was misleading about the initial scatterplot?
@@ -86,9 +84,7 @@ You can also find this information [here](https://www.openintro.org/data/index.p
 
 ## Linear regression with a numerical predictor
 
-```{marginfigure}
-Linear model is in the form $\hat{y} = b_0 + b_1 x$.
-```
+***Linear model is in the form $\hat{y} = b_0 + b_1 x$.***
 
 4.  Let's see if the apparent trend in the plot is something more than natural variation.
     Fit a linear model called `score_bty_fit` to predict average professor evaluation `score` by average beauty rating (`bty_avg`).

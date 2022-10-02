@@ -63,7 +63,7 @@ ucbadmit %>%
 ---
 
 .question[
-What can you say about the overall gender distribution? Hint: Calculate the following probabilities: $P(Admit | Male)$ and $P(Admit | Female)$.
+What can you say about the overall gender distribution? Hint: Calculate the following probabilities: $P(Admit given they are Male)$ and $P(Admit given they are Female)$.
 ]
 
 ```{r}
@@ -80,8 +80,8 @@ ucbadmit %>%
   mutate(prop_admit = n / sum(n))
 ```
 
-- $P(Admit | Female)$ = 0.304
-- $P(Admit | Male)$ = 0.445
+- $P(Admit given they are Female)$ = 0.304
+- $P(Admit given they are Male)$ = 0.445
 
 ---
 

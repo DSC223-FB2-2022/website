@@ -29,7 +29,7 @@ The data from the survey is in `data/brexit.csv`.
 brexit <- read_csv("data/brexit.csv")
 ```
 
-In the course video we made the following visualisation.
+In the notes saw the code for following visualization.
 
 ```{r}
 brexit <- brexit %>%
@@ -60,9 +60,7 @@ In this application exercise we tell different stories with the same data.
 
 ### Exercise 1 - Free scales
 
-Add `scales = "free_x"` as an argument to the `facet_wrap()` function.
-How does the visualisation change?
-How is the story this visualisation telling different than the story the original plot tells?
+Add `scales = "free_x"` as an argument to the `facet_wrap()` function. How does the visualization change? How is the story this visualization telling different than the story the original plot tells?
 
 ```{r}
 ggplot(brexit, aes(y = opinion, fill = opinion)) +
@@ -88,9 +86,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ### Exercise 2 - Comparing proportions across facets
 
-First, calculate the proportion of wrong, right, and don't know answers in each category and then plot these proportions (rather than the counts) and then improve axis labeling.
-How is the story this visualisation telling different than the story the original plot tells?
-**Hint:** You'll need the **scales** package to improve axis labeling, which means you'll need to load it on top of the document as well.
+First, calculate the proportion of wrong, right, and don't know answers in each category and then plot these proportions (rather than the counts) and then improve axis labeling. How is the story this visualization telling different than the story the original plot tells? **Hint:** You'll need the **scales** package to improve axis labeling, which means you'll need to load it on top of the document as well.
 
 ```{r}
 # code goes here
@@ -98,8 +94,7 @@ How is the story this visualisation telling different than the story the origina
 
 ### Exercise 3 - Comparing proportions across bars
 
-Recreate the same visualisation from the previous exercise, this time dodging the bars for opinion proportions for each region, rather than faceting by region and then improve the legend.
-How is the story this visualisation telling different than the story the previous plot tells?
+Recreate the same visualization from the previous exercise, this time dodging the bars for opinion proportions for each region, rather than faceting by region and then improve the legend. How is the story this visualization telling different than the story the previous plot tells?
 
 ```{r}
 # code goes here

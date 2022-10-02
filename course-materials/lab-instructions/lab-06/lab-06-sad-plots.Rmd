@@ -17,7 +17,7 @@ Improve these visualizations using R and the tips for effective visualizations t
 You should produce one visualization per dataset.
 Your visualization should be accompanied by a brief paragraph describing the choices you made in your improvement, specifically discussing what you didn't like in the original plots and why, and how you addressed them in the visualization you created.
 
-On the due date you will give a brief presentation describing one of your improved visualizations and the reasoning for the choices you made.
+Your group will give a brief presentation describing one of your improved visualizations and the reasoning for the choices you made.
 
 # Learning goals
 

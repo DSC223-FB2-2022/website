@@ -13,8 +13,8 @@ link-citations: yes
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-This week you'll continue working on your projects.
-The first half of the workshop is structured, and you can use the second half to make progress on your projects.
+This class you'll continue working on your projects.
+The first half of the lab is structured, and you can use the second half to make progress on your projects.
 
 # GitHub issues
 

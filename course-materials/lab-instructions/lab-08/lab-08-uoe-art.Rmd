@@ -17,9 +17,8 @@ library(tidyverse)
 
 The University of Edinburgh Art Collection *"supports the world-leading research and teaching that happens within the University. Comprised of an astonishing range of objects and ideas spanning two millennia and a multitude of artistic forms, the collection reflects not only the long and rich trajectory of the University, but also major national and international shifts in art history."*[^lab-08-uoe-art-1].
 
-```{marginfigure}
-See the sidebar [here](https://collections.ed.ac.uk/art) and note that there are 2970 pieces in the art collection we're collecting data on. Note that more pieces may have been added or some pieces may have been removed between when this lab was written and when you're working on it.
-```
+***See the sidebar [here](https://collections.ed.ac.uk/art) and note that there are 2970 pieces in the art collection we're collecting data on. Note that more pieces may have been added or some pieces may have been removed between when this lab was written and when you're working on it.***
+
 
 In this lab we'll scrape data on all art pieces in the [Edinburgh College of Art collection](https://collections.ed.ac.uk/art/search/*:*/Collection:%22edinburgh+college+of+art%7C%7C%7CEdinburgh+College+of+Art%22).
 
@@ -72,7 +71,7 @@ Here is the organization of your repo, and the corresponding section in the lab 
 ```
 # Getting started
 
-Go to the course GitHub organization and locate your homework repo, clone it in RStudio and open the R Markdown document.
+Go to the course GitHub organization and locate your lab repo, clone it in RStudio and open the R Markdown document.
 Knit the document to make sure it compiles without errors.
 
 ## Warm up
@@ -109,9 +108,8 @@ paths_allowed("https://collections.ed.ac.uk/art)")
 
 ## Scraping a single page
 
-```{marginfigure}
-**Tip:** To run the code you can highlight or put your cursor next to the lines of code you want to run and hit Command+Enter.
-```
+***Tip: To run the code you can highlight or put your cursor next to the lines of code you want to run and hit Command+Enter.***
+
 
 ::: {.box}
 Work in `scripts/01-scrape-page-one.R`.
@@ -136,7 +134,7 @@ For the ten pieces on this page we will extract `title`, `artist`, and `link` in
 ### Titles
 
 Let's start with titles.
-We make use of the SelectorGadget to identify the tags for the relevant nodes:
+We make use of the SelectorGadget to identify the tags for the relevant nodes. Note that there is some guessing and checking with this. In this case, not only pay attention to what is shown in the box as the tag but also the tags shown when hovering over items. 
 
 ```{r iteminfo-h3a, fig.margin = TRUE, echo = FALSE}
 knitr::include_graphics("img/iteminfo-h3a.gif")
@@ -159,9 +157,7 @@ page %>%
 
 And get rid of all the spurious white space in the text with `str_squish()`, which reduces repeated whitespace inside a string.
 
-```{marginfigure}
-Take a look at the help for `str_squish()` to find out more about how it works and how it's different from `str_trim()`.
-```
+***Take a look at the help for `str_squish()` to find out more about how it works and how it's different from `str_trim()`.***
 
 ```{r}
 page %>%
@@ -207,9 +203,7 @@ page %>%
 These don't really look like URLs as we know then though.
 They're relative links.
 
-```{marginfigure}
-See the help for `str_replace()` to find out how it works. Remember that the first argument is passed in from the pipeline, so you just need to define the `pattern` and `replacement` arguments.
-```
+***See the help for `str_replace()` to find out how it works. Remember that the first argument is passed in from the pipeline, so you just need to define the `pattern` and `replacement` arguments.***
 
 1.  Click on one of art piece titles in your browser and take note of the url of the webpage it takes you to. Think about how that url compares to what we scraped above? How is it different? Using `str_replace()`, fix the URLs. You'll note something special happening in the `pattern` to replace. We want to replace the `.`, but we have it as `\\.`. This is because the period `.` is a special character and so we need to escape it first with backslashes, `\\`s.
 
@@ -339,16 +333,13 @@ map_dfr(urls, scrape_page)
 
 8.  Finally write out the data frame you constructed into the `data` folder so that you can use it in the analysis section.
 
-::: {.marker}
-Aim to make it to this point during the workshop.
-:::
 
 ✅ ⬆️ If you haven't done so recently, c*ommit and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
 ## Analysis
 
 ::: {.box}
-Work in `lab-08.Rmd` for the rest of the lab.
+Work in `lab-08.Rmd` for the rest of the lab. RMD - you are saving the script file and moving to another file. 
 :::
 
 Now that we have a tidy dataset that we can analyze, let's do that!
@@ -366,9 +357,7 @@ Luckily, there's a function that does just this: `separate()`!
 
 And once we have completed separating the single `title` column into `title` and `date`, we need to do further clean-up in the `date` column to get rid of extraneous `)`s with `str_remove()`, capture year information, and save the data as a numeric variable.
 
-```{marginfigure}
-**Hint:** Remember escaping special characters from yesterday's lecture? You'll need to use that trick again.
-```
+***Hint: Remember escaping special characters from yesterday's lecture? You'll need to use that trick again.***
 
 9.  Fill in the blanks in to implement the data wrangling we described above. Note that this will result in some warnings when you run the code, and that's OK! Read the warnings, and explain what they mean, and why we are ok with leaving them in given that our objective is to just capture `year` where it's convenient to do so.
 10. Print out a summary of the data frame using the `skim()` function. How many pieces have artist info missing? How many have year info missing?
@@ -384,9 +373,7 @@ And once we have completed separating the single `title` column into `title` and
 
 13. Who is the most commonly featured artist in the collection? Do you know them? Any guess as to why the university has so many pieces from them?
 
-```{marginfigure}
-**Hint:** `str_subset()` can be helful here. You should consider how you might capture titles where the word appears as "child" and "Child".
-```
+***Hint: `str_subset()` can be helful here. You should consider how you might capture titles where the word appears as "child" and "Child".***
 
 14. Final question! How many art pieces have the word "child" in their title? Try to figure it out, and ask for help if you're stuck.
 

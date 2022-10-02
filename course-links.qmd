@@ -11,6 +11,7 @@ title: "Useful links"
 ## Other Useful Links
 -   [RStudio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/)
 -   [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)
+-   [R Date Examples](https://www.r-bloggers.com/2013/08/date-formats-in-r/)
 
 ## Data Links
 -   [TidyTuesday](https://github.com/rfordatascience/tidytuesday)

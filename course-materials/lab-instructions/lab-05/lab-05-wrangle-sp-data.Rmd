@@ -55,7 +55,7 @@ You can also find this information [here](https://rstudio-education.github.io/ds
 
 1.  Filter the Denny's dataframe for Alaska (AK) and save the result as `dn_ak`. How many Denny's locations are there in Alaska?
 
-```{r}
+```{r,include = F, eval = F}
 dn_ak <- dennys %>%
   filter(state == "AK")
 nrow(dn_ak)
@@ -63,7 +63,7 @@ nrow(dn_ak)
 
 2.  Filter the La Quinta dataframe for Alaska (AK) and save the result as `lq_ak`. How many La Quinta locations are there in Alaska?
 
-```{r}
+```{r,include = F, eval = F}
 lq_ak <- laquinta %>%
   filter(state == "AK")
 nrow(lq_ak)
@@ -114,7 +114,7 @@ These are called **mutating joins**.
     Where there are not matching values, returns NA for the one missing.
 
 And the other two join functions only keep cases from the left-hand data frame, and are called **filtering joins**.
-We'll learn about these another time but you can find out more about the join functions in the help files for any one of them, e.g. `?full_join`.
+You can find out more about the join functions in the help files for any one of them, e.g. `?full_join`.
 
 In practice we mostly use mutating joins.
 In this case we want to keep all rows and columns from both `dn_ak` and `lq_ak` data frames.
@@ -122,14 +122,12 @@ So we will use a `full_join`.
 
 ![Full join of Denny's and La Quinta locations in AK](img/dennys-laquinta-sketches/dennys-laquinta-sketches.004.png){height="300px" width="300px"}
 
-Let's join the data on Denny's and La Quinta locations in Alaska, and take a look at what it looks like:
-
-```{r}
+```{r,eval=F,include=F}
 dn_lq_ak <- full_join(dn_ak, lq_ak, by = "state")
 dn_lq_ak
 ```
 
-4.  How many observations are in the joined `dn_lq_ak` data frame? What are the names of the variables in this data frame.
+4.  Join the data on Denny's and La Quinta locations in Alaska, and take a look at what it looks like. How many observations are in the joined `dn_lq_ak` data frame? What are the names of the variables in this data frame.
 
 `.x` in the variable names means the variable comes from the `x` data frame (the first argument in the `full_join` call, i.e. `dn_ak`), and `.y` means the variable comes from the `y` data frame.
 These varibles are renamed to include `.x` and `.y` because the two data frames have the same variables and it's not possible to have two variables in a data frame with the exact same name.
@@ -174,7 +172,7 @@ This function takes five arguments:
 7.  Calculate the minimum distance between a Denny's and La Quinta for each Denny's location.
     To do so we group by Denny's locations and calculate a new variable that stores the information for the minimum distance.
 
-```{r eval = FALSE}
+```{r, eval = FALSE,include = F}
 dn_lq_ak_mindist <- dn_lq_ak %>%
   group_by(address.x) %>%
   summarise(closest = min(distance))
@@ -184,13 +182,11 @@ dn_lq_ak_mindist <- dn_lq_ak %>%
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
-9.  Repeat the same analysis for North Carolina: (i) filter Denny's and La Quinta Data Frames for NC, (ii) join these data frames to get a completelist of all possible pairings, (iii) calculate the distances between all possible pairings of Denny's and La Quinta in NC, (iv) find the minimum distance between each Denny's and La Quinta location, (v) visualize and describe the distribution of these shortest distances using appropriate summary statistics.
+9.  Repeat the same analysis for North Carolina: (i) filter Denny's and La Quinta Data Frames for NC, (ii) join these data frames to get a complete list of all possible pairings, (iii) calculate the distances between all possible pairings of Denny's and La Quinta in NC, (iv) find the minimum distance between each Denny's and La Quinta location, (v) visualize and describe the distribution of these shortest distances using appropriate summary statistics.
 
-10. Repeat the same analysis for Texas.
+10. Repeat the same analysis for a state of your choosing, different than the ones we covered so far.
 
-11. Repeat the same analysis for a state of your choosing, different than the ones we covered so far.
-
-12. Among the states you examined, where is Mitch Hedberg's joke most likely to hold true?
+11. Among the states you examined, where is Mitch Hedberg's joke most likely to hold true?
     Explain your reasoning.
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
