@@ -125,10 +125,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 09 - Conveying the right message through visualisation">
-<meta property="og:description" content="In this lab our goal is to reconstruct and improve a data visualisation on COVID and mask wearing.">
+<meta property="og:description" content="In this lab our goal is to reconstruct and improve a data visualization on COVID and mask wearing.">
 <meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2 ">
 <meta name="twitter:title" content="DSC 223 - Fall 2022 - Block 2 - Lab 09 - Conveying the right message through visualisation">
-<meta name="twitter:description" content="In this lab our goal is to reconstruct and improve a data visualisation on COVID and mask wearing.">
+<meta name="twitter:description" content="In this lab our goal is to reconstruct and improve a data visualization on COVID and mask wearing.">
 <meta name="twitter:image" content="https://dsc223-fb2-2022.github.io/website/images/twitter-card.png">
 <meta name="twitter:creator" content="@stats_tgeorge">
 <meta name="twitter:image-height" content="1200">
@@ -327,24 +327,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>In this lab our goal is to reconstruct and improve a data visualisation on COVID and mask wearing.</p>
+<p>In this lab our goal is to reconstruct and improve a data visualization on COVID and mask wearing.</p>
 <section id="learning-goals" class="level1">
 <h1>Learning goals</h1>
 <ul>
-<li>Critiquing visualisations that misrepresent data</li>
-<li>Improving data visualisations to better convey the right message</li>
+<li>Critiquing visualizations that misrepresent data</li>
+<li>Improving data visualizations to better convey the right message</li>
 </ul>
 </section>
 <section id="getting-started" class="level1">
 <h1>Getting started</h1>
-<p>Go to the course GitHub organization and locate your homework repo, clone it in RStudio and open the R Markdown document. Knit the document to make sure it compiles without errors.</p>
+<p>Go to the course GitHub organization and locate your lab repo, clone it in RStudio and open the R Markdown document. Knit the document to make sure it compiles without errors.</p>
 <section id="warm-up" class="level2">
 <h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
 <p>Let’s warm up with some simple exercises. Update the YAML of your R Markdown file with your information, knit, commit, and push your changes. Make sure to commit with a meaningful commit message. Then, go to your repo on GitHub and confirm that your changes are visible in your Rmd <strong>and</strong> md files. If anything is missing, commit and push again.</p>
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualisation. This package is already installed for you. You can load it by running the following in your Console:</p>
+<p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualization. This package is already installed for you. You can load it by running the following in your Console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -356,15 +356,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
-<p>The following visualisation was shared <a href="https://twitter.com/JonBoeckenstedt/status/1291602888376999936">on Twitter</a> as “extraordinary misleading”.</p>
+<p>The following visualization was shared <a href="https://twitter.com/JonBoeckenstedt/status/1291602888376999936">on Twitter</a> as “extraordinary misleading”.</p>
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
 <p><img src="img/masks-v-nomasks.png" class="img-fluid" width="805"></p>
 </div>
 </div>
-<p>Before you join the workshop, think about what is misleading about this visualisation and how you might go about fixing it. Take some notes and bring your notes to the workshop to share with your teammates.</p>
+<p>Before you start group discussion, take 3 minutes to think about what is misleading about this visualization and how you might go about fixing it. Take some notes and bring your notes to the lab to share with your teammates.</p>
 <ol type="1">
-<li>Create a data frame that can be used to re-construct this visualisation. You may need to guess some of the numbers, that’s ok. You should first think about how many rows and columns you’ll need and what you want to call your variables. Then, you can use the <code>tribble()</code> function for this. For example, if you wanted to construct the following data frame</li>
+<li>Create a data frame that can be used to re-construct this visualization. You may need to guess some of the numbers, that’s ok. You should first think about how many rows and columns you’ll need and what you want to call your variables. Then, you can use the <code>tribble()</code> function for this. For example, if you wanted to construct the following data frame</li>
 </ol>
 <div class="cell">
 
@@ -389,13 +389,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3/1/2020"</span>, <span class="dv">22</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>Since the exercises for this week are short it's possible not every team member will get to commit and push **during** the workshop. However each team member should review what was created, fix typos, make edits for better presentation, etc. either during or after the workshop, and before the deadline.</code></pre>
-</div>
+<p><em><strong>Since the exercises for this week are short it’s possible not every team member will get to commit and push </strong>during<strong> the lab. However each team member should review what was created, fix typos, make edits for better presentation, etc. either during or after the lab, and before the deadline.</strong></em></p>
 <ol start="2" type="1">
-<li><p>Make a visualisation that more accurately (and honestly) tells the story.</p></li>
-<li><p>What message is more clear in your visualisation than it was in the original visualisation?</p></li>
-<li><p>What, if any, useful information do these data and your visualisation tell us about mask wearing and COVID? It’ll be difficult to set aside what you already know about mask wearing, but you should try to focus only on what this visualisation tells. Feel free to also comment on whether that lines up with what you know about mask wearing.</p></li>
+<li><p>Make a visualization that more accurately (and honestly) tells the story.</p></li>
+<li><p>What message is more clear in your visualization than it was in the original visualization?</p></li>
+<li><p>What, if any, useful information do these data and your visualization tell us about mask wearing and COVID? It’ll be difficult to set aside what you already know about mask wearing, but you should try to focus only on what this visualization tells. Feel free to also comment on whether that lines up with what you know about mask wearing.</p></li>
 </ol>
 <p>🧶 ✅ ⬆️ Knit, <em>commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you’re happy with the final state of your work.</em></p>
 

@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mine Çetinkaya-Rundel Modified by Tyler George">
 
 <title>DSC 223 - Fall 2022 - Block 2 - HW 07 - Bike rentals in DC</title>
 <style>
@@ -325,6 +326,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mine Çetinkaya-Rundel<br>Modified by Tyler George </p>
+          </div>
+  </div>
     
     
   </div>
@@ -398,13 +405,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="modelling" class="level2">
 <h2 class="anchored" data-anchor-id="modelling">Modelling</h2>
 <ol start="9" type="1">
-<li><p>Fit a linear model predicting total daily bike rentals from daily temperature. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>.</p></li>
-<li><p>Fit another linear model predicting total daily bike rentals from daily feeling temperature. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>. Is temperature or feeling temperature a better predictor of bike rentals? Explain your reasoning.</p></li>
-<li><p>Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday. Record adjusted <span class="math inline">\(R^2\)</span> of the model.</p></li>
-<li><p>Write the linear models for holidays and non-holidays. Is the slope of temperature the same or different for these two models? How about the slope for feeling temperature? Why or why not?</p></li>
-<li><p>Interpret the slopes of season and feeling temperature. If the slopes are different for holidays and non-holidays, make sure to interpret both. If the variable has multiple levels, make sure you interpret all of the slope coefficients associated with it.</p></li>
-<li><p>Interpret the intercept. If the intercept is different for holidays and non-holidays, make sure to interpret both.</p></li>
-<li><p>According to this model, assuming everything else is the same, in which season does the model predict total daily bike rentals to be highest and which to be the lowest?</p></li>
+<li><p>Fit a linear model predicting total daily bike rentals from daily temperature. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>. <strong><em>Note: We should check model conditions before using a model.</em></strong></p></li>
+<li><p>Fit another linear model predicting total daily bike rentals from daily feeling temperature. Write the linear model, interpret the slope and the intercept in context of the data, and determine and interpret the <span class="math inline">\(R^2\)</span>. Is temperature or feeling temperature a better predictor of bike rentals? Explain your reasoning. <strong><em>Note: We should check model conditions before using a model.</em></strong></p></li>
+<li><p>Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed. Interpret the <span class="math inline">\(R^2\)</span> of the model. <strong><em>Note: We should check model conditions before using a model.</em></strong></p></li>
 </ol>
 <p>🧶 ✅ ⬆️ Knit, <em>commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you’re happy with the final state of your work.</em></p>
 

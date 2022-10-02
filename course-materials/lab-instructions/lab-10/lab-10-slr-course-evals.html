@@ -347,14 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="getting-started" class="level1">
 <h1>Getting started</h1>
-<p>Go to the course GitHub organization and locate your homework repo, clone it in RStudio and open the R Markdown document. Knit the document to make sure it compiles without errors.</p>
+<p>Go to the course GitHub organization and locate your lab repo, clone it in RStudio and open the R Markdown document. Knit the document to make sure it compiles without errors.</p>
 <section id="warm-up" class="level2">
 <h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
 <p>Let’s warm up with some simple exercises. Update the YAML of your R Markdown file with your information, knit, commit, and push your changes. Make sure to commit with a meaningful commit message. Then, go to your repo on GitHub and confirm that your changes are visible in your Rmd <strong>and</strong> md files. If anything is missing, commit and push again.</p>
 </section>
 <section id="packages" class="level2">
 <h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualisation, the <strong>tidymodels</strong> package for modeling and inference, and the data lives in the <strong>dsbox</strong> package. These packages are already installed for you. You can load them by running the following in your Console:</p>
+<p>We’ll use the <strong>tidyverse</strong> package for much of the data wrangling and visualization, the <strong>tidymodels</strong> package for modeling and inference, and the data lives in the <strong>dsbox</strong> package. These packages are already installed for you. You can load them by running the following in your Console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
@@ -374,9 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Visualize the distribution of <code>score</code>. Is the distribution skewed? What does that tell you about how students rate courses? Is this what you expected to see? Why, or why not? Include any summary statistics and visualizations you use in your response.</p></li>
 <li><p>Visualize and describe the relationship between <code>score</code> and <code>bty_avg</code>.</p></li>
 </ol>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>**Hint:** See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.</code></pre>
-</div>
+<p><strong><em>Hint: See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.</em></strong></p>
 <ol start="3" type="1">
 <li>Recreate the scatterplot from Exercise 2, but this time use<br>
 <code>geom_jitter()</code>? What does “jitter” mean? What was misleading about the initial scatterplot?</li>
@@ -385,9 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="linear-regression-with-a-numerical-predictor" class="level2">
 <h2 class="anchored" data-anchor-id="linear-regression-with-a-numerical-predictor">Linear regression with a numerical predictor</h2>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>Linear model is in the form $\hat{y} = b_0 + b_1 x$.</code></pre>
-</div>
+<p><strong><em>Linear model is in the form <span class="math inline">\(\hat{y} = b_0 + b_1 x\)</span>.</em></strong></p>
 <ol start="4" type="1">
 <li><p>Let’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called <code>score_bty_fit</code> to predict average professor evaluation <code>score</code> by average beauty rating (<code>bty_avg</code>). Based on the regression output, write the linear model.</p></li>
 <li><p>Recreate the scatterplot from Exercise 2, and add the regression line to this plot in orange colour, with shading for the uncertainty of the line turned off.</p></li>

@@ -410,9 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p>We hear a lot of talk these days about liberals and conservatives. I’m going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal–point 1–to extremely conservative–point 7. Where would you place yourself on this scale?</p>
 </blockquote>
-<div class="cell">
-<pre class="marginfigure cell-code"><code>**Note:** The levels of this variables are spelled inconsistently: "Extremely liberal" vs. "Extrmly conservative". Since this is the spelling that shows up in the data, you need to make sure this is how you spell the levels in your code.</code></pre>
-</div>
+<p><strong><em>Note: The levels of this variables are spelled inconsistently: “Extremely liberal” vs.&nbsp;“Extrmly conservative”. Since this is the spelling that shows up in the data, you need to make sure this is how you spell the levels in your code.</em></strong></p>
 <p>And possible responses to this question are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative. Responses that were originally Don’t know, No answer and Not applicable are already mapped to <code>NA</code>s upon data import.</p>
 <ol start="10" type="1">
 <li><p>In a new variable, recode <code>advfront</code> such that Strongly Agree and Agree are mapped to <code>"Yes"</code>, and Disagree and Strongly disagree are mapped to <code>"No"</code>. The remaining levels can be left as is. Don’t overwrite the existing <code>advfront</code>, instead pick a different, informative name for your new variable.</p></li>

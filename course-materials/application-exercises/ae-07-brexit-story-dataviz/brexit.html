@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>brexit <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/brexit.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the course video we made the following visualisation.</p>
+<p>In the notes saw the code for following visualization.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>brexit <span class="ot">&lt;-</span> brexit <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -378,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this application exercise we tell different stories with the same data.</p>
 <section id="exercise-1---free-scales" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1---free-scales">Exercise 1 - Free scales</h3>
-<p>Add <code>scales = "free_x"</code> as an argument to the <code>facet_wrap()</code> function. How does the visualisation change? How is the story this visualisation telling different than the story the original plot tells?</p>
+<p>Add <code>scales = "free_x"</code> as an argument to the <code>facet_wrap()</code> function. How does the visualization change? How is the story this visualization telling different than the story the original plot tells?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(brexit, <span class="fu">aes</span>(<span class="at">y =</span> opinion, <span class="at">fill =</span> opinion)) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
@@ -406,14 +406,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="exercise-2---comparing-proportions-across-facets" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2---comparing-proportions-across-facets">Exercise 2 - Comparing proportions across facets</h3>
-<p>First, calculate the proportion of wrong, right, and don’t know answers in each category and then plot these proportions (rather than the counts) and then improve axis labeling. How is the story this visualisation telling different than the story the original plot tells? <strong>Hint:</strong> You’ll need the <strong>scales</strong> package to improve axis labeling, which means you’ll need to load it on top of the document as well.</p>
+<p>First, calculate the proportion of wrong, right, and don’t know answers in each category and then plot these proportions (rather than the counts) and then improve axis labeling. How is the story this visualization telling different than the story the original plot tells? <strong>Hint:</strong> You’ll need the <strong>scales</strong> package to improve axis labeling, which means you’ll need to load it on top of the document as well.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-3---comparing-proportions-across-bars" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3---comparing-proportions-across-bars">Exercise 3 - Comparing proportions across bars</h3>
-<p>Recreate the same visualisation from the previous exercise, this time dodging the bars for opinion proportions for each region, rather than faceting by region and then improve the legend. How is the story this visualisation telling different than the story the previous plot tells?</p>
+<p>Recreate the same visualization from the previous exercise, this time dodging the bars for opinion proportions for each region, rather than faceting by region and then improve the legend. How is the story this visualization telling different than the story the previous plot tells?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code goes here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
