@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/20577?highlight=*:*"&gt;Gates of Paradise                 ...
- [2] &lt;a href="./record/21098?highlight=*:*"&gt;Standing Female Nude              ...
- [3] &lt;a href="./record/99973?highlight=*:*"&gt;Rosa Regolit                      ...
- [4] &lt;a href="./record/21405?highlight=*:*"&gt;Portrait of a Man                 ...
- [5] &lt;a href="./record/99345?highlight=*:*"&gt;Untitled - Men and Fishing Nets   ...
- [6] &lt;a href="./record/21813?highlight=*:*"&gt;Arizona                           ...
- [7] &lt;a href="./record/21078?highlight=*:*"&gt;Four Female Heads                 ...
- [8] &lt;a href="./record/20807?highlight=*:*"&gt;Seated Male Nude                  ...
- [9] &lt;a href="./record/53685?highlight=*:*"&gt;Espresso Saucer                   ...
-[10] &lt;a href="./record/102754?highlight=*:*"&gt;Finial                           ...</code></pre>
+ [1] &lt;a href="./record/99865?highlight=*:*"&gt;etc                               ...
+ [2] &lt;a href="./record/99329?highlight=*:*"&gt;Untitled - Figured Drawing of Nud ...
+ [3] &lt;a href="./record/20748?highlight=*:*"&gt;Seated Female Nude                ...
+ [4] &lt;a href="./record/20865?highlight=*:*"&gt;Portrait of a Seated Woman        ...
+ [5] &lt;a href="./record/21456?highlight=*:*"&gt;Racing Circuit                    ...
+ [6] &lt;a href="./record/22716?highlight=*:*"&gt;Standing Male Nude                ...
+ [7] &lt;a href="./record/20753?highlight=*:*"&gt;Still Life with Jug of Flowers, G ...
+ [8] &lt;a href="./record/21292?highlight=*:*"&gt;Portrait of a Young Woman         ...
+ [9] &lt;a href="./record/20804?highlight=*:*"&gt;Drawing of a Man's Head           ...
+[10] &lt;a href="./record/22593?highlight=*:*"&gt;Self Portrait against Window      ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -475,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Gates of Paradise                                                                            (1835)"              
- [2] "Standing Female Nude                                                                            (1969)"           
- [3] "Rosa Regolit                                                                            (2007)"                   
- [4] "Portrait of a Man                                                                            (1954)"              
- [5] "Untitled - Men and Fishing Nets                                                                            (1963)"
- [6] "Arizona                                                                            (Unknown)"                     
- [7] "Four Female Heads                                                                            (1959)"              
- [8] "Seated Male Nude                                                                            (1960)"               
- [9] "Espresso Saucer                                    "                                                              
-[10] "Finial                                                                            (2018)"                         </code></pre>
+<pre><code> [1] "etc                                                                            (2006)"                                                
+ [2] "Untitled - Figured Drawing of Nude Woman on a Couch                                                                            (1963)"
+ [3] "Seated Female Nude                                                                            (Circa 1968)"                           
+ [4] "Portrait of a Seated Woman                                                                            (1958)"                         
+ [5] "Racing Circuit                                                                            (1987-1988)"                                
+ [6] "Standing Male Nude                                                                            (1958)"                                 
+ [7] "Still Life with Jug of Flowers, Goblet and Fruit                                    "                                                 
+ [8] "Portrait of a Young Woman                                                                            (1965)"                          
+ [9] "Drawing of a Man's Head                                                                            (1955)"                            
+[10] "Self Portrait against Window                                                                            (Circa 1983)"                 </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -496,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Gates of Paradise (1835)"              
- [2] "Standing Female Nude (1969)"           
- [3] "Rosa Regolit (2007)"                   
- [4] "Portrait of a Man (1954)"              
- [5] "Untitled - Men and Fishing Nets (1963)"
- [6] "Arizona (Unknown)"                     
- [7] "Four Female Heads (1959)"              
- [8] "Seated Male Nude (1960)"               
- [9] "Espresso Saucer"                       
-[10] "Finial (2018)"                         </code></pre>
+<pre><code> [1] "etc (2006)"                                                
+ [2] "Untitled - Figured Drawing of Nude Woman on a Couch (1963)"
+ [3] "Seated Female Nude (Circa 1968)"                           
+ [4] "Portrait of a Seated Woman (1958)"                         
+ [5] "Racing Circuit (1987-1988)"                                
+ [6] "Standing Male Nude (1958)"                                 
+ [7] "Still Life with Jug of Flowers, Goblet and Fruit"          
+ [8] "Portrait of a Young Woman (1965)"                          
+ [9] "Drawing of a Man's Head (1955)"                            
+[10] "Self Portrait against Window (Circa 1983)"                 </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/20577?highlight=*:*"  "./record/21098?highlight=*:*" 
- [3] "./record/99973?highlight=*:*"  "./record/21405?highlight=*:*" 
- [5] "./record/99345?highlight=*:*"  "./record/21813?highlight=*:*" 
- [7] "./record/21078?highlight=*:*"  "./record/20807?highlight=*:*" 
- [9] "./record/53685?highlight=*:*"  "./record/102754?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/99865?highlight=*:*" "./record/99329?highlight=*:*"
+ [3] "./record/20748?highlight=*:*" "./record/20865?highlight=*:*"
+ [5] "./record/21456?highlight=*:*" "./record/22716?highlight=*:*"
+ [7] "./record/20753?highlight=*:*" "./record/21292?highlight=*:*"
+ [9] "./record/20804?highlight=*:*" "./record/22593?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
