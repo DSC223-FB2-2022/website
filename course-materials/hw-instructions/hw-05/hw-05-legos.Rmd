@@ -65,7 +65,7 @@ Note that the answers to all questions are within the context of this particular
 
 2.  What are the three most common themes of Lego sets purchased?
 
-3.  Among the most common theme of Lego sets purchased, what is the most common subtheme?
+3.  Among the most common themes of Lego sets purchased, what is the most common subtheme?
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
