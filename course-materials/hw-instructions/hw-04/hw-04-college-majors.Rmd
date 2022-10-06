@@ -103,10 +103,8 @@ Second, some of the variables are not that useful (e.g. `major_code`, `major_cat
 
 We can use the `select` function to choose which variables to display, and in which order:
 
-```{marginfigure}
-Note how easily we expanded our code with adding another step to our pipeline,
-with the pipe operator: `%>%`.
-```
+***Note how easily we expanded our code with adding another step to our pipeline,
+with the pipe operator: `%>%`.***
 
 ```{r lowest-unemp-select}
 college_recent_grads %>%
@@ -143,9 +141,7 @@ college_recent_grads %>%
   
 ## How do the distributions of median income compare across major categories?
 
-```{marginfigure}
-A percentile is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations fall. For example, the 20th percentile is the value below which 20% of the observations may be found. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Percentile)
-```
+***A percentile is a measure used in statistics indicating the value below which a given percentage of observations in a group of observations fall. For example, the 20th percentile is the value below which 20% of the observations may be found. (Source: [Wikipedia](https://en.wikipedia.org/wiki/Percentile)***
 
 There are three types of incomes reported in this data frame: `p25th`, `median`, and `p75th`.
 These correspond to the 25th, 50th, and 75th percentiles of the income distribution of sampled individuals for a given major.
