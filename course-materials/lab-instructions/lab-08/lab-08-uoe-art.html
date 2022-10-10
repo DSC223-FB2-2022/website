@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/99523?highlight=*:*"&gt;Rock R Coast, Hethleen Russell, B ...
- [2] &lt;a href="./record/99519?highlight=*:*"&gt;Untitled                          ...
- [3] &lt;a href="./record/21767?highlight=*:*"&gt;Untitled                          ...
- [4] &lt;a href="./record/20969?highlight=*:*"&gt;Standing Female Nude              ...
- [5] &lt;a href="./record/50385?highlight=*:*"&gt;Hill Fence                        ...
- [6] &lt;a href="./record/22511?highlight=*:*"&gt;Abstract Composition with Fabric  ...
- [7] &lt;a href="./record/21413?highlight=*:*"&gt;Landscape                         ...
- [8] &lt;a href="./record/21351?highlight=*:*"&gt;Portrait of a Man                 ...
- [9] &lt;a href="./record/53663?highlight=*:*"&gt;Saucer                            ...
-[10] &lt;a href="./record/99483?highlight=*:*"&gt;Untitled - City Scene at Night    ...</code></pre>
+ [1] &lt;a href="./record/53633?highlight=*:*"&gt;Saucer                            ...
+ [2] &lt;a href="./record/21968?highlight=*:*"&gt;Mountains, Arran                  ...
+ [3] &lt;a href="./record/99425?highlight=*:*"&gt;Untitled - Drawing in Profile of  ...
+ [4] &lt;a href="./record/21743?highlight=*:*"&gt;Untitled                          ...
+ [5] &lt;a href="./record/53640?highlight=*:*"&gt;Teacup                            ...
+ [6] &lt;a href="./record/20725?highlight=*:*"&gt;Riders from South Frieze of the P ...
+ [7] &lt;a href="./record/99977?highlight=*:*"&gt;Untitled                          ...
+ [8] &lt;a href="./record/21093?highlight=*:*"&gt;Portrait of a Woman               ...
+ [9] &lt;a href="./record/21068?highlight=*:*"&gt;Standing Female Nude              ...
+[10] &lt;a href="./record/21459?highlight=*:*"&gt;Architectural Drawing             ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -475,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Rock R Coast, Hethleen Russell, Bournemouth                                                                            (1966)"
- [2] "Untitled                                                                            (1960)"                                   
- [3] "Untitled                                                                            (1962)"                                   
- [4] "Standing Female Nude                                                                            (1957)"                       
- [5] "Hill Fence                                                                            (1976)"                                 
- [6] "Abstract Composition with Fabric Collage                                    "                                                 
- [7] "Landscape                                                                            (Circa 1953)"                            
- [8] "Portrait of a Man                                                                            (Circa 1952)"                    
- [9] "Saucer                                    "                                                                                   
-[10] "Untitled - City Scene at Night                                                                            (1964-1965)"        </code></pre>
+<pre><code> [1] "Saucer                                    "                                                                                        
+ [2] "Mountains, Arran                                                                            (Unknown)"                             
+ [3] "Untitled - Drawing in Profile of a Sitting Woman                                                                            (1980)"
+ [4] "Untitled                                                                            (Mar 1949)"                                    
+ [5] "Teacup                                    "                                                                                        
+ [6] "Riders from South Frieze of the Parthenon                                                                            (1836-1837)"  
+ [7] "Untitled                                                                            (2007)"                                        
+ [8] "Portrait of a Woman                                                                            (1969)"                             
+ [9] "Standing Female Nude                                                                            (1951)"                            
+[10] "Architectural Drawing                                    "                                                                         </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -496,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Rock R Coast, Hethleen Russell, Bournemouth (1966)"
- [2] "Untitled (1960)"                                   
- [3] "Untitled (1962)"                                   
- [4] "Standing Female Nude (1957)"                       
- [5] "Hill Fence (1976)"                                 
- [6] "Abstract Composition with Fabric Collage"          
- [7] "Landscape (Circa 1953)"                            
- [8] "Portrait of a Man (Circa 1952)"                    
- [9] "Saucer"                                            
-[10] "Untitled - City Scene at Night (1964-1965)"        </code></pre>
+<pre><code> [1] "Saucer"                                                 
+ [2] "Mountains, Arran (Unknown)"                             
+ [3] "Untitled - Drawing in Profile of a Sitting Woman (1980)"
+ [4] "Untitled (Mar 1949)"                                    
+ [5] "Teacup"                                                 
+ [6] "Riders from South Frieze of the Parthenon (1836-1837)"  
+ [7] "Untitled (2007)"                                        
+ [8] "Portrait of a Woman (1969)"                             
+ [9] "Standing Female Nude (1951)"                            
+[10] "Architectural Drawing"                                  </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/99523?highlight=*:*" "./record/99519?highlight=*:*"
- [3] "./record/21767?highlight=*:*" "./record/20969?highlight=*:*"
- [5] "./record/50385?highlight=*:*" "./record/22511?highlight=*:*"
- [7] "./record/21413?highlight=*:*" "./record/21351?highlight=*:*"
- [9] "./record/53663?highlight=*:*" "./record/99483?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/53633?highlight=*:*" "./record/21968?highlight=*:*"
+ [3] "./record/99425?highlight=*:*" "./record/21743?highlight=*:*"
+ [5] "./record/53640?highlight=*:*" "./record/20725?highlight=*:*"
+ [7] "./record/99977?highlight=*:*" "./record/21093?highlight=*:*"
+ [9] "./record/21068?highlight=*:*" "./record/21459?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
