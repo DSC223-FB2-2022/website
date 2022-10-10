@@ -28,7 +28,7 @@ covid_speeches <- read_rds("data/covid-speeches-scot.rds") %>%
   print(n = 15)
 ```
 
-[www.gov.scot/collections/first-ministers-speeches](https://www.gov.scot/collections/first-ministers-speeche)
+[www.gov.scot/collections/first-ministers-speeches](https://www.gov.scot/collections/first-ministers-speeches)
 
 ## First Minister's Speaches
 
@@ -542,7 +542,7 @@ scrape_page <- function(x){
 
 
 
-***What is going on here?***
+## What is going on here?
 
 ```{r}
 add_2 <- function(x){

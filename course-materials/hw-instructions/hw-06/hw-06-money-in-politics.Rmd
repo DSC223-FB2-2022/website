@@ -83,7 +83,7 @@ library(robotstxt)
 paths_allowed("https://www.opensecrets.org")
 ```
 
-Our goal is to scrape data for contributions in all election years Open Secrets has data for.
+Our goal is to scrape data (from <https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022>) for contributions in all election years Open Secrets has data for.
 Since that means repeating a task many times, let's first write a function that works on the first page.
 Confirm it works on a few others.
 Then iterate it over pages for all years.
@@ -160,7 +160,7 @@ The following exercises walk you through how to make these fixes to the data.
 
 ***Note: The figure you create might look slightly different than this one if the data on the website has been updated recently.***
 
-4.  Recreate the following visualisation. Once you have made the plot, write a brief interpretation of what the graph reveals. Note that these are only UK contributions. You will need to make use of functions from the **scales** package for axis labels as well as from **ggplot2**.
+5.  Recreate the following visualisation. Once you have made the plot, write a brief interpretation of what the graph reveals. Note that these are only UK contributions. You will need to make use of functions from the **scales** package for axis labels as well as from **ggplot2**.
 
 ```{r eval = TRUE, echo = FALSE, message = FALSE, fig.fullwidth = TRUE, fig.asp = 0.5}
 pac_all <- read_csv("data/pac-all.csv")
