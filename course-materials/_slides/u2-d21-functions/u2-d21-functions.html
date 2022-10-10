@@ -1,883 +1,643 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Functions</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="datasciencebox.org" />
-    <script src="libs/header-attrs/header-attrs.js"></script>
-    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
-    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
-    <link href="libs/panelset/panelset.css" rel="stylesheet" />
-    <script src="libs/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="../xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="../slides.css" type="text/css" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
-
-.title[
-# Functions
-]
-.subtitle[
-## <br><br> Data Science in a Box
-]
-.author[
-### <a href="https://datasciencebox.org/">datasciencebox.org</a>
-]
-
----
-
-
-
-
-
-layout: true
-  
-&lt;div class="my-footer"&gt;
-&lt;span&gt;
-&lt;a href="https://datasciencebox.org" target="_blank"&gt;datasciencebox.org&lt;/a&gt;
-&lt;/span&gt;
-&lt;/div&gt; 
-
----
-
-
-
-class: middle
-
-# First Minister's COVID speeches
-
----
-
-## 🏁 Start with
-
-&lt;img src="img/fm-speeches.png" width="75%" style="display: block; margin: auto;" /&gt;
-
----
-
-## End with 🛑
-
-
-```
-## # A tibble: 218 x 6
-##    title                   date       locat~1 abstr~2 text  url  
-##    &lt;chr&gt;                   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
-##  1 Coronavirus (COVID-19)~ 2021-04-20 St And~ Statem~ "Goo~ http~
-##  2 Coronavirus (COVID-19)~ 2021-04-13 St And~ Statem~ "Tha~ http~
-##  3 Coronavirus (COVID-19)~ 2021-04-06 St And~ Statem~ "Goo~ http~
-##  4 Coronavirus (COVID-19)~ 2021-03-30 St And~ Statem~ "Tha~ http~
-##  5 Coronavirus (COVID-19)~ 2021-03-24 Scotti~ Statem~ "Tha~ http~
-##  6 Coronavirus (Covid-19)~ 2021-03-23 The Sc~ Statem~ "Pre~ http~
-##  7 Coronavirus (COVID-19)~ 2021-03-18 Scotti~ Statem~ "Tha~ http~
-##  8 Coronavirus (COVID-19)~ 2021-03-17 St And~ Statem~ "\nG~ http~
-##  9 Coronavirus (COVID-19)~ 2021-03-16 Scotti~ Statem~ "Pre~ http~
-## 10 Coronavirus (COVID-19)~ 2021-03-15 St And~ Statem~ "\nG~ http~
-## 11 Coronavirus (COVID-19)~ 2021-03-11 Scotti~ Statem~ "I c~ http~
-## 12 Coronavirus (COVID-19)~ 2021-03-09 Scotti~ Statem~ "Pre~ http~
-## 13 Coronavirus (COVID-19)~ 2021-03-05 Scotti~ Parlia~ "Hel~ http~
-## 14 Coronavirus (COVID-19)~ 2021-03-04 Scotti~ Parlia~ "I w~ http~
-## 15 Coronavirus (COVID-19)~ 2021-03-02 Scotti~ Statem~ "Pre~ http~
-## # ... with 203 more rows, and abbreviated variable names
-## #   1: location, 2: abstract
-```
-
-
----
-
-#### .center[
-[www.gov.scot/collections/first-ministers-speeches](https://www.gov.scot/collections/first-ministers-speeches/)
-]
-
-&lt;img src="img/fm-speeches-annotated.png" width="75%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="img/fm-speech-oct-26-annotated.png" width="65%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Plan
-
-1. Scrape `title`, `date`, `location`, `abstract`, and `text` from a few COVID-19 speech pages to develop the code
-
-2. Write a function that scrapes `title`, `date`, `location`, `abstract`, and `text` from COVID-19 speech pages
-
-3. Scrape the `url`s of COVID-19 speeches from the main page
-
-4. Use this function to scrape from each individual COVID-19 speech from these `url`s and create a data frame with the columns `title`, `date`, `location`, `abstract`, `text`, and `url`
-
----
-
-class: middle
-
-# Scrape data from a few COVID-19 speech pages
-
----
-
-## Read page for 26 Oct speech
-
-
-```r
-url &lt;- "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-26-october/"
-speech_page &lt;- read_html(url)
-```
-
-
-
-.pull-left[
-
-```r
-speech_page
-```
-
-```
-## {html_document}
-## &lt;html dir="ltr" lang="en"&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html ...
-## [2] &lt;body class="fontawesome site-header__container"&gt;\r\n\r\n\ ...
-```
-]
-.pull-right[
-&lt;img src="img/fm-speech-oct-26.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Extract title
-
-.pull-left-wide[
-&lt;br&gt;&lt;br&gt;
-
-```r
-title &lt;- speech_page %&gt;%
-    html_node(".article-header__title") %&gt;%
-    html_text()
-
-title
-```
-
-```
-## [1] "Coronavirus (COVID-19) update: First Minister's speech 26 October"
-```
-]
-.pull-right-narrow[
-&lt;img src="img/title.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Extract date
-
-.pull-left-wide[
-
-```r
-library(lubridate)
-
-speech_page %&gt;%
-    html_node(".content-data__list:nth-child(1) strong") %&gt;%
-    html_text() 
-```
-
-```
-## [1] "26 Oct 2020"
-```
-
-```r
-date &lt;- speech_page %&gt;%
-    html_node(".content-data__list:nth-child(1) strong") %&gt;%
-    html_text() %&gt;%
-    dmy()
-date
-```
-
-```
-## [1] "2020-10-26"
-```
-]
-.pull-right-narrow[
-&lt;img src="img/date.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Extract location
-
-.pull-left-wide[
-
-```r
-location &lt;- speech_page %&gt;%
-    html_node(".content-data__list+ .content-data__list strong") %&gt;%
-    html_text()
-
-location
-```
-
-```
-## [1] "St Andrew's House, Edinburgh"
-```
-]
-.pull-right-narrow[
-&lt;img src="img/location.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Extract abstract
-
-.pull-left-wide[
-
-```r
-abstract &lt;- speech_page %&gt;%
-    html_node(".leader--first-para p") %&gt;%
-    html_text()
-
-abstract
-```
-
-```
-## [1] "Statement given by First Minister Nicola Sturgeon at a media briefing in St Andrew's House on Monday 26 October 2020."
-```
-]
-.pull-right-narrow[
-&lt;img src="img/abstract.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Extract text
-
-.pull-left-wide[
-
-```r
-text &lt;- speech_page %&gt;% 
-    html_nodes("#preamble p") %&gt;%
-    html_text() %&gt;%
-    list()
-
-text
-```
-
-```
-## [[1]]
-##  [1] "\r\nGood afternoon, and thanks for joining us. I want to start with the usual daily report on the COVID statistics."                                                                                                                                                                                                                                                                                                                
-##  [2] "The total number of positive cases reported yesterday was 1,122."                                                                                                                                                                                                                                                                                                                                                                   
-##  [3] "This represents 7.1% of the total number of tests carried out. 428 of the new cases were in Greater Glasgow and Clyde, 274 in Lanarkshire, 105 in Lothian and 97 in Ayrshire and Arran. "                                                                                                                                                                                                                                           
-##  [4] "The remaining cases were spread across the mainland health board regions. "                                                                                                                                                                                                                                                                                                                                                         
-##  [5] "The total number of confirmed cases is now 57,874."                                                                                                                                                                                                                                                                                                                                                                                 
-##  [6] "I can also confirm that 1,152 people are in hospital – that is an increase of 36 from yesterday"                                                                                                                                                                                                                                                                                                                                    
-##  [7] "90 people are in intensive care, which is four more than yesterday."                                                                                                                                                                                                                                                                                                                                                                
-##  [8] "And I regret to say that in the last 24 hours, one further death has been registered of a patient who first tested positive over the previous 28 days.  It is important though to remember that registration offices tend not to be open as normal over the weekend so the Sunday and Monday figures are often lower."                                                                                                              
-##  [9] "We also reported 11 deaths on Saturday, and one yesterday.  So since the last briefing on Friday, 13 additional deaths have been registered. That takes the total number of deaths, under this measurement, to 2,701."                                                                                                                                                                                                              
-## [10] "That reminds us again of how dangerous this virus can be and I want to send my condolences to everyone who has lost someone."                                                                                                                                                                                                                                                                                                       
-...
-```
-]
-.pull-right-narrow[
-&lt;img src="img/text.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Put it all in a data frame
-
-.pull-left[
-
-```r
-oct_26_speech &lt;- tibble(
-  title    = title,
-  date     = date,
-  location = location,
-  abstract = abstract,
-  text     = text,
-  url      = url
-)
-
-oct_26_speech
-```
-
-```
-## # A tibble: 1 x 6
-##   title                    date       locat~1 abstr~2 text  url  
-##   &lt;chr&gt;                    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;lis&gt; &lt;chr&gt;
-## 1 Coronavirus (COVID-19) ~ 2020-10-26 St And~ Statem~ &lt;chr&gt; http~
-## # ... with abbreviated variable names 1: location, 2: abstract
-```
-]
-.pull-right[
-&lt;img src="img/fm-speech-oct-26.png" width="75%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Read page for 23 Oct speech
-
-
-```r
-url &lt;- "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-23-october/"
-speech_page &lt;- read_html(url)
-```
-
-
-
-
-```r
-speech_page
-```
-
-```
-## {html_document}
-## &lt;html dir="ltr" lang="en"&gt;
-## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html ...
-## [2] &lt;body class="fontawesome site-header__container"&gt;\r\n\r\n\ ...
-```
-
----
-
-## Extract components of 23 Oct speech
-
-
-```r
-title &lt;- speech_page %&gt;%
-  html_node(".article-header__title") %&gt;%
-  html_text()
-
-date &lt;- speech_page %&gt;%
-  html_node(".content-data__list:nth-child(1) strong") %&gt;%
-  html_text() %&gt;%
-  dmy()
-
-location &lt;- speech_page %&gt;%
-  html_node(".content-data__list+ .content-data__list strong") %&gt;%
-  html_text()
-
-abstract &lt;- speech_page %&gt;%
-  html_node(".leader--first-para p") %&gt;%
-  html_text()
-
-text &lt;- speech_page %&gt;%
-  html_nodes("#preamble p") %&gt;%
-  html_text() %&gt;%
-  list()
-```
-
----
-
-## Put it all in a data frame
-
-.pull-left[
-
-```r
-oct_23_speech &lt;- tibble(
-  title    = title,
-  date     = date,
-  location = location,
-  abstract = abstract,
-  text     = text,
-  url      = url
-)
-
-oct_23_speech
-```
-
-```
-## # A tibble: 1 x 6
-##   title                    date       locat~1 abstr~2 text  url  
-##   &lt;chr&gt;                    &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;lis&gt; &lt;chr&gt;
-## 1 Coronavirus (COVID-19) ~ 2020-10-23 St And~ Statem~ &lt;chr&gt; http~
-## # ... with abbreviated variable names 1: location, 2: abstract
-```
-]
-.pull-right[
-&lt;img src="img/fm-speech-oct-23.png" width="75%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-class: middle
-
-.larger[
-.light-blue[
-.hand[
-this is getting tiring...
-]
-]
-]
-
----
-
-class: middle
-
-# Functions
-
----
-
-## When should you write a function?
-
---
-.pull-left[
-&lt;img src="img/funct-all-things.png" width="100%" style="display: block; margin: auto;" /&gt;
-]
---
-.pull-right[
-When you’ve copied and pasted a block of code more than twice.
-]
-
----
-
-.question[
-How many times will we need to copy and paste the code we developed to scrape data on all of First Minister's COVID-19 speeches?
-]
-
-&lt;img src="img/search-result.png" width="55%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Why functions?
-
-- Automate common tasks in a more powerful and general way than copy-and-pasting:
-  - Give your function an evocative name that makes your code easier to understand
-  - As requirements change, only need to update code in one place, instead of many
-  - Eliminate chance of making incidental mistakes when you copy and paste (i.e. updating a variable name in one place, but not in another)
-
---
-
-- Down the line: Improve your reach as a data scientist by writing functions (and packages!) that others use
-
----
-
-.question[
-Assuming that the page structure is the same for each speech page, how many "things" do you need to know for each speech page to scrape the data we want from it? 
-]
-
-.pull-left-wide[
-.xsmall[
-
-```r
-url_23_oct &lt;- "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-23-october/"
-speech_page &lt;- read_html(url_23_oct)
-
-title &lt;- speech_page %&gt;%
-  html_node(".article-header__title") %&gt;%
-  html_text()
-
-date &lt;- speech_page %&gt;%
-  html_node(".content-data__list:nth-child(1) strong") %&gt;%
-  html_text() %&gt;%
-  dmy()
-
-location &lt;- speech_page %&gt;%
-  html_node(".content-data__list+ .content-data__list strong") %&gt;%
-  html_text()
-
-abstract &lt;- speech_page %&gt;%
-  html_node(".leader--first-para p") %&gt;%
-  html_text()
-
-text &lt;- speech_page %&gt;%
-  html_nodes("#preamble p") %&gt;%
-  html_text() %&gt;%
-  list()
-
-tibble(
-  title = title, date = date, location = location,
-  abstract = abstract, text = text, url= url
-)
-```
-]
-]
-
----
-
-## Turn your code into a function
-
-- Pick a short but informative **name**, preferably a verb.
-
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-
-```r
-scrape_speech &lt;- 
-```
-
----
-
-## Turn your code into a function
-
-- Pick a short but evocative **name**, preferably a verb.
-- List inputs, or **arguments**, to the function inside `function`. If we had more the call would look like `function(x, y, z)`.
-
-&lt;br&gt;
-
-
-```r
-scrape_speech &lt;- function(x){
-  
-  
-  
-  
-  
-}  
-```
-
----
-
-## Turn your code into a function
-
-- Pick a short but informative **name**, preferably a verb.
-- List inputs, or **arguments**, to the function inside `function`. If we had more the call would look like `function(x, y, z)`.
-- Place the **code** you have developed in body of the function, a `{` block that immediately follows `function(...)`.
-
-
-```r
-scrape_speech &lt;- function(url){
-
-  # code we developed earlier to scrape info 
-  # on single art piece goes here
-  
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="datasciencebox.org">
+
+<title>Functions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-```
-
----
-
-## `scrape_speech()`
-
-.pull-left-wide[
-.small[
-
-```r
-scrape_speech &lt;- function(url) {
-  
-  speech_page &lt;- read_html(url)
-
-  title &lt;- speech_page %&gt;%
-    html_node(".article-header__title") %&gt;%
-    html_text()
-
-  date &lt;- speech_page %&gt;%
-    html_node(".content-data__list:nth-child(1) strong") %&gt;%
-    html_text() %&gt;%
-    dmy()
-
-  location &lt;- speech_page %&gt;%
-    html_node(".content-data__list+ .content-data__list strong") %&gt;%
-    html_text()
-
-  abstract &lt;- speech_page %&gt;%
-    html_node(".leader--first-para p") %&gt;%
-    html_text()
-
-  text &lt;- speech_page %&gt;%
-    html_nodes("#preamble p") %&gt;%
-    html_text() %&gt;%
-    list()
-
-  tibble(
-    title = title, date = date, location = location,
-    abstract = abstract, text = text, url = url
-  )
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-```
-]
-]
-
----
-
-## Function in action
-
-
-```r
-scrape_speech(url = "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-26-october/") %&gt;%
-  glimpse()
-```
-
-```
-## Rows: 1
-## Columns: 6
-## $ title    &lt;chr&gt; NA
-## $ date     &lt;date&gt; NA
-## $ location &lt;chr&gt; NA
-## $ abstract &lt;chr&gt; NA
-## $ text     &lt;list&gt; &lt;"\nGood afternoon, and thanks for joining us.~
-## $ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~
-```
-
----
-
-## Function in action
-
-
-```r
-scrape_speech(url = "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-23-october/") %&gt;%
-  glimpse()
-```
-
-```
-## Rows: 1
-## Columns: 6
-## $ title    &lt;chr&gt; NA
-## $ date     &lt;date&gt; NA
-## $ location &lt;chr&gt; NA
-## $ abstract &lt;chr&gt; NA
-## $ text     &lt;list&gt; &lt;"\nGood afternoon everyone. Thank you very mu~
-## $ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~
-```
-
----
-
-## Function in action
-
-
-```r
-scrape_speech(url = "https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-22-october/") %&gt;%
-  glimpse()
-```
-
-```
-## Rows: 1
-## Columns: 6
-## $ title    &lt;chr&gt; NA
-## $ date     &lt;date&gt; NA
-## $ location &lt;chr&gt; NA
-## $ abstract &lt;chr&gt; NA
-## $ text     &lt;list&gt; &lt;"\nGood afternoon, let me start as usual with~
-## $ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~
-```
-
----
-
-class: middle
-
-# Writing functions
-
----
-
-## What goes in / what comes out?
-
-.pull-left-wide[
-- They take input(s) defined in the function definition
-
-
-```r
-function([inputs separated by commas]){
-  # what to do with those inputs
-}
-```
-
-- By default they return the last value computed in the function
-
-
-```r
-scrape_page &lt;- function(x){
-  # do bunch of stuff with the input...
-  
-  # return a tibble
-  tibble(...)
-}
-```
-
-- You can define more outputs to be returned in a list as well as nice print methods (but we won't go there for now...)
-]
-
----
-
-.question[
-What is going on here?
-]
-
-
-```r
-add_2 &lt;- function(x){
-  x + 2
-  1000
-}
-```
-
-
-```r
-add_2(3)
-```
-
-```
-## [1] 1000
-```
-
-```r
-add_2(10)
-```
-
-```
-## [1] 1000
-```
-
----
-
-## Naming functions
-
-&gt; "There are only two hard things in Computer Science: cache invalidation and naming things." - Phil Karlton
-
----
-
-## Naming functions
-
-- Names should be short but clearly evoke what the function does
-
---
-- Names should be verbs, not nouns
-
---
-- Multi-word names should be separated by underscores (`snake_case` as opposed to `camelCase`)
-
---
-- A family of functions should be named similarly (`scrape_page()`, `scrape_speech()` OR `str_remove()`, `str_replace()` etc.)
-
---
-- Avoid overwriting existing (especially widely used) functions
-
-
-```r
-# JUST DON'T
-mean &lt;- function(x){ 
-  x * 3 
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-```
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"ratio": "16:9",
-"highlightLines": true,
-"highlightStyle": "solarized-light",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+
+<script src="u2-d21-functions_files/libs/clipboard/clipboard.min.js"></script>
+<script src="u2-d21-functions_files/libs/quarto-html/quarto.js"></script>
+<script src="u2-d21-functions_files/libs/quarto-html/popper.min.js"></script>
+<script src="u2-d21-functions_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="u2-d21-functions_files/libs/quarto-html/anchor.min.js"></script>
+<link href="u2-d21-functions_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="u2-d21-functions_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="u2-d21-functions_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="u2-d21-functions_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="u2-d21-functions_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="u2-d21-functions_files/libs/font-awesome/css/all.css" rel="stylesheet">
+<link href="u2-d21-functions_files/libs/font-awesome/css/v4-shims.css" rel="stylesheet">
+<link href="u2-d21-functions_files/libs/panelset/panelset.css" rel="stylesheet">
+<script src="u2-d21-functions_files/libs/panelset/panelset.js"></script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Functions</h1>
+<p class="subtitle lead"><br><br> Data Science in a Box</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><a href="https://datasciencebox.org/">datasciencebox.org</a> </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<p>layout: true</p>
+<div class="my-footer">
+<p><span> <a href="https://datasciencebox.org" target="_blank">datasciencebox.org</a> </span></p>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>class: middle</p>
+<section id="first-ministers-covid-speeches" class="level1">
+<h1>First Minister’s COVID speeches</h1>
+<hr>
+<section id="start-with" class="level2">
+<h2 class="anchored" data-anchor-id="start-with">🏁 Start with</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fm-speeches.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="end-with" class="level2">
+<h2 class="anchored" data-anchor-id="end-with">End with 🛑</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 218 x 6
+   title                   date       locat~1 abstr~2 text  url  
+   &lt;chr&gt;                   &lt;date&gt;     &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;
+ 1 Coronavirus (COVID-19)~ 2021-04-20 St And~ Statem~ "Goo~ http~
+ 2 Coronavirus (COVID-19)~ 2021-04-13 St And~ Statem~ "Tha~ http~
+ 3 Coronavirus (COVID-19)~ 2021-04-06 St And~ Statem~ "Goo~ http~
+ 4 Coronavirus (COVID-19)~ 2021-03-30 St And~ Statem~ "Tha~ http~
+ 5 Coronavirus (COVID-19)~ 2021-03-24 Scotti~ Statem~ "Tha~ http~
+ 6 Coronavirus (Covid-19)~ 2021-03-23 The Sc~ Statem~ "Pre~ http~
+ 7 Coronavirus (COVID-19)~ 2021-03-18 Scotti~ Statem~ "Tha~ http~
+ 8 Coronavirus (COVID-19)~ 2021-03-17 St And~ Statem~ "\nG~ http~
+ 9 Coronavirus (COVID-19)~ 2021-03-16 Scotti~ Statem~ "Pre~ http~
+10 Coronavirus (COVID-19)~ 2021-03-15 St And~ Statem~ "\nG~ http~
+11 Coronavirus (COVID-19)~ 2021-03-11 Scotti~ Statem~ "I c~ http~
+12 Coronavirus (COVID-19)~ 2021-03-09 Scotti~ Statem~ "Pre~ http~
+13 Coronavirus (COVID-19)~ 2021-03-05 Scotti~ Parlia~ "Hel~ http~
+14 Coronavirus (COVID-19)~ 2021-03-04 Scotti~ Parlia~ "I w~ http~
+15 Coronavirus (COVID-19)~ 2021-03-02 Scotti~ Statem~ "Pre~ http~
+# ... with 203 more rows, and abbreviated variable names
+#   1: location, 2: abstract</code></pre>
+</div>
+</div>
+<hr>
+<section id="center" class="level4">
+<h4 class="anchored" data-anchor-id="center">.center[]</h4>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fm-speeches-annotated.png" class="img-fluid figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fm-speech-oct-26-annotated.png" class="img-fluid figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan">Plan</h2>
+<ol type="1">
+<li><p>Scrape <code>title</code>, <code>date</code>, <code>location</code>, <code>abstract</code>, and <code>text</code> from a few COVID-19 speech pages to develop the code</p></li>
+<li><p>Write a function that scrapes <code>title</code>, <code>date</code>, <code>location</code>, <code>abstract</code>, and <code>text</code> from COVID-19 speech pages</p></li>
+<li><p>Scrape the <code>url</code>s of COVID-19 speeches from the main page</p></li>
+<li><p>Use this function to scrape from each individual COVID-19 speech from these <code>url</code>s and create a data frame with the columns <code>title</code>, <code>date</code>, <code>location</code>, <code>abstract</code>, <code>text</code>, and <code>url</code></p></li>
+</ol>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="scrape-data-from-a-few-covid-19-speech-pages" class="level1">
+<h1>Scrape data from a few COVID-19 speech pages</h1>
+<hr>
+<section id="read-page-for-26-oct-speech" class="level2">
+<h2 class="anchored" data-anchor-id="read-page-for-26-oct-speech">Read page for 26 Oct speech</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-26-october/"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>speech_page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="extract-title" class="level2">
+<h2 class="anchored" data-anchor-id="extract-title">Extract title</h2>
+<p>.pull-left-wide[ <br><br>] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="extract-date" class="level2">
+<h2 class="anchored" data-anchor-id="extract-date">Extract date</h2>
+<p>.pull-left-wide[] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="extract-location" class="level2">
+<h2 class="anchored" data-anchor-id="extract-location">Extract location</h2>
+<p>.pull-left-wide[] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="extract-abstract" class="level2">
+<h2 class="anchored" data-anchor-id="extract-abstract">Extract abstract</h2>
+<p>.pull-left-wide[] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="extract-text" class="level2">
+<h2 class="anchored" data-anchor-id="extract-text">Extract text</h2>
+<p>.pull-left-wide[] .pull-right-narrow[]</p>
+<hr>
+</section>
+<section id="put-it-all-in-a-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="put-it-all-in-a-data-frame">Put it all in a data frame</h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+</section>
+<section id="read-page-for-23-oct-speech" class="level2">
+<h2 class="anchored" data-anchor-id="read-page-for-23-oct-speech">Read page for 23 Oct speech</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-23-october/"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>speech_page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>speech_page</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{html_document}
+&lt;html dir="ltr" lang="en"&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html ...
+[2] &lt;body class="fontawesome site-header__container"&gt;\r\n\r\n\ ...</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="extract-components-of-23-oct-speech" class="level2">
+<h2 class="anchored" data-anchor-id="extract-components-of-23-oct-speech">Extract components of 23 Oct speech</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> speech_page <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">".article-header__title"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>date <span class="ot">&lt;-</span> speech_page <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">".content-data__list:nth-child(1) strong"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dmy</span>()</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>location <span class="ot">&lt;-</span> speech_page <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">".content-data__list+ .content-data__list strong"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>abstract <span class="ot">&lt;-</span> speech_page <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">".leader--first-para p"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> speech_page <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_nodes</span>(<span class="st">"#preamble p"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="put-it-all-in-a-data-frame-1" class="level2">
+<h2 class="anchored" data-anchor-id="put-it-all-in-a-data-frame-1">Put it all in a data frame</h2>
+<p>.pull-left[] .pull-right[]</p>
+<hr>
+<p>class: middle</p>
+<p>.larger[ .light-blue[ .hand[ this is getting tiring…]]]</p>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="functions" class="level1">
+<h1>Functions</h1>
+<hr>
+<section id="when-should-you-write-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="when-should-you-write-a-function">When should you write a function?</h2>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">.pull-left[]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">.pull-right[ When you’ve copied and pasted a block of code more than twice.]</td>
+</tr>
+</tbody>
+</table>
+<p>.question[ How many times will we need to copy and paste the code we developed to scrape data on all of First Minister’s COVID-19 speeches?]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/search-result.png" class="img-fluid figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="why-functions" class="level2">
+<h2 class="anchored" data-anchor-id="why-functions">Why functions?</h2>
+<ul>
+<li>Automate common tasks in a more powerful and general way than copy-and-pasting:
+<ul>
+<li>Give your function an evocative name that makes your code easier to understand</li>
+<li>As requirements change, only need to update code in one place, instead of many</li>
+<li>Eliminate chance of making incidental mistakes when you copy and paste (i.e.&nbsp;updating a variable name in one place, but not in another)</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Down the line: Improve your reach as a data scientist by writing functions (and packages!) that others use</li>
+</ul>
+<hr>
+<p>.question[ Assuming that the page structure is the same for each speech page, how many “things” do you need to know for each speech page to scrape the data we want from it? ]</p>
+<p>.pull-left-wide[ .xsmall[]]</p>
+<hr>
+</section>
+<section id="turn-your-code-into-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="turn-your-code-into-a-function">Turn your code into a function</h2>
+<ul>
+<li>Pick a short but informative <strong>name</strong>, preferably a verb.</li>
+</ul>
+<p><br> <br> <br> <br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scrape_speech <span class="ot">&lt;-</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="turn-your-code-into-a-function-1" class="level2">
+<h2 class="anchored" data-anchor-id="turn-your-code-into-a-function-1">Turn your code into a function</h2>
+<ul>
+<li>Pick a short but evocative <strong>name</strong>, preferably a verb.</li>
+<li>List inputs, or <strong>arguments</strong>, to the function inside <code>function</code>. If we had more the call would look like <code>function(x, y, z)</code>.</li>
+</ul>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scrape_speech <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="turn-your-code-into-a-function-2" class="level2">
+<h2 class="anchored" data-anchor-id="turn-your-code-into-a-function-2">Turn your code into a function</h2>
+<ul>
+<li>Pick a short but informative <strong>name</strong>, preferably a verb.</li>
+<li>List inputs, or <strong>arguments</strong>, to the function inside <code>function</code>. If we had more the call would look like <code>function(x, y, z)</code>.</li>
+<li>Place the <strong>code</strong> you have developed in body of the function, a <code>{</code> block that immediately follows <code>function(...)</code>.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scrape_speech <span class="ot">&lt;-</span> <span class="cf">function</span>(url){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code we developed earlier to scrape info </span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># on single art piece goes here</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="scrape_speech" class="level2">
+<h2 class="anchored" data-anchor-id="scrape_speech"><code>scrape_speech()</code></h2>
+<p>.pull-left-wide[ .small[]]</p>
+<hr>
+</section>
+<section id="function-in-action" class="level2">
+<h2 class="anchored" data-anchor-id="function-in-action">Function in action</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scrape_speech</span>(<span class="at">url =</span> <span class="st">"https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-26-october/"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 6
+$ title    &lt;chr&gt; NA
+$ date     &lt;date&gt; NA
+$ location &lt;chr&gt; NA
+$ abstract &lt;chr&gt; NA
+$ text     &lt;list&gt; &lt;"\nGood afternoon, and thanks for joining us.~
+$ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="function-in-action-1" class="level2">
+<h2 class="anchored" data-anchor-id="function-in-action-1">Function in action</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scrape_speech</span>(<span class="at">url =</span> <span class="st">"https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-23-october/"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 6
+$ title    &lt;chr&gt; NA
+$ date     &lt;date&gt; NA
+$ location &lt;chr&gt; NA
+$ abstract &lt;chr&gt; NA
+$ text     &lt;list&gt; &lt;"\nGood afternoon everyone. Thank you very mu~
+$ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="function-in-action-2" class="level2">
+<h2 class="anchored" data-anchor-id="function-in-action-2">Function in action</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scrape_speech</span>(<span class="at">url =</span> <span class="st">"https://www.gov.scot/publications/coronavirus-covid-19-update-first-ministers-speech-22-october/"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 6
+$ title    &lt;chr&gt; NA
+$ date     &lt;date&gt; NA
+$ location &lt;chr&gt; NA
+$ abstract &lt;chr&gt; NA
+$ text     &lt;list&gt; &lt;"\nGood afternoon, let me start as usual with~
+$ url      &lt;chr&gt; "https://www.gov.scot/publications/coronaviru~</code></pre>
+</div>
+</div>
+<hr>
+<p>class: middle</p>
+</section>
+</section>
+<section id="writing-functions" class="level1">
+<h1>Writing functions</h1>
+<hr>
+<section id="what-goes-in-what-comes-out" class="level2">
+<h2 class="anchored" data-anchor-id="what-goes-in-what-comes-out">What goes in / what comes out?</h2>
+<p>.pull-left-wide[ - They take input(s) defined in the function definition]</p>
+<hr>
+<p>.question[ What is going on here?]</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>add_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1000</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_2</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_2</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="naming-functions" class="level2">
+<h2 class="anchored" data-anchor-id="naming-functions">Naming functions</h2>
+<blockquote class="blockquote">
+<p>“There are only two hard things in Computer Science: cache invalidation and naming things.” - Phil Karlton</p>
+</blockquote>
+<hr>
+</section>
+<section id="naming-functions-1" class="level2">
+<h2 class="anchored" data-anchor-id="naming-functions-1">Naming functions</h2>
+<ul>
+<li>Names should be short but clearly evoke what the function does</li>
+</ul>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>- Names should be verbs, not nouns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>- Multi-word names should be separated by underscores (<code>snake_case</code> as opposed to <code>camelCase</code>)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A family of functions should be named similarly (<code>scrape_page()</code>, <code>scrape_speech()</code> OR <code>str_remove()</code>, <code>str_replace()</code> etc.)</li>
+</ul>
+<p>– - Avoid overwriting existing (especially widely used) functions</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># JUST DON'T</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x){ </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">*</span> <span class="dv">3</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
   };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
-    i++;
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
   }
-};
-slideshow._releaseMath(document);
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+</body></html>

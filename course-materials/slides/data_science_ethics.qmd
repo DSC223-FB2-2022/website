@@ -1,0 +1,14 @@
+---
+title: "Data Science Ethics"
+subtitle: "<br><br> Data Science in a Box"
+author: "[datasciencebox.org](https://datasciencebox.org/)"
+date: "October 10th, 2022"
+format: revealjs
+---
+
+{{< include _u3-d01-misrepresentation.qmd >}}
+
+{{< include _u3-d02-privacy.qmd >}}
+
+{{< include _u3-d03-algorithmic-bias.qmd >}}
+
