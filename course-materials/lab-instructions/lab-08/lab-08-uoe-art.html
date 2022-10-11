@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/50606?highlight=*:*"&gt;Unknown                           ...
- [2] &lt;a href="./record/21073?highlight=*:*"&gt;Portrait of Man in a Cap          ...
- [3] &lt;a href="./record/21324?highlight=*:*"&gt;Reclining Male Nude               ...
- [4] &lt;a href="./record/53583?highlight=*:*"&gt;Of Christine Clay                 ...
- [5] &lt;a href="./record/21158?highlight=*:*"&gt;Seated Male Nude                  ...
- [6] &lt;a href="./record/22479?highlight=*:*"&gt;Untitled                          ...
- [7] &lt;a href="./record/21380?highlight=*:*"&gt;Woman Seated                      ...
- [8] &lt;a href="./record/22599?highlight=*:*"&gt;Abstract Composition in Yellow    ...
- [9] &lt;a href="./record/99368?highlight=*:*"&gt;Untitled - Snowy Landscape        ...
-[10] &lt;a href="./record/20944?highlight=*:*"&gt;Seated Female Nude                ...</code></pre>
+ [1] &lt;a href="./record/21073?highlight=*:*"&gt;Portrait of Man in a Cap          ...
+ [2] &lt;a href="./record/21324?highlight=*:*"&gt;Reclining Male Nude               ...
+ [3] &lt;a href="./record/21158?highlight=*:*"&gt;Seated Male Nude                  ...
+ [4] &lt;a href="./record/22479?highlight=*:*"&gt;Untitled                          ...
+ [5] &lt;a href="./record/21380?highlight=*:*"&gt;Woman Seated                      ...
+ [6] &lt;a href="./record/99368?highlight=*:*"&gt;Untitled - Snowy Landscape        ...
+ [7] &lt;a href="./record/20944?highlight=*:*"&gt;Seated Female Nude                ...
+ [8] &lt;a href="./record/53670?highlight=*:*"&gt;Plate                             ...
+ [9] &lt;a href="./record/22018?highlight=*:*"&gt;Untitled                          ...
+[10] &lt;a href="./record/20763?highlight=*:*"&gt;Life Drawing (Male Nude Reclining ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -475,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Unknown                                                                            (1960)"                             
- [2] "Portrait of Man in a Cap                                                                            (1950)"            
- [3] "Reclining Male Nude                                                                            (1949)"                 
- [4] "Of Christine Clay                                                                            (1964)"                   
- [5] "Seated Male Nude                                                                            (1958)"                    
- [6] "Untitled                                                                            (12 Jun 2014)"                     
- [7] "Woman Seated                                                                            (1954)"                        
- [8] "Abstract Composition in Yellow                                                                            (Circa 1972)"
- [9] "Untitled - Snowy Landscape                                                                            (1962)"          
-[10] "Seated Female Nude                                                                            (1953)"                  </code></pre>
+<pre><code> [1] "Portrait of Man in a Cap                                                                            (1950)"                   
+ [2] "Reclining Male Nude                                                                            (1949)"                        
+ [3] "Seated Male Nude                                                                            (1958)"                           
+ [4] "Untitled                                                                            (12 Jun 2014)"                            
+ [5] "Woman Seated                                                                            (1954)"                               
+ [6] "Untitled - Snowy Landscape                                                                            (1962)"                 
+ [7] "Seated Female Nude                                                                            (1953)"                         
+ [8] "Plate                                    "                                                                                    
+ [9] "Untitled                                                                            (1963)"                                   
+[10] "Life Drawing (Male Nude Reclining on Front)                                                                            (1962)"</code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -496,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Unknown (1960)"                             
- [2] "Portrait of Man in a Cap (1950)"            
- [3] "Reclining Male Nude (1949)"                 
- [4] "Of Christine Clay (1964)"                   
- [5] "Seated Male Nude (1958)"                    
- [6] "Untitled (12 Jun 2014)"                     
- [7] "Woman Seated (1954)"                        
- [8] "Abstract Composition in Yellow (Circa 1972)"
- [9] "Untitled - Snowy Landscape (1962)"          
-[10] "Seated Female Nude (1953)"                  </code></pre>
+<pre><code> [1] "Portrait of Man in a Cap (1950)"                   
+ [2] "Reclining Male Nude (1949)"                        
+ [3] "Seated Male Nude (1958)"                           
+ [4] "Untitled (12 Jun 2014)"                            
+ [5] "Woman Seated (1954)"                               
+ [6] "Untitled - Snowy Landscape (1962)"                 
+ [7] "Seated Female Nude (1953)"                         
+ [8] "Plate"                                             
+ [9] "Untitled (1963)"                                   
+[10] "Life Drawing (Male Nude Reclining on Front) (1962)"</code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/50606?highlight=*:*" "./record/21073?highlight=*:*"
- [3] "./record/21324?highlight=*:*" "./record/53583?highlight=*:*"
- [5] "./record/21158?highlight=*:*" "./record/22479?highlight=*:*"
- [7] "./record/21380?highlight=*:*" "./record/22599?highlight=*:*"
- [9] "./record/99368?highlight=*:*" "./record/20944?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/21073?highlight=*:*" "./record/21324?highlight=*:*"
+ [3] "./record/21158?highlight=*:*" "./record/22479?highlight=*:*"
+ [5] "./record/21380?highlight=*:*" "./record/99368?highlight=*:*"
+ [7] "./record/20944?highlight=*:*" "./record/53670?highlight=*:*"
+ [9] "./record/22018?highlight=*:*" "./record/20763?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
