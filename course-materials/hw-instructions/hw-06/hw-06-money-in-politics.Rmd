@@ -83,7 +83,7 @@ library(robotstxt)
 paths_allowed("https://www.opensecrets.org")
 ```
 
-Our goal is to scrape data (from <https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022>) for contributions in all election years Open Secrets has data for.
+Our goal is to scrape data from <https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022>) on contributions in all election years Open Secrets has data for.
 Since that means repeating a task many times, let's first write a function that works on the first page.
 Confirm it works on a few others.
 Then iterate it over pages for all years.

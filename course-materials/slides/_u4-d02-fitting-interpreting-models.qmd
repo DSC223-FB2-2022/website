@@ -1,23 +1,10 @@
 ---
-title: "Fitting and interpreting models"
-subtitle: "<br><br> Data Science in a Box"
-author: "[datasciencebox.org](https://datasciencebox.org/)"
-output:
-  xaringan::moon_reader:
-    css: ["../xaringan-themer.css", "../slides.css"]
-    lib_dir: libs
-    anchor_sections: FALSE
-    nature:
-      ratio: "16:9"
-      highlightLines: true
-      highlightStyle: solarized-light
-      countIncrementalSlides: false
+format: revealjs
 ---
 
-```{r child = "../setup.Rmd"}
-```
+# Fitting and Interpreting Models
 
-```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+```{r echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidymodels)
 library(ggtext)
@@ -27,13 +14,10 @@ set.seed(1234)
 options(dplyr.print_min = 10, dplyr.print_max = 6)
 ```
 
-class: middle
 
-# Models with numerical explanatory variables
+## Models with numerical explanatory variables
 
----
-
-## Data: Paris Paintings
+## Data: Paris Paintings {.smaller}
 
 ```{r message=FALSE}
 pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
@@ -42,13 +26,12 @@ pp <- read_csv("data/paris-paintings.csv", na = c("n/a", "", "NA"))
 - Number of observations: `r nrow(pp)`
 - Number of variables: `r ncol(pp)`
 
----
 
 ## Goal: Predict height from width
 
 $$\widehat{height}_{i} = \beta_0 + \beta_1 \times width_{i}$$
 
-```{r height-width-plot, echo=FALSE, warning=FALSE}
+```{r height-width-plot_2, echo=FALSE, warning=FALSE}
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "#8E2C90") + 
@@ -61,21 +44,17 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ```
 
 
----
+## {data-menu-title="tidymodels"}
 
 ```{r out.width="98%", echo=FALSE}
-knitr::include_graphics("img/tidymodels.png")
+knitr::include_graphics("images/tidymodels.png")
 ```
-
----
 
 ## Step 1: Specify model
 
 ```{r}
 linear_reg()
 ```
-
----
 
 ## Step 2: Set model fitting *engine*
 
@@ -84,7 +63,6 @@ linear_reg() %>%
   set_engine("lm") # lm: linear model
 ```
 
----
 
 ## Step 3: Fit model & estimate parameters
 
@@ -96,20 +74,14 @@ linear_reg() %>%
   fit(Height_in ~ Width_in, data = pp)
 ```
 
----
-
-## A closer look at model output
+## A closer look at model output {.bigger}
 
 ```{r ref.label="fit-model", echo=FALSE}
 ```
 
-.large[
 $$\widehat{height}_{i} = 3.6214 + 0.7808 \times width_{i}$$
-]
 
----
-
-## A tidy look at model output
+## A tidy look at model output {.bigger}
 
 ```{r}
 linear_reg() %>%
@@ -118,72 +90,45 @@ linear_reg() %>%
   tidy()
 ```
 
-.large[
 $$\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}$$
-]
 
----
+## Slope and intercept {.bigger}
 
-## Slope and intercept
-
-.large[
 $$\widehat{height}_{i} = 3.62 + 0.781 \times width_{i}$$
-]
-
---
-
 - **Slope:** For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.
 
---
 - **Intercept:** Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)
-
----
 
 ## Correlation does not imply causation
 
 Remember this when interpreting model coefficients
 
 ```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("img/cell_phones.png")
+knitr::include_graphics("images/cell_phones.png")
 ```
 
-.footnote[
+::: aside
 Source: XKCD, [Cell phones](https://xkcd.com/925/)
-]
-
----
-
-class: middle
+:::
 
 # Parameter estimation
 
----
-
-## Linear model with a single predictor
+## Linear model with a single predictor {.smaller}    
 
 - We're interested in $\beta_0$ (population parameter for the intercept) and $\beta_1$ (population parameter for the slope) in the following model:
 
 $$\hat{y}_{i} = \beta_0 + \beta_1~x_{i}$$
-
---
 - Tough luck, you can't have them...
 
---
 - So we use sample statistics to estimate them:
 
 $$\hat{y}_{i} = b_0 + b_1~x_{i}$$
 
----
-
 ## Least squares regression
 
 - The regression line minimizes the sum of squared residuals.
-
---
 - If $e_i = y_i - \hat{y}_i$, then, the regression line minimizes 
 $\sum_{i = 1}^n e_i^2$.
-
----
 
 ## Visualizing residuals
 
@@ -210,8 +155,6 @@ p <- ggplot(data = ht_wt_fit_aug,
 p
 ```
 
----
-
 ## Visualizing residuals (cont.)
 
 ```{r vis-res-2, echo=FALSE, out.width="70%"}
@@ -222,8 +165,6 @@ p <- p +
 p
 ```
 
----
-
 ## Visualizing residuals (cont.)
 
 ```{r vis-res-3, echo = FALSE, out.width="70%"}
@@ -232,48 +173,41 @@ p +
   labs(subtitle = "Data + least squares line + residuals")
 ```
 
----
-
-## Properties of least squares regression
+## Properties of least squares regression {.smaller}
 
 - The regression line goes through the center of mass point, the coordinates corresponding to average $x$ and average $y$, $(\bar{x}, \bar{y})$:  
 
 $$\bar{y} = b_0 + b_1 \bar{x} ~ \rightarrow ~ b_0 = \bar{y} - b_1 \bar{x}$$
 
---
 - The slope has the same sign as the correlation coefficient: $b_1 = r \frac{s_y}{s_x}$
 
---
 - The sum of the residuals is zero: $\sum_{i = 1}^n e_i = 0$
 
---
 - The residuals and $x$ values are uncorrelated
 
----
 
-class: middle
+## Models with categorical explanatory variables
 
-# Models with categorical explanatory variables
+## Categorical predictor with 2 levels {.smaller}
 
----
+:::: {.columns}
 
-## Categorical predictor with 2 levels
+::: {.column width="25%"}
 
-.pull-left-narrow[
-.small[
 ```{r echo=FALSE}
 pp %>% 
   select(name, Height_in, landsALL) %>%
   print(n = 20)
 ```
-]
-]
-.pull-right-wide[
+:::
+
+::: {.column width="75%"}
+
 - `landsALL = 0`: No landscape features
 - `landsALL = 1`: Some landscape features
-]
+:::
 
----
+::::
 
 ## Height & landscape features
 
@@ -284,8 +218,6 @@ linear_reg() %>%
   tidy()
 ```
 
----
-
 ## Height & landscape features
 
 $$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$
@@ -294,8 +226,6 @@ $$\widehat{Height_{in}} = 22.7 - 5.645~landsALL$$
   - Compares baseline level (`landsALL = 0`) to the other level (`landsALL = 1`)
     
 - **Intercept:** Paintings that don't have landscape features are expected, on average, to be 22.7 inches tall
-
----
 
 ## Relationship between height and school
 
@@ -306,8 +236,6 @@ linear_reg() %>%
   tidy()
 ```
 
----
-
 ## Dummy variables
 
 ```{r ref.label="ht-school", echo = FALSE}
@@ -316,12 +244,13 @@ linear_reg() %>%
 - When the categorical explanatory variable has many levels, they're encoded to **dummy variables**
 - Each coefficient describes the expected difference between heights in that particular school compared to the baseline level
 
----
 
-## Categorical predictor with 3+ levels
+## Categorical predictor with 3+ levels {.smaller}
 
-.pull-left-wide[
-```{r echo=FALSE}
+::: {.panel-tabset}
+
+### Comparison
+```{r echo=F}
 dummy_df <- pp %>% 
   select(school_pntg) %>% 
   group_by(school_pntg) %>% 
@@ -345,22 +274,19 @@ dummy_df %>%
   column_spec(6, width = "10em", background = spec_color(dummy_df$S[1:7], end = 0.8), color = "white") %>%
   column_spec(7, width = "10em", background = spec_color(dummy_df$X[1:7], end = 0.8), color = "white")
 ```
-]
-.pull-right-narrow[
-.small[
+
+### R Output
+
 ```{r echo=FALSE}
 pp %>% 
   select(name, Height_in, school_pntg) %>%
   print(n = 20)
 ```
-]
-]
+:::
 
----
+## {data-menu-title="Height vs school" .smaller}
+### Relationship between height and school 
 
-## Relationship between height and school
-
-.small[
 ```{r ref.label="ht-school", echo=FALSE}
 ```
 
@@ -371,4 +297,4 @@ pp %>%
 - **Italian school (I)** paintings are expected, on average, to be **10.3 inches taller** than *Austrian school* paintings.
 - **Spanish school (S)** paintings are expected, on average, to be **30.4 inches taller** than *Austrian school* paintings.
 - Paintings whose school is **unknown (X)** are expected, on average, to be **2.87 inches taller** than *Austrian school* paintings.
-]
+

@@ -2,25 +2,25 @@
 
 library(tidyverse)
 library(rvest)
-library(here) 
+library(here)
 
 # function: scrape_pac ---------------------------------------------------------
 
 scrape_pac <- function(url) {
-  
+
   # read the page
   page <- ___(___)
-  
+
   # exract the table
   pac <-  page %>%
-    # select node .DataTable (identified using the SelectorGadget)
-    html_node(".DataTable") %>%
+    # select node .DataTable-Partial (identified using the SelectorGadget)
+    html_node(".DataTable-Partial") %>%
     # parse table at node td into a data frame
     #   table has a head and empty cells should be filled with NAs
     html_table("td", header = ___, fill = ___) %>%
     # convert to a tibble
     as_tibble()
-  
+
   # rename variables
   pac <- pac %>%
     # rename columns
@@ -31,20 +31,20 @@ scrape_pac <- function(url) {
       dems = ___,
       repubs = ___
     )
-  
+
   # fix name
   pac <- pac %>%
     # remove extraneous whitespaces from the name column
     mutate(name = ___)
-  
+
   # add year
   pac <- pac %>%
     # extract last 4 characters of the URL and save as year
     mutate(year = ___)
-  
+
   # return data frame
   pac
-  
+
 }
 
 # test function ----------------------------------------------------------------

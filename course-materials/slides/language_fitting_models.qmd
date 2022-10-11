@@ -1,0 +1,14 @@
+---
+title: "The Language and Fitting of Models"
+subtitle: "<br><br> Data Science in a Box"
+author: "[datasciencebox.org](https://datasciencebox.org/)"
+date: "October 11th, 2022"
+format: revealjs
+execute:
+  echo: true
+---
+
+{{< include _u4-d01-language-of-models.qmd >}}
+
+{{< include _u4-d02-fitting-interpreting-models.qmd >}}
+

@@ -201,9 +201,6 @@ knitr::include_graphics("images/abstract.png")
 
 ::::
 
-
-
-
 ## Extract text
 
 :::: {.columns}
