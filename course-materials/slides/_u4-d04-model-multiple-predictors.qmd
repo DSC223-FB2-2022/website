@@ -1,23 +1,10 @@
 ---
-title: "Models with multiple predictors"
-subtitle: "<br><br> Data Science in a Box"
-author: "[datasciencebox.org](https://datasciencebox.org/)"
-output:
-  xaringan::moon_reader:
-    css: ["../xaringan-themer.css", "../slides.css"]
-    lib_dir: libs
-    anchor_sections: FALSE
-    nature:
-      ratio: "16:9"
-      highlightLines: true
-      highlightStyle: solarized-light
-      countIncrementalSlides: false
+format: revealjs
 ---
 
-```{r child = "../setup.Rmd"}
-```
+# Models with multiple predictors
 
-```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+```{r echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidymodels)
 library(patchwork)
@@ -25,80 +12,86 @@ set.seed(1234)
 options(dplyr.print_min = 10, dplyr.print_max = 6)
 ```
 
-class: middle
-
-# The linear model with multiple predictors
-
----
-
-## Data: Book weight and volume
+## Data: Book weight and volume {.smaller}
 
 The `allbacks` data frame gives measurements on the volume and weight of 15 books, some of which are paperback and some of which are hardback
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="50%"}
+
 - Volume - cubic centimetres
 - Area - square centimetres
 - Weight - grams
-]
-.pull-right[
-.small[
+:::
+
+::: {.column width="50%"}
+
 ```{r echo=FALSE}
 library(DAAG)
 as_tibble(allbacks) %>%
   print(n = 15)
 ```
-]
-]
+:::
 
-.footnote[
-.small[
+::::
+
+
+::: aside
 These books are from the bookshelf of J. H. Maindonald at Australian National University.
-]
-]
+:::
 
----
+## Book weight vs. volume {.smaller}    
 
-## Book weight vs. volume
+:::: {.columns}
 
-.pull-left[
+::: {.column width="60%"}
+
 ```{r}
 linear_reg() %>%
   set_engine("lm") %>%
   fit(weight ~ volume, data = allbacks) %>%
   tidy()
 ```
-]
-.pull-right[
+:::
+
+::: {.column width="40%"}
+
 ```{r out.width = "75%", echo = FALSE, fig.align = "right"}
 ggplot(allbacks, aes(x = volume, y = weight)) +
   geom_point(alpha = 0.7, size = 3)
 ```
-]
+:::
 
----
+::::
 
-## Book weight vs. volume and cover
+## Book weight vs. volume and cover {.smaller}
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="60%"}
+
 ```{r}
 linear_reg() %>%
   set_engine("lm") %>%
   fit(weight ~ volume + cover, data = allbacks) %>%
   tidy()
 ```
-]
-.pull-right[
+:::
+
+::: {.column width="40%"}
+
 ```{r out.width = "75%", echo = FALSE, fig.align = "right"}
 ggplot(allbacks, aes(x = volume, y = weight, color = cover, shape = cover)) +
   geom_point(alpha = 0.7, size = 3) +
   theme(legend.position = "bottom") +
   scale_color_manual(values = c("#E48957", "#071381"))
 ```
-]
+:::
 
----
+::::
 
-## Interpretation of estimates
+## Interpretation of estimates {.incremental .smaller}
 
 ```{r echo=FALSE}
 linear_reg() %>%
@@ -106,33 +99,21 @@ linear_reg() %>%
   fit(weight ~ volume + cover, data = allbacks) %>%
   tidy()
 ```
-
---
 - **Slope - volume:** *All else held constant*, for each additional cubic centimetre books are larger in volume, we would expect the weight to be higher, on average, by 0.718 grams.
-
---
 - **Slope - cover:** *All else held constant*, paperback books are weigh, on average, by 184 grams less than hardcover books.
-
---
 - **Intercept:** Hardcover books with 0 volume are expected to weigh 198 grams, on average. (Doesn't make sense in context.)
 
+## Main vs. interaction effects 
 
----
-
-## Main vs. interaction effects
-
-.question[
-Suppose we want to predict weight of books from their volume and cover type 
-(hardback vs. paperback). Do you think a model with main effects or 
-interaction effects is more appropriate? Explain your reasoning.
+***Suppose we want to predict weight of books from their volume and cover type (hardback vs. paperback). Do you think a model with main effects or interaction effects is more appropriate? Explain your reasoning.***
 
 **Hint:** Main effects would mean rate at which weight changes as volume 
 increases would be the same for hardback and paperback books and interaction 
 effects would mean the rate at which weight changes as volume 
 increases would be different for hardback and paperback books.
-]
 
----
+
+##  {data-menu-title="Interaction Graph Example"}
 
 ```{r book-main-int, echo=FALSE, out.width="65%", fig.asp = 0.8}
 book_main_fit <- linear_reg() %>%
@@ -168,36 +149,31 @@ p_main /
   plot_layout(guides = "collect")
 ```
 
----
-
-## In pursuit of Occam's razor
+## In pursuit of Occam's razor {.incremental}
 
 - Occam's Razor states that among competing hypotheses that predict equally well, the one with the fewest assumptions should be selected.
-
---
 - Model selection follows this principle.
-
---
 - We only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.
-
---
 - In other words, we prefer the simplest best model, i.e. **parsimonious** model.
 
----
+##  {data-menu-title="Occam's razor" .smaller}
 
-.pull-left[
+:::: {.columns}
+
+::: {.column width="75%"}
+
 ```{r ref.label = "book-main-int", echo = FALSE, out.width="100%", fig.asp = 0.8}
 ```
-]
-.pull-right[
-.question[
-Visually, which of the two models is preferable under Occam's razor?
-]
-]
+:::
 
----
+::: {.column width="25%"}
 
-## R-squared
+***Visually, which of the two models is preferable under Occam's razor?***
+:::
+
+::::
+
+## R-squared {.incremental}
 
 - $R^2$ is the percentage of variability in the response variable explained by 
 the regression model.
@@ -207,13 +183,9 @@ glance(book_main_fit)$r.squared
 glance(book_int_fit)$r.squared
 ```
 
---
 - Clearly the model with interactions has a higher $R^2$.
 
---
 - However using $R^2$ for model selection in models with multiple explanatory variables is not a good idea as $R^2$ increases when **any** variable is added to the model.
-
----
 
 ## Adjusted R-squared
 
@@ -225,28 +197,31 @@ variables included in the model.
 - This makes adjusted $R^2$ a preferable metric for model selection in multiple
 regression models.
 
----
+## Comparing models {.incremental .smaller}
 
-## Comparing models
+:::: {.columns}
 
-.pull-left[
+::: {.column width="50%"}
+
 ```{r}
 glance(book_main_fit)$r.squared
 glance(book_int_fit)$r.squared
 ```
-]
-.pull-right[
+:::
+
+::: {.column width="50%"}
+
 ```{r}
 glance(book_main_fit)$adj.r.squared
 glance(book_int_fit)$adj.r.squared
 ```
-]
+:::
 
---
+::::
 
-.pull-left-wide[
-.small[
+
 - Is R-sq higher for int model?
+
 ```{r}
 glance(book_int_fit)$r.squared > glance(book_main_fit)$r.squared 
 ```
@@ -256,5 +231,5 @@ glance(book_int_fit)$r.squared > glance(book_main_fit)$r.squared
 ```{r}
 glance(book_int_fit)$adj.r.squared > glance(book_main_fit)$adj.r.squared
 ```
-]
-]
+
+

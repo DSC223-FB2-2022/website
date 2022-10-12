@@ -157,7 +157,7 @@ scrape_speech(covid_speech_urls[3])
 
 - We'll go with Option 2!
 
-## How does mapping work?
+## How does mapping work? {.incremental}
 
 Suppose we have exam 1 and exam 2 scores of 4 students stored in a list...
 
@@ -167,8 +167,6 @@ exam_scores <- list(
   exam2 <- c(85, 83, 45, 60)
 )
 ```
-
---
 
 ...and we find the mean score in each exam
 

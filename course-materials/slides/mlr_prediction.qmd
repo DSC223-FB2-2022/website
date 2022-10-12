@@ -2,11 +2,11 @@
 title: "Multiple Linear Regression, Prediction, and Overfitting"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
-date: "October 10th, 2022"
+date: "October 13th, 2022"
 format: revealjs
 ---
 
-#{{< include first_slide_deck_name >}}
+{{< include _u4-d04-model-multiple-predictors.qmd >}}
 
-#{{< include second_slide_deck_name >}}
+{{< include _u4-d07-prediction-overfitting.qmd >}}
 
