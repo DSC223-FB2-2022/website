@@ -29,7 +29,7 @@ org_pending('DSC223-FB2-2022')
 # First you need to create a repo out of just the hw/lab you want to disperse
 # Next make it a template
 
-repo_name = "hw-07-bike-rentals-dc"
+repo_name = "lab-11-mlr-course-evals"
 
 repo_set_template(paste0("DSC223-FB2-2022/",repo_name))
 
