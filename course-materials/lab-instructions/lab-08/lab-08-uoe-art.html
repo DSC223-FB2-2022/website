@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/21019?highlight=*:*"&gt;Reclining Female Nude             ...
- [2] &lt;a href="./record/20969?highlight=*:*"&gt;Standing Female Nude              ...
- [3] &lt;a href="./record/20617?highlight=*:*"&gt;Gem cabinet 3 (of 6) containing 4 ...
- [4] &lt;a href="./record/21357?highlight=*:*"&gt;Portrait of a Man                 ...
- [5] &lt;a href="./record/99951?highlight=*:*"&gt;Untitled                          ...
- [6] &lt;a href="./record/21953?highlight=*:*"&gt;Untitled                          ...
- [7] &lt;a href="./record/21661?highlight=*:*"&gt;Crazily Paved                     ...
- [8] &lt;a href="./record/22732?highlight=*:*"&gt;Still Life, Oil Paints and Pots   ...
- [9] &lt;a href="./record/20960?highlight=*:*"&gt;Drawing of a Woman                ...
-[10] &lt;a href="./record/53655?highlight=*:*"&gt;Teacup                            ...</code></pre>
+ [1] &lt;a href="./record/21324?highlight=*:*"&gt;Reclining Male Nude               ...
+ [2] &lt;a href="./record/99439?highlight=*:*"&gt;Untitled - Woman and Man          ...
+ [3] &lt;a href="./record/20944?highlight=*:*"&gt;Seated Female Nude                ...
+ [4] &lt;a href="./record/53670?highlight=*:*"&gt;Plate                             ...
+ [5] &lt;a href="./record/22599?highlight=*:*"&gt;Abstract Composition in Yellow    ...
+ [6] &lt;a href="./record/50548?highlight=*:*"&gt;Unknown                           ...
+ [7] &lt;a href="./record/21197?highlight=*:*"&gt;Portrait of a Woman               ...
+ [8] &lt;a href="./record/21881?highlight=*:*"&gt;Untitled                          ...
+ [9] &lt;a href="./record/21218?highlight=*:*"&gt;Portrait of a Woman               ...
+[10] &lt;a href="./record/22534?highlight=*:*"&gt;Tomb                              ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -475,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Reclining Female Nude                                                                            (1949-1950)"     
- [2] "Standing Female Nude                                                                            (1957)"           
- [3] "Gem cabinet 3 (of 6) containing 43 medallions                                    "                                
- [4] "Portrait of a Man                                                                            (1960)"              
- [5] "Untitled                                                                            (2002)"                       
- [6] "Untitled                                                                            (Unknown)"                    
- [7] "Crazily Paved                                                                            (Unknown)"               
- [8] "Still Life, Oil Paints and Pots                                                                            (1949)"
- [9] "Drawing of a Woman                                                                            (1958)"             
-[10] "Teacup                                    "                                                                       </code></pre>
+<pre><code> [1] "Reclining Male Nude                                                                            (1949)"                 
+ [2] "Untitled - Woman and Man                                                                            (1981)"            
+ [3] "Seated Female Nude                                                                            (1953)"                  
+ [4] "Plate                                    "                                                                             
+ [5] "Abstract Composition in Yellow                                                                            (Circa 1972)"
+ [6] "Unknown                                    "                                                                           
+ [7] "Portrait of a Woman                                                                            (1953)"                 
+ [8] "Untitled                                                                            (Unknown)"                         
+ [9] "Portrait of a Woman                                                                            (1955)"                 
+[10] "Tomb                                    "                                                                              </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -496,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Reclining Female Nude (1949-1950)"            
- [2] "Standing Female Nude (1957)"                  
- [3] "Gem cabinet 3 (of 6) containing 43 medallions"
- [4] "Portrait of a Man (1960)"                     
- [5] "Untitled (2002)"                              
- [6] "Untitled (Unknown)"                           
- [7] "Crazily Paved (Unknown)"                      
- [8] "Still Life, Oil Paints and Pots (1949)"       
- [9] "Drawing of a Woman (1958)"                    
-[10] "Teacup"                                       </code></pre>
+<pre><code> [1] "Reclining Male Nude (1949)"                 
+ [2] "Untitled - Woman and Man (1981)"            
+ [3] "Seated Female Nude (1953)"                  
+ [4] "Plate"                                      
+ [5] "Abstract Composition in Yellow (Circa 1972)"
+ [6] "Unknown"                                    
+ [7] "Portrait of a Woman (1953)"                 
+ [8] "Untitled (Unknown)"                         
+ [9] "Portrait of a Woman (1955)"                 
+[10] "Tomb"                                       </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/21019?highlight=*:*" "./record/20969?highlight=*:*"
- [3] "./record/20617?highlight=*:*" "./record/21357?highlight=*:*"
- [5] "./record/99951?highlight=*:*" "./record/21953?highlight=*:*"
- [7] "./record/21661?highlight=*:*" "./record/22732?highlight=*:*"
- [9] "./record/20960?highlight=*:*" "./record/53655?highlight=*:*"</code></pre>
+<pre><code> [1] "./record/21324?highlight=*:*" "./record/99439?highlight=*:*"
+ [3] "./record/20944?highlight=*:*" "./record/53670?highlight=*:*"
+ [5] "./record/22599?highlight=*:*" "./record/50548?highlight=*:*"
+ [7] "./record/21197?highlight=*:*" "./record/21881?highlight=*:*"
+ [9] "./record/21218?highlight=*:*" "./record/22534?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
