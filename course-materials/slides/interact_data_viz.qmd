@@ -2,11 +2,10 @@
 title: "Interactive Data Visualizations"
 subtitle: "<br><br> Data Science in a Box"
 author: "[datasciencebox.org](https://datasciencebox.org/)"
-date: "October 10th, 2022"
+date: "October 17th, 2022"
 format: revealjs
 ---
 
-#{{< include first_slide_deck_name >}}
+{{< include _u5-d03-interactive-web-app.qmd >}}
 
-#{{< include second_slide_deck_name >}}
 

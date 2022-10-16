@@ -1,0 +1,141 @@
+---
+format: revealjs
+---
+
+## Shiny {.smaller}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Shiny is an R package that makes it easy to build interactive web apps straight from R
+- You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards
+- You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions
+- Learn more at [shiny.rstudio.com](https://shiny.rstudio.com/)
+:::
+
+::: {.column width="50%"}
+
+```{r echo=FALSE, fig.align = "left"}
+knitr::include_graphics("images/shiny.png")
+```
+:::
+
+::::
+
+## High level view
+
+- Every Shiny app has a webpage that the user visits, and behind this webpage there is a computer that serves this webpage by running R
+
+- When running your app locally, the computer serving your app is your computer
+
+- When your app is deployed, the computer serving your app is a web server
+
+
+## {data-menu-title="Example"}
+
+[minecr.shinyapps.io/fm-speeches-covid19-simple](https://minecr.shinyapps.io/fm-speeches-covid19-simple/)
+
+<iframe width="1000" height="500" src="https://minecr.shinyapps.io/fm-speeches-covid19-simple/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+
+## ggiraph
+
+**ggiraph** is a tool that allows you to create dynamic ggplot graphs. This allows you to add tooltips, hover effects and JavaScript actions to the graphics. The package also allows the selection of graphical elements when used in shiny applications.
+
+Interactivity is added to ggplot geometries, legends and theme elements, via the following aesthetics:
+
+::: aside 
+<https://davidgohel.github.io/ggiraph/>
+:::
+
+## Why use ggiraph {.smaller}
+
+- You want to provide your readers with more information than the basic information available; you can display a tooltip when the user’s mouse is on a graphical element, you can also visually animate elements with the same attribute when the mouse passes over a graphical element, and finally you can link a JavaScript action to the click, such as opening a hypertext link.
+- You want to allow users of a Shiny application to select graphical elements; for example, you can make the points of a scatter plot selectable and available as a reactive value from the server part of your application. With Shiny, ggiraph allows interaction with graph elements, legends elements, titles and ggplot theme elements from the server part; each selection is available as a reactive value.
+
+
+::: aside 
+<https://davidgohel.github.io/ggiraph/>
+:::
+
+
+
+## Data: Book weight and volume {.smaller}
+
+The `allbacks` data frame gives measurements on the volume and weight of 15 books, some of which are paperback and some of which are hardback
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Volume - cubic centimetres
+- Area - square centimetres
+- Weight - grams
+:::
+
+::: {.column width="50%"}
+
+```{r echo=FALSE}
+library(DAAG)
+library(tidyverse)
+as_tibble(allbacks) %>%
+  print(n = 15)
+```
+:::
+
+::::
+
+
+::: aside
+These books are from the bookshelf of J. H. Maindonald at Australian National University.
+:::
+
+## Weight vs Volume 
+
+```{r out.width = "75%", echo = FALSE, fig.align = "right"}
+ggplot(allbacks, aes(x = volume, y = weight)) +
+  geom_point(alpha = 0.7, size = 3)
+```
+
+## Weight vs Volume Interactive-ggiraph {.smaller}
+
+::: {.panel-tabset}
+
+### Code
+
+```{r}
+library(ggiraph)
+books_girafe <- ggplot(allbacks, aes(x = volume, y = weight,
+                tooltip=paste0("(",volume,",",weight,")"))) +
+  
+  geom_point_interactive(alpha = 0.7, size = 3)
+```
+
+### girafe Graph
+```{r}
+girafe(ggobj = books_girafe,width_svg = 12)
+```
+
+:::
+
+## Plotly
+<https://plotly.com/graphing-libraries/>
+
+<https://plotly-r.com/overview.html>
+
+## Weight vs Volume Interactive-plotly {.smaller}
+
+::: {.panel-tabset}
+
+### Code
+```{r warning=F}
+library(plotly)
+books_plotly <- plot_ly(allbacks, x= ~volume, y= ~weight,height = 450)
+```
+
+### plotly Graph
+```{r}
+books_plotly 
+```
+
+:::

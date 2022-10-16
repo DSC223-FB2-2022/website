@@ -23,6 +23,70 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css" id="theme">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -313,6 +377,20 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="../../site_libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
+  <script src="../../site_libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+  <script src="../../site_libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+  <link href="../../site_libs/ggiraphjs-0.4.2/ggiraphjs.min.css" rel="stylesheet">
+  <script src="../../site_libs/ggiraphjs-0.4.2/ggiraphjs.min.js"></script>
+  <script src="../../site_libs/girafe-binding-0.8.3/girafe.js"></script>
+  <script src="../../site_libs/plotly-binding-4.10.0/plotly.js"></script>
+  <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+  <script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+  <link href="../../site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+  <script src="../../site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <meta property="og:title" content="DSC 223 - Fall 2022 - Block 2 - Interactive Data Visualizations">
 <meta property="og:description" content=" Data Science in a Box">
 <meta property="og:site-name" content="DSC 223 - Fall 2022 - Block 2 ">
@@ -333,13 +411,159 @@
   <p class="subtitle"><br><br> Data Science in a Box</p>
   <p class="author"><a href="https://datasciencebox.org/">datasciencebox.org</a></p>
   <p class="institute">Cornell College <br> DSC 223 - Fall 2022</p>
-  <p class="date">October 10th, 2022</p>
+  <p class="date">October 17th, 2022</p>
 </section>
 
-<section class="slide level2">
+<section id="shiny" class="slide level2 smaller">
+<h2>Shiny</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Shiny is an R package that makes it easy to build interactive web apps straight from R</li>
+<li>You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards</li>
+<li>You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions</li>
+<li>Learn more at <a href="https://shiny.rstudio.com/">shiny.rstudio.com</a></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/shiny.png" width="1103"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="high-level-view" class="slide level2">
+<h2>High level view</h2>
+<ul>
+<li><p>Every Shiny app has a webpage that the user visits, and behind this webpage there is a computer that serves this webpage by running R</p></li>
+<li><p>When running your app locally, the computer serving your app is your computer</p></li>
+<li><p>When your app is deployed, the computer serving your app is a web server</p></li>
+</ul>
+</section>
+<section id="section" class="slide level2" data-menu-title="Example">
+<h2></h2>
+<p><a href="https://minecr.shinyapps.io/fm-speeches-covid19-simple/">minecr.shinyapps.io/fm-speeches-covid19-simple</a></p>
+<iframe width="1000" height="500" src="https://minecr.shinyapps.io/fm-speeches-covid19-simple/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</section>
+<section id="ggiraph" class="slide level2">
+<h2>ggiraph</h2>
+<p><strong>ggiraph</strong> is a tool that allows you to create dynamic ggplot graphs. This allows you to add tooltips, hover effects and JavaScript actions to the graphics. The package also allows the selection of graphical elements when used in shiny applications.</p>
+<p>Interactivity is added to ggplot geometries, legends and theme elements, via the following aesthetics:</p>
 
-<p>#</p>
-<p>#</p>
+<aside><div>
+<p><a href="https://davidgohel.github.io/ggiraph/" class="uri">https://davidgohel.github.io/ggiraph/</a></p>
+</div></aside></section>
+<section id="why-use-ggiraph" class="slide level2 smaller">
+<h2>Why use ggiraph</h2>
+<ul>
+<li>You want to provide your readers with more information than the basic information available; you can display a tooltip when the user’s mouse is on a graphical element, you can also visually animate elements with the same attribute when the mouse passes over a graphical element, and finally you can link a JavaScript action to the click, such as opening a hypertext link.</li>
+<li>You want to allow users of a Shiny application to select graphical elements; for example, you can make the points of a scatter plot selectable and available as a reactive value from the server part of your application. With Shiny, ggiraph allows interaction with graph elements, legends elements, titles and ggplot theme elements from the server part; each selection is available as a reactive value.</li>
+</ul>
+
+<aside><div>
+<p><a href="https://davidgohel.github.io/ggiraph/" class="uri">https://davidgohel.github.io/ggiraph/</a></p>
+</div></aside></section>
+<section id="data-book-weight-and-volume" class="slide level2 smaller">
+<h2>Data: Book weight and volume</h2>
+<p>The <code>allbacks</code> data frame gives measurements on the volume and weight of 15 books, some of which are paperback and some of which are hardback</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Volume - cubic centimetres</li>
+<li>Area - square centimetres</li>
+<li>Weight - grams</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 x 4
+   volume  area weight cover
+    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;
+ 1    885   382    800 hb   
+ 2   1016   468    950 hb   
+ 3   1125   387   1050 hb   
+ 4    239   371    350 hb   
+ 5    701   371    750 hb   
+ 6    641   367    600 hb   
+ 7   1228   396   1075 hb   
+ 8    412     0    250 pb   
+ 9    953     0    700 pb   
+10    929     0    650 pb   
+11   1492     0    975 pb   
+12    419     0    350 pb   
+13   1010     0    950 pb   
+14    595     0    425 pb   
+15   1034     0    725 pb   </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>These books are from the bookshelf of J. H. Maindonald at Australian National University.</p>
+</div></aside></section>
+<section id="weight-vs-volume" class="slide level2">
+<h2>Weight vs Volume</h2>
+
+<img data-src="interact_data_viz_files/figure-revealjs/unnamed-chunk-3-1.png" style="width:75.0%" class="r-stretch quarto-figure-right"></section>
+<section id="weight-vs-volume-interactive-ggiraph" class="slide level2 smaller">
+<h2>Weight vs Volume Interactive-ggiraph</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Code</a></li><li><a href="#tabset-1-2">girafe Graph</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>books_girafe <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(allbacks, <span class="fu">aes</span>(<span class="at">x =</span> volume, <span class="at">y =</span> weight,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>                <span class="at">tooltip=</span><span class="fu">paste0</span>(<span class="st">"("</span>,volume,<span class="st">","</span>,weight,<span class="st">")"</span>))) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">geom_point_interactive</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">girafe</span>(<span class="at">ggobj =</span> books_girafe,<span class="at">width_svg =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-d97f36d504d7855967b9" style="width:960px;height:480px;" class="girafe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d97f36d504d7855967b9">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6' viewBox='0 0 864 360'>\n <defs>\n  <clipPath id='svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6_c1'>\n   <rect x='0' y='0' width='864' height='360'/>\n  <\/clipPath>\n  <clipPath id='svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6_c2'>\n   <rect x='42.93' y='5.48' width='815.59' height='323.02'/>\n  <\/clipPath>\n <\/defs>\n <g>\n  <g clip-path='url(#svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6_c1)'>\n   <rect x='0' y='0' width='864' height='360' fill='#FFFFFF' stroke='#FFFFFF' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round'/>\n   <rect x='0' y='0' width='864' height='360' fill='#FFFFFF' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='round'/>\n  <\/g>\n  <g clip-path='url(#svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6_c2)'>\n   <rect x='42.93' y='5.48' width='815.59' height='323.02' fill='#EBEBEB' stroke='none'/>\n   <polyline points='42.93,296.02 858.52,296.02' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,224.83 858.52,224.83' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,153.64 858.52,153.64' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,82.45 858.52,82.45' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,11.26 858.52,11.26' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='86.51,328.50 86.51,5.48' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='382.38,328.50 382.38,5.48' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='678.25,328.50 678.25,5.48' fill='none' stroke='#FFFFFF' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,260.43 858.52,260.43' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,189.24 858.52,189.24' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,118.05 858.52,118.05' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='42.93,46.86 858.52,46.86' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='234.45,328.50 234.45,5.48' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='530.31,328.50 530.31,5.48' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='826.18,328.50 826.18,5.48' fill='none' stroke='#FFFFFF' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <circle cx='462.26' cy='118.05' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(885,800)'/>\n   <circle cx='539.78' cy='64.66' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1016,950)'/>\n   <circle cx='604.28' cy='29.06' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1125,1050)'/>\n   <circle cx='80' cy='278.23' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(239,350)'/>\n   <circle cx='353.38' cy='135.85' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(701,750)'/>\n   <circle cx='317.88' cy='189.24' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(641,600)'/>\n   <circle cx='665.23' cy='20.16' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1228,1075)'/>\n   <circle cx='182.37' cy='313.82' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(412,250)'/>\n   <circle cx='502.5' cy='153.64' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(953,700)'/>\n   <circle cx='488.3' cy='171.44' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(929,650)'/>\n   <circle cx='821.45' cy='55.76' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1492,975)'/>\n   <circle cx='186.51' cy='278.23' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(419,350)'/>\n   <circle cx='536.23' cy='64.66' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1010,950)'/>\n   <circle cx='290.66' cy='251.53' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(595,425)'/>\n   <circle cx='550.43' cy='144.74' r='2.67pt' fill='#000000' fill-opacity='0.7' stroke='#000000' stroke-opacity='0.7' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='(1034,725)'/>\n  <\/g>\n  <g clip-path='url(#svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6_c1)'>\n   <text x='23.31' y='263.58' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>400<\/text>\n   <text x='23.31' y='192.39' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>600<\/text>\n   <text x='23.31' y='121.2' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>800<\/text>\n   <text x='18.41' y='50.01' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>1000<\/text>\n   <polyline points='40.19,260.43 42.93,260.43' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='40.19,189.24 42.93,189.24' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='40.19,118.05 42.93,118.05' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='40.19,46.86 42.93,46.86' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='234.45,331.24 234.45,328.50' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='530.31,331.24 530.31,328.50' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='826.18,331.24 826.18,328.50' fill='none' stroke='#333333' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <text x='227.1' y='339.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>500<\/text>\n   <text x='520.52' y='339.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>1000<\/text>\n   <text x='816.39' y='339.74' font-size='6.6pt' font-family='Arial' fill='#4D4D4D'>1500<\/text>\n   <text x='432.99' y='352.2' font-size='8.25pt' font-family='Arial'>volume<\/text>\n   <text transform='translate(13.36,182.89) rotate(-90.00)' font-size='8.25pt' font-family='Arial'>weight<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_54f0bfdf-4623-4fac-a7ef-7ea41e783cf6","ratio":2.4,"settings":{"tooltip":{"css":".tooltip_SVGID_ { padding:5px;background:black;color:white;border-radius:2px 2px 2px 2px;text-align:left; ; position:absolute;pointer-events:none;z-index:999;}","placement":"doc","offx":10,"offy":0,"use_cursor_pos":true,"opacity":0.9,"usefill":false,"usestroke":false,"delay":{"over":200,"out":500}},"hover":{"css":".hover_SVGID_ { fill:orange;stroke:gray; }","reactive":false},"hoverkey":{"css":".hover_key_SVGID_ { stroke:red; }","reactive":false},"hovertheme":{"css":".hover_theme_SVGID_ { fill:green; }","reactive":false},"hoverinv":{"css":""},"zoom":{"min":1,"max":1},"capture":{"css":".selected_SVGID_ { fill:red;stroke:gray; }","type":"multiple","only_shiny":true,"selected":[]},"capturekey":{"css":".selected_key_SVGID_ { stroke:gray; }","type":"single","only_shiny":true,"selected":[]},"capturetheme":{"css":".selected_theme_SVGID_ { stroke:gray; }","type":"single","only_shiny":true,"selected":[]},"toolbar":{"position":"topright","saveaspng":true,"pngname":"diagram"},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="plotly" class="slide level2">
+<h2>Plotly</h2>
+<p><a href="https://plotly.com/graphing-libraries/" class="uri">https://plotly.com/graphing-libraries/</a> <a href="https://plotly-r.com/overview.html" class="uri">https://plotly-r.com/overview.html</a></p>
+</section>
+<section id="weight-vs-volume-interactive-plotly" class="slide level2 smaller">
+<h2>Weight vs Volume Interactive-plotly</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Code</a></li><li><a href="#tabset-2-2">plotly Graph</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>books_plotly <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>(allbacks, <span class="at">x=</span> <span class="sc">~</span>volume, <span class="at">y=</span> <span class="sc">~</span>weight,<span class="at">height =</span> <span class="dv">450</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>books_plotly </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-b2544d0799bbf3262c21" style="width:960px;height:450px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b2544d0799bbf3262c21">{"x":{"visdat":{"664437d61671":["function () ","plotlyVisDat"]},"cur_data":"664437d61671","attrs":{"664437d61671":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"height":450,"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"volume"},"yaxis":{"domain":[0,1],"automargin":true,"title":"weight"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[885,1016,1125,239,701,641,1228,412,953,929,1492,419,1010,595,1034],"y":[800,950,1050,350,750,600,1075,250,700,650,975,350,950,425,725],"type":"scatter","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <img src="images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
@@ -380,7 +604,7 @@
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'multiplex': {"secret":"16655865045147407536","id":"4be062dd0697c685","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":"16659335654518981135","id":"453235f4eb844fb6","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -560,6 +784,48 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
