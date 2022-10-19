@@ -1,12 +1,12 @@
 ---
 title: "Presentation Evaluation"
-format: pdf
+format: html
 ---
 
 ### Group:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 | Total                                                                                                                                                                                                          | 45 pts    | Awarded |
-|------------------------------------------------------|---------|---------|
+|-----------------------------------------------|-------------|-------------|
 | Time management: Did the team divide the time well among themselves or got cut off going over time?                                                                                                            | 4 pts     |         |
 | Content: Is the research question well designed and is the data being used relevant to the research question?                                                                                                  | 5 pts     |         |
 | Professionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?                                    | 5 pts     |         |
