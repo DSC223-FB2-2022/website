@@ -456,16 +456,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (10)}
- [1] &lt;a href="./record/21064?highlight=*:*"&gt;Portrait of a Woman               ...
- [2] &lt;a href="./record/53597?highlight=*:*"&gt;Unknown                           ...
- [3] &lt;a href="./record/99930?highlight=*:*"&gt;                                  ...
- [4] &lt;a href="./record/53755?highlight=*:*"&gt;Bearded Goat                      ...
- [5] &lt;a href="./record/53636?highlight=*:*"&gt;Teacup                            ...
- [6] &lt;a href="./record/99239?highlight=*:*"&gt;Works of a Strange Device: Drawin ...
- [7] &lt;a href="./record/102753?highlight=*:*"&gt;Oranges                          ...
- [8] &lt;a href="./record/20671?highlight=*:*"&gt;Riders from the West Frieze of th ...
- [9] &lt;a href="./record/53684?highlight=*:*"&gt;Espresso Saucer                   ...
-[10] &lt;a href="./record/20832?highlight=*:*"&gt;Seated Young Male Nude            ...</code></pre>
+ [1] &lt;a href="./record/50422?highlight=*:*"&gt;Unknown                           ...
+ [2] &lt;a href="./record/53527?highlight=*:*"&gt;Full length portrait of man from  ...
+ [3] &lt;a href="./record/99497?highlight=*:*"&gt;Untitled                          ...
+ [4] &lt;a href="./record/50455?highlight=*:*"&gt;Unknown                           ...
+ [5] &lt;a href="./record/20737?highlight=*:*"&gt;Life Painting                     ...
+ [6] &lt;a href="./record/20791?highlight=*:*"&gt;Seated Male Nude reading newspape ...
+ [7] &lt;a href="./record/99419?highlight=*:*"&gt;Untitled - Standing Nude Female   ...
+ [8] &lt;a href="./record/99354?highlight=*:*"&gt;Untitled - Nude Woman Wearing Vei ...
+ [9] &lt;a href="./record/21358?highlight=*:*"&gt;Standing Nude                     ...
+[10] &lt;a href="./record/53677?highlight=*:*"&gt;Milk Jug                          ...</code></pre>
 </div>
 </div>
 <p>Then we extract the text with <code>html_text()</code>:</p>
@@ -475,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Portrait of a Woman                                                                            (1957)"                              
- [2] "Unknown                                                                            (1965)"                                          
- [3] "                                                                            (2003)"                                                 
- [4] "Bearded Goat                                    "                                                                                   
- [5] "Teacup                                    "                                                                                         
- [6] "Works of a Strange Device: Drawing Smoke                                                                            (2016)"         
- [7] "Oranges                                                                            (2018)"                                          
- [8] "Riders from the West Frieze of the Parthenon                                                                            (1836-1837)"
- [9] "Espresso Saucer                                    "                                                                                
-[10] "Seated Young Male Nude                                                                            (1948)"                           </code></pre>
+<pre><code> [1] "Unknown                                                                            (1952)"                                                                      
+ [2] "Full length portrait of man from behind with three-point hat and sabre                                                                            (22 Mar 1951)"
+ [3] "Untitled                                                                            (1962)"                                                                     
+ [4] "Unknown                                                                            (1947)"                                                                      
+ [5] "Life Painting                                                                            (Circa 1952)"                                                          
+ [6] "Seated Male Nude reading newspaper                                                                            (1960)"                                           
+ [7] "Untitled - Standing Nude Female                                                                            (1963-1964)"                                         
+ [8] "Untitled - Nude Woman Wearing Veil                                                                            (1962)"                                           
+ [9] "Standing Nude                                                                            (1960)"                                                                
+[10] "Milk Jug                                    "                                                                                                                   </code></pre>
 </div>
 </div>
 <p>And get rid of all the spurious white space in the text with <code>str_squish()</code>, which reduces repeated whitespace inside a string.</p>
@@ -496,16 +496,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Portrait of a Woman (1957)"                              
- [2] "Unknown (1965)"                                          
- [3] "(2003)"                                                  
- [4] "Bearded Goat"                                            
- [5] "Teacup"                                                  
- [6] "Works of a Strange Device: Drawing Smoke (2016)"         
- [7] "Oranges (2018)"                                          
- [8] "Riders from the West Frieze of the Parthenon (1836-1837)"
- [9] "Espresso Saucer"                                         
-[10] "Seated Young Male Nude (1948)"                           </code></pre>
+<pre><code> [1] "Unknown (1952)"                                                                      
+ [2] "Full length portrait of man from behind with three-point hat and sabre (22 Mar 1951)"
+ [3] "Untitled (1962)"                                                                     
+ [4] "Unknown (1947)"                                                                      
+ [5] "Life Painting (Circa 1952)"                                                          
+ [6] "Seated Male Nude reading newspaper (1960)"                                           
+ [7] "Untitled - Standing Nude Female (1963-1964)"                                         
+ [8] "Untitled - Nude Woman Wearing Veil (1962)"                                           
+ [9] "Standing Nude (1960)"                                                                
+[10] "Milk Jug"                                                                            </code></pre>
 </div>
 </div>
 <p>And finally save the resulting data as a vector of length 10:</p>
@@ -531,11 +531,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">"h3 a"</span>) <span class="sc">%&gt;%</span>         <span class="co"># as before</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_attr</span>(<span class="st">"href"</span>)             <span class="co"># but get href attribute instead of text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "./record/21064?highlight=*:*"  "./record/53597?highlight=*:*" 
- [3] "./record/99930?highlight=*:*"  "./record/53755?highlight=*:*" 
- [5] "./record/53636?highlight=*:*"  "./record/99239?highlight=*:*" 
- [7] "./record/102753?highlight=*:*" "./record/20671?highlight=*:*" 
- [9] "./record/53684?highlight=*:*"  "./record/20832?highlight=*:*" </code></pre>
+<pre><code> [1] "./record/50422?highlight=*:*" "./record/53527?highlight=*:*"
+ [3] "./record/99497?highlight=*:*" "./record/50455?highlight=*:*"
+ [5] "./record/20737?highlight=*:*" "./record/20791?highlight=*:*"
+ [7] "./record/99419?highlight=*:*" "./record/99354?highlight=*:*"
+ [9] "./record/21358?highlight=*:*" "./record/53677?highlight=*:*"</code></pre>
 </div>
 </div>
 <p>These don’t really look like URLs as we know then though. They’re relative links.</p>
