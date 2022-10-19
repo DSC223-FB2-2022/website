@@ -1,0 +1,19 @@
+---
+title: "Presentation Evaluation"
+format: pdf
+---
+
+### Group:\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+| Total                                                                                                                                                                                                          | 45 pts    | Awarded |
+|------------------------------------------------------|---------|---------|
+| Time management: Did the team divide the time well among themselves or got cut off going over time?                                                                                                            | 4 pts     |         |
+| Content: Is the research question well designed and is the data being used relevant to the research question?                                                                                                  | 5 pts     |         |
+| Professionalism: How well did the team present? Does the presentation appear to be well practiced? Did everyone get a chance to say something meaningful about the project?                                    | 5 pts     |         |
+| Teamwork: Did the team present a unified story, or did it seem like independent pieces of work patched together?                                                                                               | 6 pts     |         |
+| Content: Did the team use impact visualizations and/or appropriate statistical procedures, and interpret the results accurately?                                                                               | 10 pts    |         |
+| Creativity and Critical Thought: Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project? | 8 pts     |         |
+| Are the slides/poster well organized, readable, not full of text, featuring figures with legible labels, legends, etc.?                                                                                        | 7 pts     |         |
+|                                                                                                                                                                                                                | **Total** |         |
+
+[**Comments:**]{.underline}
