@@ -35,4 +35,5 @@ title: "Useful links"
 -   [Youth Risk Behavior Surveillance System (YRBSS)](https://chronicdata.cdc.gov/Youth-Risk-Behaviors/DASH-Youth-Risk-Behavior-Surveillance-System-YRBSS/q6p7-56au)
 -   [PRISM Data Archive Project](https://www.icpsr.umich.edu/icpsrweb/content/ICPSR/fenway.html)
 -   [Harvard Dataverse](https://dataverse.harvard.edu/)
+-   [Andrew G. Reiter Poly Scie Datasets](https://andyreiter.com/datasets/)
 -   If you know of others, let me know, and we'll add here...
